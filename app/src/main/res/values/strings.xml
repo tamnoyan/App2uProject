@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">App2uProject</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!--Google-->
+    <string name="web_application">75665281941-ppr4lllt40ui8ia3ul95rhhmi0eprt5u.apps.googleusercontent.com</string>
+    <!--Facebook-->
+    <string name="facebook_app_id">1731866163735085</string>
+</resources>
