@@ -10,19 +10,17 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.tamn.app2uproject.Fragments.EventsFragment;
+import com.example.tamn.app2uproject.Fragments.UploadEventsFragment;
 import com.example.tamn.app2uproject.Model.MessageItem;
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -36,7 +34,7 @@ public class MainActivity extends AppCompatActivity
 
     FloatingActionButton fab;
     Toolbar toolbar;
-    RecyclerView rvEvents;
+
     // Dialog to send data to firebase
     AlertDialog dialogSendData;
 
@@ -48,6 +46,10 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        getSupportFragmentManager().beginTransaction()
+                .add(R.id.fragmentContainer, new EventsFragment())
+                .commit();
 
         checkIsUserLogin();
         addNavigationDrawer();
@@ -61,6 +63,7 @@ public class MainActivity extends AppCompatActivity
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
+        //navigation drawer
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
@@ -86,95 +89,6 @@ public class MainActivity extends AppCompatActivity
             //Initialize this screen
             initLayout();
             initEvents();
-            initRecycle();
-        }
-    }
-
-    private void initRecycle() {
-        //Retrieve an instance of your database using getInstance()
-        // and reference the location you want to write to.
-        //in our case is MESSAGES
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        final DatabaseReference ref = database.getReference(Constants.MESSAGES);
-
-        //Layout for recycle
-        rvEvents.setLayoutManager(new LinearLayoutManager(this));
-
-
-        //Adapter               //model         //ViewHolder
-        FirebaseRecyclerAdapter<MessageItem, ItemsViewHolder> adapter = new FirebaseRecyclerAdapter<MessageItem, ItemsViewHolder>(
-                MessageItem.class, //our model
-                R.layout.recycle_event_item, //layout
-                ItemsViewHolder.class, //ViewHolder
-                ref //query , reference
-
-        ) {
-            @Override
-            protected void populateViewHolder(final ItemsViewHolder viewHolder, MessageItem model, final int position) {
-
-                viewHolder.tvEventTitle.setText(model.getTitle());
-                viewHolder.tvEventContent.setText(model.getContent());
-
-                viewHolder.tvEventContent.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        // get the push id of the user
-                        DatabaseReference item = getRef(position);
-                        String key = item.getKey();
-
-                        /*FirebaseDatabase instance = FirebaseDatabase.getInstance();
-                        // getting event details by key
-                        DatabaseReference ref = instance.getReference(Constants.MESSAGES).child(key);
-                        Toast.makeText(MainActivity.this, "ref : " + ref, Toast.LENGTH_LONG).show();
-                        //Toast.makeText(MainActivity.this, "Key:" + key, Toast.LENGTH_SHORT).show();*/
-
-                        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                        String email = user.getEmail();
-
-                        Intent moveToItemActivity = new Intent(MainActivity.this,ItemActivity.class);
-                        moveToItemActivity.putExtra(Constants.ITEM_KEY, key);
-                        moveToItemActivity.putExtra(Constants.USER_EMAIL, email);
-                        moveToItemActivity.putExtra(Constants.EVENT_TITLE,viewHolder.tvEventTitle.getText());
-                        moveToItemActivity.putExtra(Constants.EVENT_CONTENT,viewHolder.tvEventContent.getText());
-
-
-
-
-                        startActivity(moveToItemActivity);
-
-
-                       // Toast.makeText(MainActivity.this, "user" +email, Toast.LENGTH_SHORT).show();
-
-
-                    }
-                });
-                // delete item on long click
-                viewHolder.tvEventContent.setOnLongClickListener(new View.OnLongClickListener() {
-                    @Override
-                    public boolean onLongClick(View view) {
-                        DatabaseReference item =  getRef(position);
-                        item.setValue(null);
-
-                        return true;
-                    }
-                });
-
-            }
-        };
-
-        rvEvents.setAdapter(adapter);
-    }
-
-    //findViewById - provide a direct reference to the layout in the recycleView
-    public static class ItemsViewHolder extends RecyclerView.ViewHolder {
-        TextView tvEventContent;
-        TextView tvEventTitle;
-
-        public ItemsViewHolder(View itemView) {
-            super(itemView);
-
-            tvEventContent = (TextView) itemView.findViewById(R.id.tvItemContent);
-            tvEventTitle = (TextView) itemView.findViewById(R.id.tvEventTitle);
         }
     }
 
@@ -241,7 +155,7 @@ public class MainActivity extends AppCompatActivity
 
     private void initLayout() {
         fab = (FloatingActionButton) findViewById(R.id.fab);
-        rvEvents = (RecyclerView) findViewById(R.id.rvEvents);
+
     }
 
     @Override
@@ -287,9 +201,14 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        if (id == R.id.nav_upload_event) {
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragmentContainer, new UploadEventsFragment())
+                    .commit();
+        } else if (id == R.id.nav_events) {
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragmentContainer, new EventsFragment())
+                    .commit();
 
         } else if (id == R.id.nav_slideshow) {
 

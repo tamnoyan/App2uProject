@@ -107,6 +107,9 @@ public class ItemActivity extends AppCompatActivity {
                 Toast.makeText(ItemActivity.this, "failed:" + e.getMessage().toString(), Toast.LENGTH_SHORT).show();
             }
         });
+
+        // clear text
+        etComment.setText("");
     }
 
     private void initLayout() {
@@ -118,8 +121,8 @@ public class ItemActivity extends AppCompatActivity {
     }
 
     private void initEvents() {
-        tvEventContent.setText(Constants.EVENT_CONTENT);
         tvEventTitle.setText(eventTitle);
+        tvEventContent.setText(eventContent);
         btnAddComment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

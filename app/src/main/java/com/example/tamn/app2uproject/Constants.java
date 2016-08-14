@@ -10,4 +10,5 @@ public class Constants {
     public static final String COMMENTS = "comments";
     public static final String EVENT_TITLE = "event title";
     public static final String EVENT_CONTENT ="event content" ;
+    public static final String EVENTS = "Events";
 }
