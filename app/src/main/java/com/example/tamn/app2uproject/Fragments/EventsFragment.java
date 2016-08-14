@@ -79,7 +79,7 @@ public class EventsFragment extends Fragment {
                 viewHolder.tvItemContent.setText(model.getContent());
                 Picasso.with(getActivity()).load(model.getUrl()).into(viewHolder.ivItemImage);
 
-                viewHolder.tvItemContent.setOnClickListener(new View.OnClickListener() {
+                viewHolder.tvItemTitle.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         // get the push id of the user
@@ -89,13 +89,18 @@ public class EventsFragment extends Fragment {
                         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                         String email = user.getEmail();
 
+                        /*Bundle bundle = new Bundle();
+                            bundle.putString("tam", " jood job From Activity");
+                            // set Fragmentclass Arguments
+                            CommentFragment fragobj = new CommentFragment();
+                            fragobj.setArguments(bundle);*/
+
                         Intent moveToItemActivity = new Intent(getContext(),ItemActivity.class);
                         moveToItemActivity.putExtra(Constants.ITEM_KEY, key);
                         moveToItemActivity.putExtra(Constants.USER_EMAIL, email);
                         moveToItemActivity.putExtra(Constants.EVENT_TITLE,viewHolder.tvItemTitle.getText());
                         moveToItemActivity.putExtra(Constants.EVENT_CONTENT,viewHolder.tvItemContent.getText());
                         //Singleton
-                        //TODO: fix
                         PictureHelper.getInstance().setDrawable(viewHolder.ivItemImage.getDrawable());
 
                         startActivity(moveToItemActivity);

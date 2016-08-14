@@ -14,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.example.tamn.app2uproject.Fragments.CommentFragment;
 import com.example.tamn.app2uproject.Fragments.EventsFragment;
 import com.example.tamn.app2uproject.Fragments.UploadEventsFragment;
 import com.google.firebase.auth.FirebaseAuth;
@@ -37,6 +38,10 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+       /* getSupportFragmentManager().beginTransaction()
+                .add(R.id.fragmentContainer, new WelcomeFragment())
+                .commit();*/
 
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.fragmentContainer, new EventsFragment())
@@ -202,6 +207,9 @@ public class MainActivity extends AppCompatActivity
                     .commit();
 
         } else if (id == R.id.nav_slideshow) {
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragmentContainer, new CommentFragment())
+                    .commit();
 
         } else if (id == R.id.nav_manage) {
 
