@@ -2,7 +2,6 @@ package com.example.tamn.app2uproject;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -14,19 +13,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toast;
 
 import com.example.tamn.app2uproject.Fragments.EventsFragment;
 import com.example.tamn.app2uproject.Fragments.UploadEventsFragment;
-import com.example.tamn.app2uproject.Model.MessageItem;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 
 public class MainActivity extends AppCompatActivity
@@ -96,12 +87,12 @@ public class MainActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showCustomDialog();
+                //showCustomDialog();
             }
         });
     }
 
-    private void showCustomDialog() {
+  /*  private void showCustomDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         View dialogView = getLayoutInflater().inflate(R.layout.dialog_event_upload,null,false);
         final EditText etDialogTitle = (EditText) dialogView.findViewById(R.id.etDialogTitle);
@@ -151,7 +142,7 @@ public class MainActivity extends AppCompatActivity
                 Toast.makeText(MainActivity.this, "Error:" + e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
-    }
+    }*/
 
     private void initLayout() {
         fab = (FloatingActionButton) findViewById(R.id.fab);

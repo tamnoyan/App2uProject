@@ -42,7 +42,7 @@
     <ImageView
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:id="@+id/ivEvent"
+        android:id="@+id/ivUploadImage"
         android:background="@mipmap/ic_launcher"
         android:layout_marginTop="31dp"
         android:layout_below="@+id/etEventContent"
@@ -53,7 +53,7 @@
         android:layout_height="wrap_content"
         android:text="Upload"
         android:id="@+id/btnUploadEvent"
-        android:layout_below="@+id/ivEvent"
+        android:layout_below="@+id/ivUploadImage"
         android:layout_centerHorizontal="true" />
 
 

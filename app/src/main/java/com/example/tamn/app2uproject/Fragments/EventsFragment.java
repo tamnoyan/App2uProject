@@ -9,17 +9,20 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.tamn.app2uproject.Constants;
 import com.example.tamn.app2uproject.ItemActivity;
 import com.example.tamn.app2uproject.Model.MessageItem;
+import com.example.tamn.app2uproject.PictureHelper;
 import com.example.tamn.app2uproject.R;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.squareup.picasso.Picasso;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -68,10 +71,11 @@ public class EventsFragment extends Fragment {
             @Override
             protected void populateViewHolder(final ItemsViewHolder viewHolder, MessageItem model, final int position) {
 
-                viewHolder.tvEventTitle.setText(model.getTitle());
-                viewHolder.tvEventContent.setText(model.getContent());
+                viewHolder.tvItemTitle.setText(model.getTitle());
+                viewHolder.tvItemContent.setText(model.getContent());
+                Picasso.with(getActivity()).load(model.getUrl()).into(viewHolder.ivItemImage);
 
-                viewHolder.tvEventContent.setOnClickListener(new View.OnClickListener() {
+                viewHolder.tvItemContent.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         // get the push id of the user
@@ -84,16 +88,18 @@ public class EventsFragment extends Fragment {
                         Intent moveToItemActivity = new Intent(getContext(),ItemActivity.class);
                         moveToItemActivity.putExtra(Constants.ITEM_KEY, key);
                         moveToItemActivity.putExtra(Constants.USER_EMAIL, email);
-                        moveToItemActivity.putExtra(Constants.EVENT_TITLE,viewHolder.tvEventTitle.getText());
-                        moveToItemActivity.putExtra(Constants.EVENT_CONTENT,viewHolder.tvEventContent.getText());
-                        startActivity(moveToItemActivity);
+                        moveToItemActivity.putExtra(Constants.EVENT_TITLE,viewHolder.tvItemTitle.getText());
+                        moveToItemActivity.putExtra(Constants.EVENT_CONTENT,viewHolder.tvItemContent.getText());
+                        //Singleton
+                        //TODO: fix
+                        PictureHelper.getInstance().setDrawable(viewHolder.ivItemImage.getDrawable());
 
-                        // Toast.makeText(MainActivity.this, "user" +email, Toast.LENGTH_SHORT).show();
+                        startActivity(moveToItemActivity);
 
                     }
                 });
                 // delete item on long click
-                viewHolder.tvEventContent.setOnLongClickListener(new View.OnLongClickListener() {
+                viewHolder.tvItemContent.setOnLongClickListener(new View.OnLongClickListener() {
                     @Override
                     public boolean onLongClick(View view) {
                         DatabaseReference item =  getRef(position);
@@ -111,14 +117,16 @@ public class EventsFragment extends Fragment {
 
     //findViewById - provide a direct reference to the layout in the recycleView
     public static class ItemsViewHolder extends RecyclerView.ViewHolder {
-        TextView tvEventContent;
-        TextView tvEventTitle;
+        TextView tvItemContent;
+        TextView tvItemTitle;
+        ImageView ivItemImage;
 
         public ItemsViewHolder(View itemView) {
             super(itemView);
 
-            tvEventContent = (TextView) itemView.findViewById(R.id.tvItemContent);
-            tvEventTitle = (TextView) itemView.findViewById(R.id.tvEventTitle);
+            tvItemContent = (TextView) itemView.findViewById(R.id.tvItemContent);
+            tvItemTitle = (TextView) itemView.findViewById(R.id.tvItemTitle);
+            ivItemImage = (ImageView) itemView.findViewById(R.id.ivItemImage);
         }
     }
 

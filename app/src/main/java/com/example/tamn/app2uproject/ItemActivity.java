@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,6 +25,7 @@ public class ItemActivity extends AppCompatActivity {
     RecyclerView rvComment;
     String userEmail;
     TextView tvEventTitle, tvEventContent;
+    ImageView ivEventImage;
     EditText etComment;
     Button btnAddComment;
 
@@ -35,8 +37,8 @@ public class ItemActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item);
-        initLayout();
 
+        initLayout();
         getEventDetails();
         initEvents();
         initRecycle();
@@ -66,6 +68,7 @@ public class ItemActivity extends AppCompatActivity {
 
                 viewHolder.tvUserEmail.setText(model.getEmail());
                 viewHolder.tvUserComment.setText(model.getComment());
+                //viewHolder.ivEventImage.se
 
             }
         };
@@ -75,14 +78,14 @@ public class ItemActivity extends AppCompatActivity {
     //findViewById - provide a direct reference to the layout in the recycleView
     public static class CommentViewHolder extends RecyclerView.ViewHolder {
         TextView tvUserComment, tvUserEmail;
-
+        //ImageView ivEventImage;
 
         public CommentViewHolder(View itemView) {
             super(itemView);
 
             tvUserComment = (TextView) itemView.findViewById(R.id.tvUserComment);
             tvUserEmail = (TextView) itemView.findViewById(R.id.tvUserEmail);
-
+            //ivEventImage = (ImageView) itemView.findViewById(R.id.ivEventImage);
         }
     }
 
@@ -118,11 +121,17 @@ public class ItemActivity extends AppCompatActivity {
         etComment = (EditText) findViewById(R.id.etComment);
         btnAddComment = (Button) findViewById(R.id.btnAddComment);
         rvComment = (RecyclerView) findViewById(R.id.rvComment);
+        ivEventImage = (ImageView) findViewById(R.id.ivEventImage);
     }
 
     private void initEvents() {
+        //Title
         tvEventTitle.setText(eventTitle);
+        //Content
         tvEventContent.setText(eventContent);
+        //Image
+        ivEventImage.setImageDrawable(PictureHelper.getInstance().getDrawable());
+
         btnAddComment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -132,8 +141,9 @@ public class ItemActivity extends AppCompatActivity {
     }
 
     private void getEventDetails() {
-        // getting the key from main intent
+
         Intent commentIntent = getIntent();
+        // getting the key from main intent
         key = commentIntent.getStringExtra(Constants.ITEM_KEY);
         userEmail = commentIntent.getStringExtra(Constants.USER_EMAIL);
         eventTitle = commentIntent.getStringExtra(Constants.EVENT_TITLE);

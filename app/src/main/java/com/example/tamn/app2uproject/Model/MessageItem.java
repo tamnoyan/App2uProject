@@ -6,6 +6,7 @@ package com.example.tamn.app2uproject.Model;
 public class MessageItem {
     private String title;
     private String content;
+    private String url;
     //TODO: add image - use the url
 
     public MessageItem() {
@@ -14,9 +15,10 @@ public class MessageItem {
          */
     }
 
-    public MessageItem(String title, String content) {
+    public MessageItem(String title, String content, String url) {
         this.title = title;
         this.content = content;
+        this.url = url;
     }
 
     public String getTitle() {
@@ -35,5 +37,11 @@ public class MessageItem {
         this.content = content;
     }
 
+    public String getUrl() {
+        return url;
+    }
 
+    public void setUrl(String url) {
+        this.url = url;
+    }
 }
