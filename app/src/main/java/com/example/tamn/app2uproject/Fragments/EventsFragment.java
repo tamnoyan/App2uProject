@@ -31,6 +31,7 @@ public class EventsFragment extends Fragment {
 
     RecyclerView rvEvents;
     View inflateView;
+    LinearLayoutManager linearLayoutManager;
 
     public EventsFragment() {
         // Required empty public constructor
@@ -57,10 +58,13 @@ public class EventsFragment extends Fragment {
         final DatabaseReference ref = database.getReference(Constants.EVENTS);
 
         //Layout for recycle
-        rvEvents.setLayoutManager(new LinearLayoutManager(getContext()));
+        linearLayoutManager = new LinearLayoutManager(getContext());
+        //reverse the order
+        linearLayoutManager.setReverseLayout(true);
+        rvEvents.setLayoutManager(linearLayoutManager);
 
-
-        //Adapter               //model         //ViewHolder
+        //Adapter
+                                // model     //ViewHolder
         FirebaseRecyclerAdapter<MessageItem, ItemsViewHolder> adapter = new FirebaseRecyclerAdapter<MessageItem, ItemsViewHolder>(
                 MessageItem.class, //our model
                 R.layout.recycle_event_item, //layout
@@ -112,7 +116,9 @@ public class EventsFragment extends Fragment {
             }
         };
 
+        //setReverse();
         rvEvents.setAdapter(adapter);
+       // setReverse
     }
 
     //findViewById - provide a direct reference to the layout in the recycleView

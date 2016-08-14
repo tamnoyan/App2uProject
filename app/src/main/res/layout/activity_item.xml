@@ -11,12 +11,12 @@
 
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="match_parent"
         android:id="@+id/rvComment"
         android:layout_below="@+id/writeComment"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="46dp">
+        android:layout_marginTop="20dp">
 
     </android.support.v7.widget.RecyclerView>
 
@@ -24,17 +24,29 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/rlEvent"
-        >
+        android:paddingBottom="10dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:id="@+id/ivEventImage"
+            android:src="@mipmap/ic_launcher"
+            android:scaleType="centerCrop"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Title"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_below="@+id/ivEventImage"
             android:id="@+id/tvEventTitle"
-            android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentStart="true"
+
+            />
 
         <TextView
             android:layout_width="match_parent"
@@ -46,15 +58,6 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
 
-        <ImageView
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:id="@+id/ivEventImage"
-            android:src="@mipmap/ic_launcher"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
-
     </RelativeLayout>
 
     <LinearLayout
@@ -64,20 +67,30 @@
         android:layout_below="@+id/rlEvent"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:id="@+id/writeComment">
+        android:id="@+id/writeComment"
+
+        android:background="#cfc6c6">
 
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/etComment"
             android:hint="write comment here"
-            android:layout_weight="1" />
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_weight="1"
+            android:paddingLeft="5dp"
+            android:paddingTop="10dp" />
+
+
+
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Add Comment"
             android:id="@+id/btnAddComment"
             android:layout_below="@+id/tvEventContent"
+            style="?android:attr/buttonStyleSmall"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true" />
 

@@ -33,6 +33,11 @@ public class ItemActivity extends AppCompatActivity {
     String eventTitle;
     String eventContent;
 
+    //TODO: add edit option for admin
+    //TODO: add edit option for user on his comment
+    //ToDO: move add comment to fragment
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,7 +52,11 @@ public class ItemActivity extends AppCompatActivity {
     private void initRecycle() {
 
         //Layout for recycle
-        rvComment.setLayoutManager(new LinearLayoutManager(this));
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        // to reverse order set to true
+        layoutManager.setReverseLayout(false);
+        rvComment.setLayoutManager(layoutManager);
 
         //Retrieve an instance of your database using getInstance()
         // and reference the location you want to write to.
@@ -68,7 +77,6 @@ public class ItemActivity extends AppCompatActivity {
 
                 viewHolder.tvUserEmail.setText(model.getEmail());
                 viewHolder.tvUserComment.setText(model.getComment());
-                //viewHolder.ivEventImage.se
 
             }
         };
@@ -78,14 +86,13 @@ public class ItemActivity extends AppCompatActivity {
     //findViewById - provide a direct reference to the layout in the recycleView
     public static class CommentViewHolder extends RecyclerView.ViewHolder {
         TextView tvUserComment, tvUserEmail;
-        //ImageView ivEventImage;
 
         public CommentViewHolder(View itemView) {
             super(itemView);
 
             tvUserComment = (TextView) itemView.findViewById(R.id.tvUserComment);
             tvUserEmail = (TextView) itemView.findViewById(R.id.tvUserEmail);
-            //ivEventImage = (ImageView) itemView.findViewById(R.id.ivEventImage);
+
         }
     }
 

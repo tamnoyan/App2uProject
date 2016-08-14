@@ -7,8 +7,7 @@ public class CommentItem {
     //private String title;
     private String comment;
     private String email;
-    private String url;
-    //TODO: add image - use the url
+
 
 
     public CommentItem() {

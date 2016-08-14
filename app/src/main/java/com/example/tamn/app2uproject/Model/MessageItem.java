@@ -7,7 +7,6 @@ public class MessageItem {
     private String title;
     private String content;
     private String url;
-    //TODO: add image - use the url
 
     public MessageItem() {
         /**
