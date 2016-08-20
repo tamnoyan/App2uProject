@@ -13,4 +13,22 @@
     <string name="web_application">75665281941-ppr4lllt40ui8ia3ul95rhhmi0eprt5u.apps.googleusercontent.com</string>
     <!--Facebook-->
     <string name="facebook_app_id">1731866163735085</string>
+
+    <!--translate-->
+    <string name="email">Email</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+
+    <string name="about">about organization </string>
+    <string name="Dont_have_account_yet">Dont have account yet?</string>
+    <string name="forgot_password">Forgot your password?</string>
+    <string name="signup">Sign Up</string>
+    <string name="Signin">Sing In</string>
+    <string name="or">------------ or -----------</string>
+    <string name="reset_message">Please enter your email to reset</string>
+    <string name="Sign_out">Sign out</string>
+    <string name="Facebook">Facebook</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="title_activity_main3">Main3Activity</string>
+
 </resources>

@@ -4,12 +4,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.tamn.app2uproject.Fragments.SigninFragment;
+import com.example.tamn.app2uproject.Fragments.SignupFragment;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -24,7 +27,6 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
@@ -37,7 +39,6 @@ public class LoginActivity extends AppCompatActivity {
     private static final int GOOGLE_SIGN_CODE = 15;
     private static final int FACEBOOK_SIGN_IN = 64206;
     // signIn/signUp with email/password
-    EditText etUser, etPassword;
     Button btnLogin;
     TextView tvSignUp;
     //Google Button
@@ -45,12 +46,23 @@ public class LoginActivity extends AppCompatActivity {
     //Facebook Button
     LoginButton btnFacebookSignin;
     CallbackManager callbackManager;
+    RelativeLayout changeLayout;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+//        getSupportActionBar().hide();
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //actionBar.setDisplayHomeAsUpEnabled(true);
+
+        /*getSupportFragmentManager().beginTransaction()
+                .add(R.id.fragmentContainer, new EventsFragment())
+                .commit();*/
+
 
         initLatout();
         initEvents();
@@ -59,11 +71,15 @@ public class LoginActivity extends AppCompatActivity {
 
     private void initEvents() {
 
-        //Sign Up Button
+        //Sign Up TextView
         tvSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                createUserEmailAndPass();
+               // createUserEmailAndPass();
+                changeLayout.setVisibility(View.GONE);
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.container, new SignupFragment())
+                        .commit();
             }
         });
 
@@ -71,7 +87,10 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                LoginWithEmailAndPass();
+                changeLayout.setVisibility(View.GONE);
+                getSupportFragmentManager().beginTransaction()
+                .replace(R.id.container, new SigninFragment())
+                .commit();
             }
         });
 
@@ -152,7 +171,7 @@ public class LoginActivity extends AppCompatActivity {
 
     /**
      * Login with email and password
-     */
+     *//*
     private void LoginWithEmailAndPass() {
         String email = etUser.getText().toString();
         String pass = etPassword.getText().toString();
@@ -178,9 +197,9 @@ public class LoginActivity extends AppCompatActivity {
         }catch (Exception e) {
             Toast.makeText(LoginActivity.this, "Email and Password cannot be empty", Toast.LENGTH_SHORT).show();
         }
-    }
+    }*/
 
-    //Sign Up with email and password
+  /*  //Sign Up with email and password
     private void createUserEmailAndPass() {
         String email = etUser.getText().toString();
         String pass = etPassword.getText().toString();
@@ -210,33 +229,13 @@ public class LoginActivity extends AppCompatActivity {
                 Toast.makeText(LoginActivity.this, "Email and Password cannot be empty", Toast.LENGTH_SHORT).show();
             }
 
-    }
+    }*/
 
     private void moveToMainActivity() {
         startActivity(new Intent(LoginActivity.this, MainActivity.class));
     }
 
-   /* private void resetPassword() {
-        FirebaseAuth.getInstance().sendPasswordResetEmail(getEmail())
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Snackbar.make(btnResetPassword,
-                                e.getLocalizedMessage(), Snackbar.LENGTH_INDEFINITE).
-                                setAction("dismiss", new OnClickListener() {
-                                    @Override
-                                    public void onClick(View view) { }
-                                });
-                    }
-                }).addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void aVoid) {
-                Toast.makeText(LoginActivity.this,
-                        "Sent - Check your email...", Toast.LENGTH_SHORT).show();
-            } });
-    }*/
-
-    /**
+   /*
      * All Results Should appear here...
      */
     @Override
@@ -282,15 +281,16 @@ public class LoginActivity extends AppCompatActivity {
 
 
     private void initLatout() {
-        etUser = (EditText) findViewById(R.id.etUser);
-        etPassword = (EditText) findViewById(R.id.etPassword);
         tvSignUp = (TextView) findViewById(R.id.tvSignUp);
         btnLogin = (Button) findViewById(R.id.btnLogin);
         //Google
         btnGoogleSignIn = (SignInButton) findViewById(R.id.btnGoogleSignIn);
+        //getString(com.google.android.gms.R.string.common_signin_button_text_long);
         //Facebook
         btnFacebookSignin = (LoginButton) findViewById(R.id.btnFacebookSignin);
         callbackManager = CallbackManager.Factory.create();
+
+        changeLayout = (RelativeLayout) findViewById(R.id.changeLayout);
 
     }
 }

@@ -3,4 +3,12 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <color name="toolbar">#3e99ea</color>
+    <color name="statusbar">#1f7fd4</color>
+    <color name="green">#8cc540</color>
+    <color name="lightBrown">#705d3c</color>
+    <color name="darkBrown">#603a16</color>
+    <color name="lightBlue">#44a6d3 </color>
+
 </resources>

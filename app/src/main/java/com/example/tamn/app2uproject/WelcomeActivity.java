@@ -14,8 +14,8 @@ public class WelcomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_welcome);
 
+        getSupportActionBar().hide();
 
         if (!splashLoaded) {
             setContentView(R.layout.activity_welcome);
@@ -29,7 +29,7 @@ public class WelcomeActivity extends AppCompatActivity {
                     startActivity(new Intent(WelcomeActivity.this, MainActivity.class));
                     finish();
                 }
-            }, secondsDelayed * 1000);
+            }, secondsDelayed * 3500);
 
             splashLoaded = true;
         }

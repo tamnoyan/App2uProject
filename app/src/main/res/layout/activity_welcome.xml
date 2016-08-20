@@ -33,8 +33,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/imageView5"
-        android:background="@drawable/logo_crop"
+        android:background="@drawable/logo_medium"
         android:layout_marginTop="47dp"
+
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 </RelativeLayout>

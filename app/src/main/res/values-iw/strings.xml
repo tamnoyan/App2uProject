@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">נקודת צמיחה</string>
+    <string name="about">
+        "נקודת צמיחה" הינו פרויקט ייחודי וארצי, הפועל במסגרת "קרן חן וחסד" ומטרתו לסייע למשפחות בתחומי החיים השונים, באמצעות הנחייה משפחתית.
+הפרויקט נועד להקנות כלים ולהנחות משפחות המתמודדות עם משברים רגשיים מגוונים הנובעים מבעיות כלכליות, זוגיות, תעסוקה וכ"ו;
+ומטרתו לעזור למשפחות  לעשות שינוי בדרך התנהלותן ולהגיע לצמיחה כלכלית ואיזון במישורים המשפחתיים השונים.
+הפרויקט מבוסס על מודל ייחודי המלמד את המשפחות איך לעשות שינוי פנימי עמוק, וע"י כך לשנות את עולמן החיצוני.
+כל מנחה משפחה מלווה משפחה אחת, שעה אחת בשבוע, למשך שנה.
+
+    </string>
+    <string name="action_settings">הגדרות</string>
+    <string name="password">סיסמא</string>
+    <string name="email">דואר אלקטרוני</string>
+    <string name="Dont_have_account_yet">אין לך חשבון?</string>
+    <string name="Signin">התחבר</string>
+    <string name="forgot_password">שכחתי סיסמא</string>
+    <string name="username">שם משתמש</string>
+    <string name="signup">הירשם</string>
+    <string name="reset_message">לשחזור סיסמא , נא להזין אימייל</string>
+    <string name="Sign_out">התנתק</string>
+    <string name="or">-------- או התחבר/י באמצעות --------</string>
+    <string name="Facebook">Facebook</string>
+</resources>

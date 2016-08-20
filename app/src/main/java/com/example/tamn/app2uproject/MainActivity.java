@@ -14,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.example.tamn.app2uproject.Fragments.AboutFragment;
 import com.example.tamn.app2uproject.Fragments.CommentFragment;
 import com.example.tamn.app2uproject.Fragments.EventsFragment;
 import com.example.tamn.app2uproject.Fragments.UploadEventsFragment;
@@ -38,10 +39,7 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-       /* getSupportFragmentManager().beginTransaction()
-                .add(R.id.fragmentContainer, new WelcomeFragment())
-                .commit();*/
+        //actionBar.setDisplayHomeAsUpEnabled(true);
 
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.fragmentContainer, new EventsFragment())
@@ -212,10 +210,17 @@ public class MainActivity extends AppCompatActivity
                     .commit();
 
         } else if (id == R.id.nav_manage) {
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragmentContainer, new AboutFragment())
+                    .commit();
 
         } else if (id == R.id.nav_share) {
+            startActivity(new Intent(MainActivity.this, Main3Activity.class));
 
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.nav_signout) {
+            FirebaseAuth.getInstance().signOut();
+            startActivity(new Intent(MainActivity.this,LoginActivity.class));
+            return true;
 
         }
 
