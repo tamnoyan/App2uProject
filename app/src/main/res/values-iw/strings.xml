@@ -12,13 +12,19 @@
     <string name="action_settings">הגדרות</string>
     <string name="password">סיסמא</string>
     <string name="email">דואר אלקטרוני</string>
-    <string name="Dont_have_account_yet">אין לך חשבון?</string>
+    <string name="Dont_have_account_yet">משתמש חדש?</string>
     <string name="Signin">התחבר</string>
     <string name="forgot_password">שכחתי סיסמא</string>
     <string name="username">שם משתמש</string>
     <string name="signup">הירשם</string>
-    <string name="reset_message">לשחזור סיסמא , נא להזין אימייל</string>
+    <string name="reset_message">לשחזור סיסמא , נא להזין דואר אלקטרוני</string>
     <string name="Sign_out">התנתק</string>
-    <string name="or">-------- או התחבר/י באמצעות --------</string>
+    <string name="or">------------ או התחבר/י באמצעות ------------</string>
     <string name="Facebook">Facebook</string>
+    <string name="create_account">צור חשבון </string>
+    <string name="send_restore_mail">נשלח מייל לשחזור סיסמא</string>
+    <string name="restore">שחזר סיסמא</string>
+    <string name="Error">שגיאה:</string>
+    <string name="Email_and_Password_cannot_be_empty">יש להזין שם משתמש וסיסמא</string>
+    <string name="upload_successfully">האירוע הועלה בהצלחה </string>
 </resources>

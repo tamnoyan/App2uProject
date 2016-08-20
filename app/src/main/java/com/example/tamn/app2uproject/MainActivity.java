@@ -215,7 +215,7 @@ public class MainActivity extends AppCompatActivity
                     .commit();
 
         } else if (id == R.id.nav_share) {
-            startActivity(new Intent(MainActivity.this, Main3Activity.class));
+
 
         } else if (id == R.id.nav_signout) {
             FirebaseAuth.getInstance().signOut();

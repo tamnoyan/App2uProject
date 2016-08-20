@@ -24,11 +24,16 @@
     <string name="forgot_password">Forgot your password?</string>
     <string name="signup">Sign Up</string>
     <string name="Signin">Sing In</string>
-    <string name="or">------------ or -----------</string>
-    <string name="reset_message">Please enter your email to reset</string>
+    <string name="or">-------------- or via -------------</string>
+    <string name="reset_message">Please enter your email to reset <u>underline</u></string>
     <string name="Sign_out">Sign out</string>
     <string name="Facebook">Facebook</string>
-    <string name="title_activity_main2">Main2Activity</string>
-    <string name="title_activity_main3">Main3Activity</string>
+    <string name="LoginActivity">LoginActivity</string>
+    <string name="create_account">Create account</string>
+    <string name="send_restore_mail">Sent - Check your email...</string>
+    <string name="Email_and_Password_cannot_be_empty">Email and Password cannot be empty</string>
+    <string name="Error">Error: </string>
+    <string name="restore">Restore password</string>
+    <string name="upload_successfully">Your event has been uploaded successfully! </string>
 
 </resources>

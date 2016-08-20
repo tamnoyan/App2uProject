@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,6 +39,9 @@ public class SignupFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View inflate = inflater.inflate(R.layout.fragment_signup, container, false);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(getResources().getString(R.string.create_account));
+        //show/hide toolbar
+        ((AppCompatActivity) getActivity()).getSupportActionBar().show();
 
         etSignupEmail = (EditText) inflate.findViewById(R.id.etSignupEmail);
         etSignupPassword = (EditText) inflate.findViewById(R.id.etSignupPassword);
@@ -78,12 +82,12 @@ public class SignupFragment extends Fragment {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         if (e != null) {
-                            Toast.makeText(getActivity(), "Sign up Error:" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), getResources().getString(R.string.Error) + e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
             } catch (Exception e) {
-                Toast.makeText(getActivity(), "Email and Password cannot be empty", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), getResources().getString(R.string.Email_and_Password_cannot_be_empty), Toast.LENGTH_SHORT).show();
             }
 
     }

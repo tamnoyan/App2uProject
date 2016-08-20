@@ -52,7 +52,7 @@ public class UploadEventsFragment extends Fragment {
     * Storage
     */
     FirebaseStorage storage = FirebaseStorage.getInstance();
-    StorageReference storageRef = storage.getReferenceFromUrl("gs://app2uproject.appspot.com");
+    StorageReference storageRef = storage.getReferenceFromUrl(Constants.STORAGE_URL);
     //image path url
     String imageUrl;
     String title;
@@ -141,13 +141,13 @@ public class UploadEventsFragment extends Fragment {
         String ts = tsLong.toString();
 
         //File name in Storages + directory
-        StorageReference imageRef = storageRef.child("images/" + ts);
+        StorageReference imageRef = storageRef.child(Constants.EVENTS_IMAGES + ts);
         //Upload to storage
         UploadTask uploadTask = imageRef.putBytes(data);
         uploadTask.addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(getActivity(), "Error" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), getResources().getString(R.string.Error) + e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
@@ -169,15 +169,16 @@ public class UploadEventsFragment extends Fragment {
         reference.push().setValue(item).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
-                Toast.makeText(getActivity(), "Your Event has been Uploaded successfully!!!", Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(),getResources().getString(R.string.upload_successfully) , Toast.LENGTH_LONG).show();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(getActivity(), "Error: "+e.getMessage(), Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), getResources().getString(R.string.Error)+e.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
     }
+
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {

@@ -40,6 +40,7 @@
                 android:paddingLeft="10dp"
                 android:paddingRight="30dp"
                 android:hint="@string/username"
+                android:textSize="15dp"
                 />
         </LinearLayout>
         <LinearLayout
@@ -69,6 +70,7 @@
                 android:paddingStart="10dp"
                 android:paddingLeft="10dp"
                 android:hint="@string/email"
+                android:textSize="15dp"
                 />
         </LinearLayout>
 
@@ -94,7 +96,8 @@
                 android:ems="10"
                 android:layout_weight="1"
                 android:hint="@string/password"
-                android:textDirection="rtl"
+                android:textSize="15dp"
+                android:gravity="right"
                 />
         </LinearLayout>
 
@@ -113,16 +116,35 @@
         android:layout_marginTop="29dp" />
 
 
-    <!--Social buttons-->
+    <de.hdodenhof.circleimageview.CircleImageView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/profile_image"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/ic_person"
+        app:civ_border_width="2dp"
+        app:civ_border_color="#d9cfcf"
+        android:layout_above="@+id/linearLayout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="28dp" />
 
     <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ivCamera"
+        android:background="@drawable/ic_add_a_photo"
+        android:layout_alignBottom="@+id/profile_image"
+        android:layout_alignRight="@+id/profile_image"
+        android:layout_alignEnd="@+id/profile_image" />
+
+    <!--<ImageView
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:id="@+id/ivProfileImage"
         android:background="@drawable/ic_add_a_photo"
         android:layout_marginBottom="38dp"
         android:layout_above="@+id/linearLayout"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true" />-->
 
 
 </RelativeLayout>

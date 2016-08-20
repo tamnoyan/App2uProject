@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,7 +33,7 @@ public class SigninFragment extends Fragment {
     EditText etSigninEmail, etSigninPassword;
     TextView tvResetPassword , tvResetmessage;
     String email = null;
-    String pass;
+    String pass = null;
     Button btnSignin;
 
 
@@ -46,16 +47,22 @@ public class SigninFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View inflateView = inflater.inflate(R.layout.fragment_signin, container, false);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().show();
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(getResources().getString(R.string.Signin));
+
         etSigninEmail = (EditText) inflateView.findViewById(R.id.etSigninEmail);
         etSigninPassword = (EditText) inflateView.findViewById(R.id.etSigninPassword);
         tvResetPassword = (TextView) inflateView.findViewById(R.id.tvResetPassword);
         tvResetmessage = (TextView) inflateView.findViewById(R.id.tvResetmessage);
         btnSignin = (Button) inflateView.findViewById(R.id.btnSignin);
 
-
+        initEvents();
         return inflateView;
+    }
 
-
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
     }
 
@@ -76,11 +83,7 @@ public class SigninFragment extends Fragment {
         });
     }
 
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        initEvents();
-    }
+
 
 
     private void resetPassword() {
@@ -102,11 +105,12 @@ public class SigninFragment extends Fragment {
                 @Override
                 public void onSuccess(Void aVoid) {
                     Toast.makeText(getActivity(),
-                            "Sent - Check your email...", Toast.LENGTH_SHORT).show();
+                            getResources().getString(R.string.send_restore_mail), Toast.LENGTH_SHORT).show();
                 }
             });
         }else {
            tvResetmessage.setVisibility(View.VISIBLE);
+//            btnSignin.setText(getResources().getString(R.string.restore));
         }
     }
 
@@ -130,12 +134,13 @@ public class SigninFragment extends Fragment {
                     }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(getActivity(), "Error:" + e.getMessage(),
+                    Toast.makeText(getActivity(), getResources().getString(R.string.Error) + e.getMessage(),
                             Toast.LENGTH_SHORT).show();
+
                 }
             });
         }catch (Exception e) {
-            Toast.makeText(getActivity(), "Email and Password cannot be empty", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), getResources().getString(R.string.Email_and_Password_cannot_be_empty), Toast.LENGTH_SHORT).show();
         }
     }
 

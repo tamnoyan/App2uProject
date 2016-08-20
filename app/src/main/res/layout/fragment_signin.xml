@@ -22,7 +22,6 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:id="@+id/Email"
-
             android:gravity="center">
 
             <ImageView
@@ -43,6 +42,7 @@
                 android:paddingStart="10dp"
                 android:paddingLeft="10dp"
                 android:hint="@string/email"
+                android:textSize="15dp"
                 />
         </LinearLayout>
 
@@ -57,7 +57,6 @@
                 android:layout_width="43dp"
                 android:layout_height="37dp"
                 android:id="@+id/ivPassword"
-
                 android:background="@drawable/ic_lock" />
 
             <EditText
@@ -68,7 +67,8 @@
                 android:ems="10"
                 android:layout_weight="1"
                 android:hint="@string/password"
-                android:textDirection="rtl"
+                android:textSize="15dp"
+                android:gravity="right"
                 />
         </LinearLayout>
 
@@ -90,7 +90,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Forgot your password?"
+        android:text="@string/forgot_password"
         android:id="@+id/tvResetPassword"
         android:layout_below="@+id/btnSignin"
         android:layout_centerHorizontal="true"
@@ -101,6 +101,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="@string/reset_message"
+
         android:id="@+id/tvResetmessage"
         android:layout_below="@+id/tvResetPassword"
         android:layout_centerHorizontal="true"
