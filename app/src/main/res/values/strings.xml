@@ -31,6 +31,7 @@
     <string name="LoginActivity">LoginActivity</string>
     <string name="create_account">Create account</string>
     <string name="send_restore_mail">Sent - Check your email...</string>
+    <string name="Email_Password_username_cannot_be_empty">Fields cannot be empty</string>
     <string name="Email_and_Password_cannot_be_empty">Email and Password cannot be empty</string>
     <string name="error">Error: </string>
     <string name="restore">Restore password</string>

@@ -67,14 +67,12 @@ public class SigninFragment extends Fragment {
     }
 
     private void initEvents() {
-
         btnSignin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 SigninWithEmailAndPass();
             }
         });
-
         tvResetPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -84,10 +82,8 @@ public class SigninFragment extends Fragment {
     }
 
 
-
-
     private void resetPassword() {
-
+        try{
         if (email != null){
             FirebaseAuth.getInstance().sendPasswordResetEmail(etSigninEmail.getText().toString())
                     .addOnFailureListener(new OnFailureListener() {
@@ -112,6 +108,10 @@ public class SigninFragment extends Fragment {
            tvResetmessage.setVisibility(View.VISIBLE);
 //            btnSignin.setText(getResources().getString(R.string.restore));
         }
+    }catch (Exception e){
+            String Resetmessage = tvResetmessage.getText().toString();
+            Toast.makeText(getActivity(), getResources().getString(R.string.error) +" " +Resetmessage, Toast.LENGTH_SHORT).show();
+        }
     }
 
 
@@ -119,7 +119,6 @@ public class SigninFragment extends Fragment {
     private void SigninWithEmailAndPass() {
         email = etSigninEmail.getText().toString();
         pass = etSigninPassword.getText().toString();
-       // tvResetmessage.setVisibility(View.VISIBLE);
 
         try {
             FirebaseAuth.getInstance().signInWithEmailAndPassword(email, pass)
@@ -132,13 +131,13 @@ public class SigninFragment extends Fragment {
                             }
                         }
                     }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(getActivity(), getResources().getString(R.string.error) + e.getMessage(),
-                            Toast.LENGTH_SHORT).show();
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(getActivity(), getResources().getString(R.string.error) + e.getMessage(),
+                                    Toast.LENGTH_SHORT).show();
 
-                }
-            });
+                        }
+                    });
         }catch (Exception e) {
             Toast.makeText(getActivity(), getResources().getString(R.string.Email_and_Password_cannot_be_empty), Toast.LENGTH_SHORT).show();
         }

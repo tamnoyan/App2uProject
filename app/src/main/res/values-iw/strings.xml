@@ -10,22 +10,22 @@
 
     </string>
     <string name="action_settings">הגדרות</string>
-    <string name="password">סיסמא</string>
+    <string name="password">סיסמה</string>
     <string name="email">דואר אלקטרוני</string>
     <string name="Dont_have_account_yet">משתמש חדש?</string>
     <string name="Signin">התחבר</string>
-    <string name="forgot_password">שכחתי סיסמא</string>
+    <string name="forgot_password">שכחתי סיסמה</string>
     <string name="username">שם משתמש</string>
     <string name="signup">הירשם</string>
-    <string name="reset_message">לשחזור סיסמא , נא להזין דואר אלקטרוני</string>
+    <string name="reset_message">לשחזור סיסמה , נא להזין דואר אלקטרוני</string>
     <string name="Sign_out">התנתק</string>
     <string name="or">------------ או התחבר/י באמצעות ------------</string>
     <string name="Facebook">Facebook</string>
     <string name="create_account">צור חשבון </string>
-    <string name="send_restore_mail">נשלח מייל לשחזור סיסמא</string>
+    <string name="send_restore_mail">נשלח מייל לשחזור סיסמה</string>
     <string name="restore">שחזר סיסמא</string>
-    <string name="error">שגיאה:</string>
-    <string name="Email_and_Password_cannot_be_empty">יש להזין שם משתמש, דוא"ל וסיסמא</string>
+    <string name="error">שגיאה: </string>
+    <string name="Email_and_Password_cannot_be_empty">יש להזין דואר אלקטרוני וסיסמה</string>
     <string name="upload_successfully">האירוע הועלה בהצלחה </string>
     <string name="events">אירועים ופעילויות</string>
     <string name="upload_event">הוספת פעילות</string>
@@ -36,4 +36,5 @@
     <string name="comment">תגובה</string>
     <string name="write_comment_here">הגב...</string>
     <string name="add_a_comment">הוסף תגובה</string>
+    <string name="Email_Password_username_cannot_be_empty">יש להזין שם משתמש,דוא"ל וסיסמה</string>
 </resources>

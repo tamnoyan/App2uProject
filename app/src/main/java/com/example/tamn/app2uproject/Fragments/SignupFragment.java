@@ -87,7 +87,7 @@ public class SignupFragment extends Fragment {
                     }
                 });
             } catch (Exception e) {
-                Toast.makeText(getActivity(), getResources().getString(R.string.Email_and_Password_cannot_be_empty), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), getResources().getString(R.string.Email_Password_username_cannot_be_empty), Toast.LENGTH_SHORT).show();
             }
 
     }
