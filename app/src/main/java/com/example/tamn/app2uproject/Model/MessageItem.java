@@ -7,6 +7,7 @@ public class MessageItem {
     private String title;
     private String content;
     private String url;
+    private String eventUploadTime;
 
     public MessageItem() {
         /**
@@ -14,10 +15,19 @@ public class MessageItem {
          */
     }
 
-    public MessageItem(String title, String content, String url) {
+    public MessageItem(String title, String content, String url, String eventUploadTime) {
         this.title = title;
         this.content = content;
         this.url = url;
+        this.eventUploadTime = eventUploadTime;
+    }
+
+    public String getEventUploadTime() {
+        return eventUploadTime;
+    }
+
+    public void setEventUploadTime(String eventUploadTime) {
+        this.eventUploadTime = eventUploadTime;
     }
 
     public String getTitle() {

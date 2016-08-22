@@ -19,21 +19,29 @@
     <string name="username">Username</string>
     <string name="password">Password</string>
 
-    <string name="about">about organization </string>
+    <string name="about_us">about us </string>
     <string name="Dont_have_account_yet">Dont have account yet?</string>
     <string name="forgot_password">Forgot your password?</string>
     <string name="signup">Sign Up</string>
-    <string name="Signin">Sing In</string>
+    <string name="Signin">Sign In</string>
     <string name="or">-------------- or via -------------</string>
-    <string name="reset_message">Please enter your email to reset <u>underline</u></string>
+    <string name="reset_message">Please enter your email to reset </string>
     <string name="Sign_out">Sign out</string>
     <string name="Facebook">Facebook</string>
     <string name="LoginActivity">LoginActivity</string>
     <string name="create_account">Create account</string>
     <string name="send_restore_mail">Sent - Check your email...</string>
     <string name="Email_and_Password_cannot_be_empty">Email and Password cannot be empty</string>
-    <string name="Error">Error: </string>
+    <string name="error">Error: </string>
     <string name="restore">Restore password</string>
     <string name="upload_successfully">Your event has been uploaded successfully! </string>
-
+    <string name="events">Events</string>
+    <string name="upload_event">Uplaod Event</string>
+    <string name="title">Title: </string>
+    <string name="content">Content: </string>
+    <string name="about">about</string>
+    <string name="send">Send</string>
+    <string name="comment">Comment</string>
+    <string name="write_comment_here">write comment here</string>
+    <string name="add_a_comment"><u>Add Comment</u> </string>
 </resources>

@@ -32,6 +32,7 @@ public class ItemActivity extends AppCompatActivity {
     String key;
     String eventTitle;
     String eventContent;
+    String commentDate;
 
     //TODO: add edit option for admin
     //TODO: add edit option for user on his comment
@@ -42,20 +43,19 @@ public class ItemActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item);
-
+        getSupportActionBar().hide();
         initLayout();
         getEventDetails();
         initEvents();
         initRecycle();
     }
 
+
     private void initRecycle() {
-
         //Layout for recycle
-
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         // to reverse order set to true
-        layoutManager.setReverseLayout(false);
+        layoutManager.setReverseLayout(true);
         rvComment.setLayoutManager(layoutManager);
 
         //Retrieve an instance of your database using getInstance()
@@ -77,30 +77,37 @@ public class ItemActivity extends AppCompatActivity {
 
                 viewHolder.tvUserEmail.setText(model.getEmail());
                 viewHolder.tvUserComment.setText(model.getComment());
+                viewHolder.tvCommentDate.setText(model.getCommentDate());
 
             }
         };
+
+        //adding divider
+        rvComment.addItemDecoration(new SimpleDividerItemDecoration(
+                getApplicationContext()
+        ));
         rvComment.setAdapter(adapter);
     }
 
     //findViewById - provide a direct reference to the layout in the recycleView
     public static class CommentViewHolder extends RecyclerView.ViewHolder {
-        TextView tvUserComment, tvUserEmail;
+        TextView tvUserComment, tvUserEmail , tvCommentDate;
 
         public CommentViewHolder(View itemView) {
             super(itemView);
 
             tvUserComment = (TextView) itemView.findViewById(R.id.tvUserComment);
             tvUserEmail = (TextView) itemView.findViewById(R.id.tvUserEmail);
-
+            tvCommentDate = (TextView) itemView.findViewById(R.id.tvCommentDate);
         }
     }
 
     private void sendDataToDB() {
         String comment = etComment.getText().toString();
+        commentDate = IOHelper.gettingDate();
 
         // create an object from the model
-        CommentItem commentItem = new CommentItem(comment, userEmail);
+        CommentItem commentItem = new CommentItem(comment,userEmail,commentDate);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference ref = database.getReference(Constants.COMMENTS).child(key);
@@ -155,6 +162,8 @@ public class ItemActivity extends AppCompatActivity {
         userEmail = commentIntent.getStringExtra(Constants.USER_EMAIL);
         eventTitle = commentIntent.getStringExtra(Constants.EVENT_TITLE);
         eventContent = commentIntent.getStringExtra(Constants.EVENT_CONTENT);
+
+
 
     }
 

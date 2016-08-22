@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.tamn.app2uproject.Constants;
+import com.example.tamn.app2uproject.IOHelper;
 import com.example.tamn.app2uproject.Model.MessageItem;
 import com.example.tamn.app2uproject.R;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -57,6 +59,7 @@ public class UploadEventsFragment extends Fragment {
     String imageUrl;
     String title;
     String content;
+    String eventDate;
 
     public UploadEventsFragment() {
         // Required empty public constructor
@@ -73,6 +76,8 @@ public class UploadEventsFragment extends Fragment {
         etEventContent = (EditText) inflateView.findViewById(R.id.etEventContent);
         ivUploadImage = (ImageView) inflateView.findViewById(R.id.ivUploadImage);
         btnUploadEvent = (Button) inflateView.findViewById(R.id.btnUploadEvent);
+
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(getResources().getString(R.string.upload_event));
 
         initLayout();
         checkIfPermissionNeeded();
@@ -147,7 +152,7 @@ public class UploadEventsFragment extends Fragment {
         uploadTask.addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(getActivity(), getResources().getString(R.string.Error) + e.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), getResources().getString(R.string.error) + e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
@@ -161,7 +166,8 @@ public class UploadEventsFragment extends Fragment {
     }
 
     private void uploadDataToFirebase(String title, String content, String url ) {
-        MessageItem item = new MessageItem(title,content,url  );
+        eventDate = IOHelper.gettingDate();
+        MessageItem item = new MessageItem(title,content,url,eventDate );
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference reference = database.getReference(Constants.EVENTS);
@@ -174,7 +180,7 @@ public class UploadEventsFragment extends Fragment {
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(getActivity(), getResources().getString(R.string.Error)+e.getMessage(), Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), getResources().getString(R.string.error)+e.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
     }

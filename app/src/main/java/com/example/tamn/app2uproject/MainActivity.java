@@ -209,7 +209,7 @@ public class MainActivity extends AppCompatActivity
                     .replace(R.id.fragmentContainer, new CommentFragment())
                     .commit();
 
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.nav_about) {
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.fragmentContainer, new AboutFragment())
                     .commit();

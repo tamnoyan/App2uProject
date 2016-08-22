@@ -4,6 +4,7 @@ package com.example.tamn.app2uproject.Fragments;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -17,6 +18,7 @@ import com.example.tamn.app2uproject.ItemActivity;
 import com.example.tamn.app2uproject.Model.MessageItem;
 import com.example.tamn.app2uproject.PictureHelper;
 import com.example.tamn.app2uproject.R;
+import com.example.tamn.app2uproject.SimpleDividerItemDecoration;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -45,6 +47,7 @@ public class EventsFragment extends Fragment {
         // Inflate the layout for this fragment
         inflateView = inflater.inflate(R.layout.fragment_events, container, false);
         rvEvents = (RecyclerView) inflateView.findViewById(R.id.rvEvents);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(getResources().getString(R.string.events));
         initRecycle();
         return inflateView;
     }
@@ -77,6 +80,8 @@ public class EventsFragment extends Fragment {
 
                 viewHolder.tvItemTitle.setText(model.getTitle());
                 viewHolder.tvItemContent.setText(model.getContent());
+                viewHolder.tvEventDate.setText(model.getEventUploadTime());
+
                 Picasso.with(getActivity()).load(model.getUrl()).into(viewHolder.ivItemImage);
 
                 viewHolder.tvItemTitle.setOnClickListener(new View.OnClickListener() {
@@ -89,20 +94,15 @@ public class EventsFragment extends Fragment {
                         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                         String email = user.getEmail();
 
-                        /*Bundle bundle = new Bundle();
-                            bundle.putString("tam", " jood job From Activity");
-                            // set Fragmentclass Arguments
-                            CommentFragment fragobj = new CommentFragment();
-                            fragobj.setArguments(bundle);*/
-
                         Intent moveToItemActivity = new Intent(getContext(),ItemActivity.class);
                         moveToItemActivity.putExtra(Constants.ITEM_KEY, key);
                         moveToItemActivity.putExtra(Constants.USER_EMAIL, email);
                         moveToItemActivity.putExtra(Constants.EVENT_TITLE,viewHolder.tvItemTitle.getText());
                         moveToItemActivity.putExtra(Constants.EVENT_CONTENT,viewHolder.tvItemContent.getText());
+                        //moveToItemActivity.putExtra(Constants.EVENT_DATE)
+
                         //Singleton
                         PictureHelper.getInstance().setDrawable(viewHolder.ivItemImage.getDrawable());
-
                         startActivity(moveToItemActivity);
 
                     }
@@ -117,19 +117,21 @@ public class EventsFragment extends Fragment {
                         return true;
                     }
                 });
-
             }
         };
+        //diveder
+        rvEvents.addItemDecoration(new SimpleDividerItemDecoration(
+                getActivity().getApplicationContext()
+        ));
 
-        //setReverse();
         rvEvents.setAdapter(adapter);
-       // setReverse
     }
 
     //findViewById - provide a direct reference to the layout in the recycleView
     public static class ItemsViewHolder extends RecyclerView.ViewHolder {
         TextView tvItemContent;
         TextView tvItemTitle;
+        TextView tvEventDate;
         ImageView ivItemImage;
 
         public ItemsViewHolder(View itemView) {
@@ -138,6 +140,7 @@ public class EventsFragment extends Fragment {
             tvItemContent = (TextView) itemView.findViewById(R.id.tvItemContent);
             tvItemTitle = (TextView) itemView.findViewById(R.id.tvItemTitle);
             ivItemImage = (ImageView) itemView.findViewById(R.id.ivItemImage);
+            tvEventDate = (TextView) itemView.findViewById(R.id.tvEventDate);
         }
     }
 

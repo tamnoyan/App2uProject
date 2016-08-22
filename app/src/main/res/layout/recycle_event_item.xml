@@ -6,12 +6,12 @@
     android:layout_height="wrap_content"
     android:padding="10dp">
 
-    <android.support.v7.widget.CardView
+   <!-- <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:elevation="10dp"
         app:cardCornerRadius="8dp"
-        >
+        >-->
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -24,35 +24,55 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="Event Title"
-                android:background="#99000000"
-                android:textColor="#fff"
-                android:gravity="center"
-                android:id="@+id/tvItemTitle" />
+                android:textSize="20dp"
+                android:textColor="#434141"
+                android:paddingLeft="10dp"
+                android:id="@+id/tvItemTitle"
+                android:textStyle="bold"
+                android:layout_alignParentTop="true"
+                android:layout_toLeftOf="@+id/ivItemImage"
+                android:layout_toStartOf="@+id/ivItemImage" />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Content"
-                android:textColor="#fff"
-                android:background="#99000000"
+                android:paddingLeft="10dp"
+                android:textColor="#686464"
+                android:textSize="15dp"
                 android:id="@+id/tvItemContent"
-                android:layout_below="@+id/tvItemTitle"
                 android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/tvItemTitle"
+                android:layout_toLeftOf="@+id/ivItemImage"
+                android:layout_toStartOf="@+id/ivItemImage" />
 
             <ImageView
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:id="@+id/ivItemImage"
-                android:src="@mipmap/ic_launcher"
+                android:background="@null"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true" />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="(22/08/16)"
+                android:id="@+id/tvEventDate"
+                android:textSize="15sp"
+                android:paddingLeft="7dp"
+                android:layout_below="@+id/tvItemContent"
+                android:layout_alignLeft="@+id/tvItemContent"
+                android:layout_alignStart="@+id/tvItemContent"
+                android:layout_toLeftOf="@+id/ivItemImage"
+                android:layout_toStartOf="@+id/ivItemImage" />
 
 
         </RelativeLayout>
-    </android.support.v7.widget.CardView>
+    <!--</android.support.v7.widget.CardView>-->
 
 
 </LinearLayout>

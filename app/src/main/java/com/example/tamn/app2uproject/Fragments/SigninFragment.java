@@ -134,7 +134,7 @@ public class SigninFragment extends Fragment {
                     }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(getActivity(), getResources().getString(R.string.Error) + e.getMessage(),
+                    Toast.makeText(getActivity(), getResources().getString(R.string.error) + e.getMessage(),
                             Toast.LENGTH_SHORT).show();
 
                 }

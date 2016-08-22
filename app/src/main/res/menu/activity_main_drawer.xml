@@ -5,19 +5,19 @@
         <item
             android:id="@+id/nav_upload_event"
             android:icon="@drawable/ic_menu_camera"
-            android:title="Upload Event" />
+            android:title="@string/upload_event" />
         <item
             android:id="@+id/nav_events"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="Events" />
+            android:title="@string/events" />
         <item
             android:id="@+id/nav_slideshow"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="Slideshow" />
         <item
-            android:id="@+id/nav_manage"
+            android:id="@+id/nav_about"
             android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />
+            android:title="@string/about_us" />
     </group>
 
     <item android:title="Communicate">

@@ -8,15 +8,26 @@ public class CommentItem {
     private String comment;
     private String email;
 
+    public String getCommentDate() {
+        return commentDate;
+    }
+
+    public void setCommentDate(String commentDate) {
+        this.commentDate = commentDate;
+    }
+
+    private String commentDate;
+
 
 
     public CommentItem() {
         /*must have an empty constructor*/
     }
 
-    public CommentItem(String comment, String email) {
+    public CommentItem(String comment, String email, String commentDate) {
         this.comment = comment;
         this.email = email;
+        this.commentDate = commentDate;
     }
 
     public String getComment() {

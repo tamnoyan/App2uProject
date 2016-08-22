@@ -10,5 +10,6 @@
     <color name="lightBrown">#705d3c</color>
     <color name="darkBrown">#603a16</color>
     <color name="lightBlue">#44a6d3 </color>
+    <color name="lightGrey">#d2cdcd</color>
 
 </resources>

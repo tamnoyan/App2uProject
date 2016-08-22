@@ -24,7 +24,16 @@
     <string name="create_account">צור חשבון </string>
     <string name="send_restore_mail">נשלח מייל לשחזור סיסמא</string>
     <string name="restore">שחזר סיסמא</string>
-    <string name="Error">שגיאה:</string>
-    <string name="Email_and_Password_cannot_be_empty">יש להזין שם משתמש וסיסמא</string>
+    <string name="error">שגיאה:</string>
+    <string name="Email_and_Password_cannot_be_empty">יש להזין שם משתמש, דוא"ל וסיסמא</string>
     <string name="upload_successfully">האירוע הועלה בהצלחה </string>
+    <string name="events">אירועים ופעילויות</string>
+    <string name="upload_event">הוספת פעילות</string>
+    <string name="about_us">אודותינו</string>
+    <string name="title">כותרת: </string>
+    <string name="content">תוכן: </string>
+    <string name="send">שלח</string>
+    <string name="comment">תגובה</string>
+    <string name="write_comment_here">הגב...</string>
+    <string name="add_a_comment">הוסף תגובה</string>
 </resources>

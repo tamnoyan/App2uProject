@@ -82,7 +82,7 @@ public class SignupFragment extends Fragment {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         if (e != null) {
-                            Toast.makeText(getActivity(), getResources().getString(R.string.Error) + e.getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), getResources().getString(R.string.error) + e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
