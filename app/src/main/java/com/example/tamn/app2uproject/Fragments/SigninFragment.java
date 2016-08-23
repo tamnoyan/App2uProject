@@ -4,8 +4,6 @@ package com.example.tamn.app2uproject.Fragments;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
@@ -16,6 +14,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.daimajia.androidanimations.library.Techniques;
+import com.example.tamn.app2uproject.IOHelper;
 import com.example.tamn.app2uproject.MainActivity;
 import com.example.tamn.app2uproject.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -60,11 +60,6 @@ public class SigninFragment extends Fragment {
         return inflateView;
     }
 
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
-    }
 
     private void initEvents() {
         btnSignin.setOnClickListener(new View.OnClickListener() {
@@ -89,13 +84,8 @@ public class SigninFragment extends Fragment {
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            Snackbar.make(tvResetPassword,
-                                    e.getLocalizedMessage(), Snackbar.LENGTH_INDEFINITE).
-                                    setAction("dismiss", new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View view) {
-                                        }
-                                    });
+                            etSigninEmail.setError(getResources().getString(R.string.invalid_email));
+                            Toast.makeText(getActivity(),getResources().getString(R.string.user_not_exist), Toast.LENGTH_SHORT).show();
                         }
                     }).addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
@@ -106,14 +96,19 @@ public class SigninFragment extends Fragment {
             });
         }else {
            tvResetmessage.setVisibility(View.VISIBLE);
-//            btnSignin.setText(getResources().getString(R.string.restore));
+            etSigninEmail.setError(getResources().getString(R.string.required_field));
+            IOHelper.getAnimation(etSigninEmail, Techniques.Shake);
         }
     }catch (Exception e){
-            String Resetmessage = tvResetmessage.getText().toString();
-            Toast.makeText(getActivity(), getResources().getString(R.string.error) +" " +Resetmessage, Toast.LENGTH_SHORT).show();
+
+            etSigninEmail.setError(getResources().getString(R.string.required_field));
+
+            IOHelper.getAnimation(etSigninEmail, Techniques.Shake);
+
+            tvResetmessage.setVisibility(View.VISIBLE);
+            IOHelper.getAnimation(tvResetmessage,Techniques.ZoomIn);
         }
     }
-
 
 
     private void SigninWithEmailAndPass() {
@@ -139,6 +134,10 @@ public class SigninFragment extends Fragment {
                         }
                     });
         }catch (Exception e) {
+
+            IOHelper.getAnimation(etSigninEmail, Techniques.Shake);
+            IOHelper.getAnimation(etSigninPassword, Techniques.Shake);
+
             Toast.makeText(getActivity(), getResources().getString(R.string.Email_and_Password_cannot_be_empty), Toast.LENGTH_SHORT).show();
         }
     }

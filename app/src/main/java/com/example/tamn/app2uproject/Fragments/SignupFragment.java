@@ -13,6 +13,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.daimajia.androidanimations.library.Techniques;
+import com.example.tamn.app2uproject.IOHelper;
 import com.example.tamn.app2uproject.MainActivity;
 import com.example.tamn.app2uproject.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -26,7 +28,7 @@ import com.google.firebase.auth.FirebaseAuth;
  */
 public class SignupFragment extends Fragment {
 
-    EditText etSignupEmail, etSignupPassword;
+    EditText etSignupEmail, etSignupPassword, etUser;
     Button btnSignup;
 
     public SignupFragment() {
@@ -45,6 +47,7 @@ public class SignupFragment extends Fragment {
 
         etSignupEmail = (EditText) inflate.findViewById(R.id.etSignupEmail);
         etSignupPassword = (EditText) inflate.findViewById(R.id.etSignupPassword);
+        etUser = (EditText) inflate.findViewById(R.id.etUser);
         btnSignup = (Button) inflate.findViewById(R.id.btnSignup);
         initEvents();
 
@@ -64,9 +67,10 @@ public class SignupFragment extends Fragment {
     private void createUserEmailAndPass() {
         String email = etSignupEmail.getText().toString();
         String pass = etSignupPassword.getText().toString();
+        String username = etUser.getText().toString();
 
             try {
-
+                //todo: add support for username and image
                 FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, pass)
                         // add a listener in case of success
                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -87,6 +91,15 @@ public class SignupFragment extends Fragment {
                     }
                 });
             } catch (Exception e) {
+                etSignupEmail.setError(getResources().getString(R.string.required_field));
+               IOHelper.getAnimation(etSignupEmail, Techniques.Shake);
+
+                etSignupPassword.setError(getResources().getString(R.string.required_field));
+                IOHelper.getAnimation(etSignupPassword ,Techniques.Shake );
+
+                etUser.setError(getResources().getString(R.string.required_field));
+                IOHelper.getAnimation(etUser,Techniques.Shake);
+
                 Toast.makeText(getActivity(), getResources().getString(R.string.Email_Password_username_cannot_be_empty), Toast.LENGTH_SHORT).show();
             }
 

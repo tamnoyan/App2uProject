@@ -17,7 +17,6 @@
     <string name="forgot_password">שכחתי סיסמה</string>
     <string name="username">שם משתמש</string>
     <string name="signup">הירשם</string>
-    <string name="reset_message">לשחזור סיסמה , נא להזין דואר אלקטרוני</string>
     <string name="Sign_out">התנתק</string>
     <string name="or">------------ או התחבר/י באמצעות ------------</string>
     <string name="Facebook">Facebook</string>
@@ -36,5 +35,10 @@
     <string name="comment">תגובה</string>
     <string name="write_comment_here">הגב...</string>
     <string name="add_a_comment">הוסף תגובה</string>
-    <string name="Email_Password_username_cannot_be_empty">יש להזין שם משתמש,דוא"ל וסיסמה</string>
+    <string name="Email_Password_username_cannot_be_empty">יש להזין שם משתמש, דוא"ל וסיסמה</string>
+    <string name="required_field">שדה חובה</string>
+    <string name="empty_field">אין להשאיר שדה ריק </string>
+    <string name="reset_message"><u>לשחזור סיסמה , נא להזין דואר אלקטרוני</u></string>
+    <string name="user_not_exist">משתמש אינו קיים </string>
+    <string name="invalid_email">אימייל אינו תקין </string>
 </resources>

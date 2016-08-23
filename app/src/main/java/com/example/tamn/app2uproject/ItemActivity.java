@@ -13,6 +13,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 import com.example.tamn.app2uproject.Model.CommentItem;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -70,18 +72,14 @@ public class ItemActivity extends AppCompatActivity {
                 R.layout.recycle_comment_item, //layout
                 CommentViewHolder.class, //ViewHolder
                 ref //query , reference
-
         ) {
             @Override
             protected void populateViewHolder(CommentViewHolder viewHolder, CommentItem model, final int position) {
-
                 viewHolder.tvUserEmail.setText(model.getEmail());
                 viewHolder.tvUserComment.setText(model.getComment());
                 viewHolder.tvCommentDate.setText(model.getCommentDate());
-
             }
         };
-
         //adding divider
         rvComment.addItemDecoration(new SimpleDividerItemDecoration(
                 getApplicationContext()
@@ -104,6 +102,7 @@ public class ItemActivity extends AppCompatActivity {
 
     private void sendDataToDB() {
         String comment = etComment.getText().toString();
+
         commentDate = IOHelper.gettingDate();
 
         // create an object from the model
@@ -149,7 +148,17 @@ public class ItemActivity extends AppCompatActivity {
         btnAddComment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                sendDataToDB();
+                String str = etComment.getText().toString();
+                // check if comment is empty
+                if (str.equalsIgnoreCase("")){
+                    etComment.setError(getResources().getString(R.string.required_field));
+
+                    YoYo.with(Techniques.Shake)
+                            .duration(700)
+                            .playOn(etComment);
+                }else{
+                    sendDataToDB();
+                }
             }
         });
     }

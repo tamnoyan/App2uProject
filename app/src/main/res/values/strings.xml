@@ -25,7 +25,7 @@
     <string name="signup">Sign Up</string>
     <string name="Signin">Sign In</string>
     <string name="or">-------------- or via -------------</string>
-    <string name="reset_message">Please enter your email to reset </string>
+    <string name="reset_message"><u>Please enter your email to reset</u></string>
     <string name="Sign_out">Sign out</string>
     <string name="Facebook">Facebook</string>
     <string name="LoginActivity">LoginActivity</string>
@@ -45,4 +45,9 @@
     <string name="comment">Comment</string>
     <string name="write_comment_here">write comment here</string>
     <string name="add_a_comment"><u>Add Comment</u> </string>
+    <string name="required_field">Required field</string>
+    <string name="empty_field">Field cannot be empty</string>
+    <string name="user_not_exist">User not exist</string>
+    <string name="invalid_email">Invalid Email</string>
+
 </resources>

@@ -92,6 +92,7 @@ public class EventsFragment extends Fragment {
                         String key = item.getKey();
 
                         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                        //todo: fix this when no user signin
                         String email = user.getEmail();
 
                         Intent moveToItemActivity = new Intent(getContext(),ItemActivity.class);
