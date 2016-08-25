@@ -43,4 +43,5 @@
     <string name="invalid_email">דואר אלקטרוני אינו תקין</string>
     <string name="post_comment">שלח תגובה</string>
     <string name="Connecting...">מתחבר...</string>
+    <string name="add_admin">הוספת מנהל</string>
 </resources>

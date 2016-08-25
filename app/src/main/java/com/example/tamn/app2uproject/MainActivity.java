@@ -10,13 +10,17 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.SubMenu;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.tamn.app2uproject.Fragments.AboutFragment;
+import com.example.tamn.app2uproject.Fragments.AddAdminFragment;
 import com.example.tamn.app2uproject.Fragments.CommentFragment;
 import com.example.tamn.app2uproject.Fragments.EventsFragment;
 import com.example.tamn.app2uproject.Fragments.UploadEventsFragment;
@@ -30,13 +34,15 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
+import java.util.HashMap;
+
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     FloatingActionButton fab;
     Toolbar toolbar;
-    FirebaseUser user;
+    FirebaseUser currentUser;
 
     //navigation
     DrawerLayout drawer;
@@ -47,6 +53,10 @@ public class MainActivity extends AppCompatActivity
     ImageView ivUser;
     TextView profileName;
     TextView profileEmail;
+
+    //subMenu
+    String uploadEvent;
+    String addAdmin;
 
     // Dialog to send data to firebase
     AlertDialog dialogSendData;
@@ -91,13 +101,13 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void gettingHeaderDeatails() {
-        if(user.getPhotoUrl() != null){
-            Picasso.with(getApplicationContext()).load(user.getPhotoUrl()).into(ivUser);
-            profileName.setText(user.getDisplayName());
+        if(currentUser.getPhotoUrl() != null){
+            Picasso.with(getApplicationContext()).load(currentUser.getPhotoUrl()).into(ivUser);
+            profileName.setText(currentUser.getDisplayName());
         }else
         {
             FirebaseDatabase database = FirebaseDatabase.getInstance();
-            DatabaseReference ref = database.getReference("users").child(user.getUid());
+            DatabaseReference ref = database.getReference("users").child(currentUser.getUid());
 
             ref.addValueEventListener(new ValueEventListener() {
                 @Override
@@ -122,13 +132,13 @@ public class MainActivity extends AppCompatActivity
      */
     private void checkIsUserLogin() {
         FirebaseAuth auth = FirebaseAuth.getInstance();
-        user = auth.getCurrentUser();
+        currentUser = auth.getCurrentUser();
         /*
         // can write the two line above in one line:
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         */
 
-        if (user == null){
+        if (currentUser == null){
             //Go to Login
             startActivity(new Intent(MainActivity.this,LoginActivity.class));
         }else{
@@ -136,7 +146,58 @@ public class MainActivity extends AppCompatActivity
             //Initialize this screen
             initLayout();
             initEvents();
+            getAdminsGroup();
         }
+    }
+
+    public void getAdminsGroup(){
+        //Get Current User Email
+
+        final String email = currentUser.getEmail();
+
+        //Query the database
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference admins = database.getReference(Constants.ADMINDS);
+
+        admins.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                HashMap<String,String> adminsHashMap = (HashMap<String, String>) dataSnapshot.getValue();
+
+                for (String admin : adminsHashMap.keySet()) {
+                    String value  = adminsHashMap.get(admin);
+                    //Key               //Value
+                    Log.d("DDebug",admin + ":" + value);
+                    if (email.equals(value)){
+                        //Change the Menu
+                        addSubMenu();
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+    }
+
+    private void addSubMenu(){
+        /**
+         * Add Sub Menu
+         */
+        Menu menu = navigationView.getMenu();
+        SubMenu subMenu = menu.addSubMenu("Admins Dashboard");
+        subMenu.add("push notification");
+        uploadEvent = getResources().getString(R.string.upload_event);
+        subMenu.add(uploadEvent);
+        addAdmin = getResources().getString(R.string.add_admin);
+        subMenu.add(addAdmin);
+
+        //On Draw
+        navigationView.invalidate();
     }
 
     private void initEvents() {
@@ -148,57 +209,7 @@ public class MainActivity extends AppCompatActivity
         });
     }
 
-  /*  private void showCustomDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        View dialogView = getLayoutInflater().inflate(R.layout.dialog_event_upload,null,false);
-        final EditText etDialogTitle = (EditText) dialogView.findViewById(R.id.etDialogTitle);
-        final EditText etItemContent = (EditText) dialogView.findViewById(R.id.etItemContent);
-        Button btnItemSend = (Button) dialogView.findViewById(R.id.btnItemSend);
-        Button btnCancel = (Button) dialogView.findViewById(R.id.btnCancel);
 
-        btnItemSend.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String title = etDialogTitle.getText().toString();
-                String content = etItemContent.getText().toString();
-
-                uploadDataToFirebase(title,content);
-            }
-        });
-
-        //Dismiss Dialog
-        btnCancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dialogSendData.dismiss();
-            }
-        });
-
-        builder.setView(dialogView);
-        dialogSendData = builder.show();
-
-    }
-    //send data to Database
-    private void uploadDataToFirebase(String title, String content) {
-        MessageItem item = new MessageItem(title,content);
-
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference reference = database.getReference("messages");
-
-        reference.push().setValue(item).addOnSuccessListener(this, new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void aVoid) {
-                Toast.makeText(MainActivity.this, "Your Event has been Uploaded !!!", Toast.LENGTH_SHORT).show();
-                dialogSendData.dismiss();
-            }
-        }).addOnFailureListener(this, new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-
-                Toast.makeText(MainActivity.this, "Error:" + e.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
-    }*/
 
     private void initLayout() {
         fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -273,10 +284,23 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_signout) {
             FirebaseAuth.getInstance().signOut();
             startActivity(new Intent(MainActivity.this,LoginActivity.class));
-            return true;
+            //return true;
+
+        }  else if (item.getTitle().equals(uploadEvent)) {
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragmentContainer, new UploadEventsFragment())
+                    .commit();
+
+        } else if (item.getTitle().equals("push notification")){
+            Toast.makeText(MainActivity.this, "WORKING NOTIFIACTION", Toast.LENGTH_SHORT).show();
+            //getSupportFragmentManager().beginTransaction().replace()
+
+        } else if (item.getTitle().equals(addAdmin)) {
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragmentContainer, new AddAdminFragment())
+                    .commit();
 
         }
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;

@@ -51,4 +51,6 @@
     <string name="invalid_email">Invalid Email</string>
     <string name="connecting">Connecting...</string>
 
+    <string name="add_admin">Add Admin</string>
+
 </resources>
