@@ -3,11 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.tamn.app2uproject.ItemActivity">
+
+
+
 
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
@@ -36,6 +40,7 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
 
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -60,41 +65,50 @@
 
     </RelativeLayout>
 
+
     <LinearLayout
         android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="900dp"
+        android:layout_height="50dp"
         android:layout_below="@+id/rlEvent"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:id="@+id/writeComment"
+        android:background="#FFE7E2E2"
       >
+
 
         <EditText
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="35dp"
             android:id="@+id/etComment"
             android:hint="@string/write_comment_here"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
-            android:layout_weight="1"
-            android:layout_marginBottom="1dp"
-            android:paddingLeft="5dp"
-            android:paddingTop="10dp" />
+            android:background="#FFF"
+            android:gravity="fill_vertical"
+            android:paddingLeft="7dp"
+            android:paddingRight="7dp"
+            android:layout_margin="7dp"
+            android:layout_weight="0.27" />
 
 
 
         <Button
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/add_a_comment"
+            android:layout_height="35dp"
             android:id="@+id/btnAddComment"
-            android:layout_below="@+id/tvEventContent"
+            android:text="@string/post_comment"
             style="?android:attr/buttonStyleSmall"
+            android:textColor="#FFF"
+            android:background="@color/green"
+            android:layout_gravity="center"
+
+            android:layout_below="@+id/tvEventContent"
             android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
+            android:layout_alignParentEnd="true"
+            android:layout_weight="0.11" />
 
 
     </LinearLayout>
+
 
 </RelativeLayout>

@@ -13,13 +13,22 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.tamn.app2uproject.Fragments.AboutFragment;
 import com.example.tamn.app2uproject.Fragments.CommentFragment;
 import com.example.tamn.app2uproject.Fragments.EventsFragment;
 import com.example.tamn.app2uproject.Fragments.UploadEventsFragment;
+import com.example.tamn.app2uproject.Model.UserDetails;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 
 public class MainActivity extends AppCompatActivity
@@ -27,6 +36,17 @@ public class MainActivity extends AppCompatActivity
 
     FloatingActionButton fab;
     Toolbar toolbar;
+    FirebaseUser user;
+
+    //navigation
+    DrawerLayout drawer;
+    ActionBarDrawerToggle toggle;
+    NavigationView navigationView;
+
+    //header
+    ImageView ivUser;
+    TextView profileName;
+    TextView profileEmail;
 
     // Dialog to send data to firebase
     AlertDialog dialogSendData;
@@ -51,15 +71,48 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void addNavigationDrawer() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
         //navigation drawer
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        View headerView = navigationView.getHeaderView(0);
+         ivUser = (ImageView) headerView.findViewById(R.id.ivUser);
+         profileName = (TextView) headerView.findViewById(R.id.profileName);
+         profileEmail = (TextView) headerView.findViewById(R.id.profileEmail);
+
+        //gettingHeaderDeatails();
+
+    }
+
+    private void gettingHeaderDeatails() {
+        if(user.getPhotoUrl() != null){
+            Picasso.with(getApplicationContext()).load(user.getPhotoUrl()).into(ivUser);
+            profileName.setText(user.getDisplayName());
+        }else
+        {
+            FirebaseDatabase database = FirebaseDatabase.getInstance();
+            DatabaseReference ref = database.getReference("users").child(user.getUid());
+
+            ref.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    UserDetails userDetails = dataSnapshot.getValue(UserDetails.class);
+                    Picasso.with(getApplicationContext()).load(userDetails.getImageUrl()).into(ivUser);
+                    profileName.setText(userDetails.getUsername());
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            }); //todo: remove all listener  ref.removeEventListener();
+        }
     }
 
 
@@ -69,7 +122,7 @@ public class MainActivity extends AppCompatActivity
      */
     private void checkIsUserLogin() {
         FirebaseAuth auth = FirebaseAuth.getInstance();
-        FirebaseUser user = auth.getCurrentUser();
+        user = auth.getCurrentUser();
         /*
         // can write the two line above in one line:
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();

@@ -33,7 +33,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/imageView5"
-        android:background="@drawable/logo_medium"
+        android:background="@drawable/logo300x200"
         android:layout_marginTop="47dp"
 
         android:layout_alignParentTop="true"

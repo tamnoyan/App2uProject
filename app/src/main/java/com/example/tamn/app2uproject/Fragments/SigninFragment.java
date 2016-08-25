@@ -1,6 +1,7 @@
 package com.example.tamn.app2uproject.Fragments;
 
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -35,6 +36,8 @@ public class SigninFragment extends Fragment {
     String email = null;
     String pass = null;
     Button btnSignin;
+    ProgressDialog progressDialog;
+    View inflateView;
 
 
     public SigninFragment() {
@@ -46,18 +49,22 @@ public class SigninFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View inflateView = inflater.inflate(R.layout.fragment_signin, container, false);
+        inflateView = inflater.inflate(R.layout.fragment_signin, container, false);
         ((AppCompatActivity) getActivity()).getSupportActionBar().show();
         ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(getResources().getString(R.string.Signin));
 
+        initLayout();
+        initEvents();
+        return inflateView;
+    }
+
+    private void initLayout() {
         etSigninEmail = (EditText) inflateView.findViewById(R.id.etSigninEmail);
         etSigninPassword = (EditText) inflateView.findViewById(R.id.etSigninPassword);
         tvResetPassword = (TextView) inflateView.findViewById(R.id.tvResetPassword);
         tvResetmessage = (TextView) inflateView.findViewById(R.id.tvResetmessage);
         btnSignin = (Button) inflateView.findViewById(R.id.btnSignin);
-
-        initEvents();
-        return inflateView;
+        progressDialog = new ProgressDialog(getActivity());
     }
 
 
@@ -66,6 +73,8 @@ public class SigninFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 SigninWithEmailAndPass();
+                progressDialog.setMessage(getResources().getString(R.string.connecting));
+                progressDialog.show();
             }
         });
         tvResetPassword.setOnClickListener(new View.OnClickListener() {
@@ -74,6 +83,7 @@ public class SigninFragment extends Fragment {
                 resetPassword();
             }
         });
+
     }
 
 

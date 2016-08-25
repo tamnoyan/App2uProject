@@ -2,6 +2,7 @@ package com.example.tamn.app2uproject.Fragments;
 
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -133,6 +134,7 @@ public class UploadEventsFragment extends Fragment {
 
     private void uploadImageToServer() {
         //Todo:show the user uploading text...
+        // Get the data from an ImageView as bytes
         ivUploadImage.setDrawingCacheEnabled(true);
         ivUploadImage.buildDrawingCache();
         //Convert ImageView to Bytes
@@ -190,7 +192,7 @@ public class UploadEventsFragment extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (resultCode == -1){
+        if (resultCode == Activity.RESULT_OK){
             switch (requestCode){
                 case GALLERY_REQUEST:
                     Uri uri = data.getData();

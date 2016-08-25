@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">App2uProject</string>
 
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
+    <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
 
@@ -12,7 +12,7 @@
     <!--Google-->
     <string name="web_application">75665281941-ppr4lllt40ui8ia3ul95rhhmi0eprt5u.apps.googleusercontent.com</string>
     <!--Facebook-->
-    <string name="facebook_app_id">1731866163735085</string>
+    <string name="facebook_app_id" translatable="false">1731866163735085</string>
 
     <!--translate-->
     <string name="email">Email</string>
@@ -43,11 +43,12 @@
     <string name="about">about</string>
     <string name="send">Send</string>
     <string name="comment">Comment</string>
-    <string name="write_comment_here">write comment here</string>
-    <string name="add_a_comment"><u>Add Comment</u> </string>
+    <string name="write_comment_here">Write a comment...</string>
+    <string name="post_comment">Post</string>
     <string name="required_field">Required field</string>
     <string name="empty_field">Field cannot be empty</string>
     <string name="user_not_exist">User not exist</string>
     <string name="invalid_email">Invalid Email</string>
+    <string name="connecting">Connecting...</string>
 
 </resources>

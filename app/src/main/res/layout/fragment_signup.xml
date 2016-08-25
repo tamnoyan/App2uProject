@@ -34,7 +34,7 @@
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/etUser"
+                android:id="@+id/etUsername"
                 android:layout_weight="1"
                 android:paddingStart="10dp"
                 android:paddingLeft="10dp"
@@ -118,7 +118,7 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/profile_image"
+        android:id="@+id/ivProfileImage"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:src="@drawable/ic_person"
@@ -133,9 +133,9 @@
         android:layout_height="wrap_content"
         android:id="@+id/ivCamera"
         android:background="@drawable/ic_add_a_photo"
-        android:layout_alignBottom="@+id/profile_image"
-        android:layout_alignRight="@+id/profile_image"
-        android:layout_alignEnd="@+id/profile_image" />
+        android:layout_alignBottom="@+id/ivProfileImage"
+        android:layout_alignRight="@+id/ivProfileImage"
+        android:layout_alignEnd="@+id/ivProfileImage" />
 
     <!--<ImageView
         android:layout_width="100dp"

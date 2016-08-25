@@ -124,10 +124,10 @@
     </LinearLayout>
 
     <ImageView
-        android:layout_width="300dp"
-        android:layout_height="150dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:id="@+id/ivLogo"
-        android:background="@drawable/logo_medium"
+        android:background="@drawable/logo300x200"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 

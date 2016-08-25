@@ -7,6 +7,7 @@
     <color name="toolbar">#3e99ea</color>
     <color name="statusbar">#1f7fd4</color>
     <color name="green">#8cc540</color>
+    <color name="lightGreen">#f37bb93c</color>
     <color name="lightBrown">#705d3c</color>
     <color name="darkBrown">#603a16</color>
     <color name="lightBlue">#44a6d3 </color>
