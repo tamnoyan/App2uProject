@@ -29,8 +29,7 @@ public class WelcomeActivity extends AppCompatActivity {
                     startActivity(new Intent(WelcomeActivity.this, MainActivity.class));
                     finish();
                 }
-            }, secondsDelayed * 3500);
-
+            }, secondsDelayed * 3000);
             splashLoaded = true;
         }
         else {
@@ -39,8 +38,6 @@ public class WelcomeActivity extends AppCompatActivity {
             startActivity(goToMainActivity);
             finish();
         }
-
-
     }
 
     void startAnim(){

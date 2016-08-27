@@ -163,67 +163,6 @@ public class LoginActivity extends AppCompatActivity {
         startActivityForResult(intent,GOOGLE_SIGN_CODE);
     }
 
-    /**
-     * Login with email and password
-     *//*
-    private void LoginWithEmailAndPass() {
-        String email = etUser.getText().toString();
-        String pass = etPassword.getText().toString();
-
-        try {
-
-            FirebaseAuth.getInstance().signInWithEmailAndPassword(email, pass)
-                    .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (task.isSuccessful()) {
-                                // succeed in login a user
-                                moveToMainActivity();
-                            }
-                        }
-                    }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(LoginActivity.this, "Error:" + e.getMessage(),
-                            Toast.LENGTH_SHORT).show();
-                }
-            });
-        }catch (Exception e) {
-            Toast.makeText(LoginActivity.this, "Email and Password cannot be empty", Toast.LENGTH_SHORT).show();
-        }
-    }*/
-
-  /*  //Sign Up with email and password
-    private void createUserEmailAndPass() {
-        String email = etUser.getText().toString();
-        String pass = etPassword.getText().toString();
-
-            try {
-
-                FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, pass)
-                        // add a listener in case of success
-                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if (task.isSuccessful()) {
-                                    // succeed in creating a user
-                                    moveToMainActivity();
-                                }
-                            }
-                            // add a listener in case of failure
-                        }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        if (e != null) {
-                            Toast.makeText(LoginActivity.this, "Sign up Error:" + e.getMessage(), Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
-            } catch (Exception e) {
-                Toast.makeText(LoginActivity.this, "Email and Password cannot be empty", Toast.LENGTH_SHORT).show();
-            }
-
-    }*/
 
     private void moveToMainActivity() {
         startActivity(new Intent(LoginActivity.this, MainActivity.class));
@@ -270,7 +209,6 @@ public class LoginActivity extends AppCompatActivity {
                         }
                     }
                 });
-
     }
 
 

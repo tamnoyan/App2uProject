@@ -7,7 +7,6 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -21,7 +20,6 @@ import android.widget.Toast;
 
 import com.example.tamn.app2uproject.Fragments.AboutFragment;
 import com.example.tamn.app2uproject.Fragments.AddAdminFragment;
-import com.example.tamn.app2uproject.Fragments.CommentFragment;
 import com.example.tamn.app2uproject.Fragments.EventsFragment;
 import com.example.tamn.app2uproject.Fragments.UploadEventsFragment;
 import com.example.tamn.app2uproject.Model.UserDetails;
@@ -58,11 +56,6 @@ public class MainActivity extends AppCompatActivity
     String uploadEvent;
     String addAdmin;
 
-    // Dialog to send data to firebase
-    AlertDialog dialogSendData;
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,9 +68,8 @@ public class MainActivity extends AppCompatActivity
                 .add(R.id.fragmentContainer, new EventsFragment())
                 .commit();
 
-        checkIsUserLogin();
+        //checkIsUserLogin();
         addNavigationDrawer();
-
     }
 
     private void addNavigationDrawer() {
@@ -96,14 +88,18 @@ public class MainActivity extends AppCompatActivity
          profileName = (TextView) headerView.findViewById(R.id.profileName);
          profileEmail = (TextView) headerView.findViewById(R.id.profileEmail);
 
-        //gettingHeaderDeatails();
 
     }
 
-    private void gettingHeaderDeatails() {
+    /****
+     * Navigation header
+     */
+    private void gettingHeaderDetails() {
+        profileEmail.setText(currentUser.getEmail());
         if(currentUser.getPhotoUrl() != null){
             Picasso.with(getApplicationContext()).load(currentUser.getPhotoUrl()).into(ivUser);
             profileName.setText(currentUser.getDisplayName());
+
         }else
         {
             FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -115,6 +111,7 @@ public class MainActivity extends AppCompatActivity
                     UserDetails userDetails = dataSnapshot.getValue(UserDetails.class);
                     Picasso.with(getApplicationContext()).load(userDetails.getImageUrl()).into(ivUser);
                     profileName.setText(userDetails.getUsername());
+
                 }
 
                 @Override
@@ -141,14 +138,17 @@ public class MainActivity extends AppCompatActivity
         if (currentUser == null){
             //Go to Login
             startActivity(new Intent(MainActivity.this,LoginActivity.class));
+
         }else{
             //we have a user//user.getEmail()
             //Initialize this screen
             initLayout();
             initEvents();
+            gettingHeaderDetails();
             getAdminsGroup();
         }
     }
+
 
     public void getAdminsGroup(){
         //Get Current User Email
@@ -175,13 +175,10 @@ public class MainActivity extends AppCompatActivity
                     }
                 }
             }
-
             @Override
             public void onCancelled(DatabaseError databaseError) {
-
             }
         });
-
     }
 
     private void addSubMenu(){
@@ -259,23 +256,17 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_upload_event) {
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fragmentContainer, new UploadEventsFragment())
-                    .commit();
-        } else if (id == R.id.nav_events) {
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fragmentContainer, new EventsFragment())
-                    .commit();
-
-        } else if (id == R.id.nav_slideshow) {
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fragmentContainer, new CommentFragment())
-                    .commit();
+        if (id == R.id.nav_connect) {
+            checkIsUserLogin();
 
         } else if (id == R.id.nav_about) {
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.fragmentContainer, new AboutFragment())
+                    .commit();
+
+        } else if (id == R.id.nav_events) {
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragmentContainer, new EventsFragment())
                     .commit();
 
         } else if (id == R.id.nav_share) {
@@ -284,7 +275,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_signout) {
             FirebaseAuth.getInstance().signOut();
             startActivity(new Intent(MainActivity.this,LoginActivity.class));
-            //return true;
+
 
         }  else if (item.getTitle().equals(uploadEvent)) {
             getSupportFragmentManager().beginTransaction()
@@ -305,6 +296,4 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
-
 }

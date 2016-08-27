@@ -11,16 +11,14 @@
     tools:context="com.example.tamn.app2uproject.ItemActivity">
 
 
-
-
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/rvComment"
-        android:layout_below="@+id/writeComment"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="20dp">
+        android:paddingTop="10dp"
+        android:layout_below="@+id/tvConnectMessage">
 
     </android.support.v7.widget.RecyclerView>
 
@@ -40,7 +38,6 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
 
-
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -49,9 +46,7 @@
             android:layout_below="@+id/ivEventImage"
             android:id="@+id/tvEventTitle"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-
-            />
+            android:layout_alignParentStart="true" />
 
         <TextView
             android:layout_width="match_parent"
@@ -65,7 +60,6 @@
 
     </RelativeLayout>
 
-
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="900dp"
@@ -76,7 +70,6 @@
         android:id="@+id/writeComment"
         android:background="#FFE7E2E2"
       >
-
 
         <EditText
             android:layout_width="wrap_content"
@@ -90,8 +83,6 @@
             android:layout_margin="7dp"
             android:layout_weight="0.27" />
 
-
-
         <Button
             android:layout_width="wrap_content"
             android:layout_height="35dp"
@@ -101,14 +92,23 @@
             android:textColor="#FFF"
             android:background="@color/green"
             android:layout_gravity="center"
-
             android:layout_below="@+id/tvEventContent"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
             android:layout_weight="0.11" />
 
-
     </LinearLayout>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/press_here_to_connect"
+        android:id="@+id/tvConnectMessage"
+        android:visibility="gone"
+        android:layout_below="@+id/writeComment"
+        android:textColor="@color/darkBrown"
+        android:padding="5dp"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

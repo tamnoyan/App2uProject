@@ -7,6 +7,8 @@ public class UserDetails {
     private String username;
     private String imageUrl;
 
+    public UserDetails() {
+    }
 
     public UserDetails(String username, String imageUrl) {
         this.username = username;

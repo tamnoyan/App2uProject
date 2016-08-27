@@ -51,6 +51,9 @@
     <string name="invalid_email">Invalid Email</string>
     <string name="connecting">Connecting...</string>
 
+    <string name="log_in_to_comment">Log in to comment</string>
+    <string name="connect">Connect</string>
+    <string name="press_here_to_connect"><u>Press here to connect</u></string>
     <string name="add_admin">Add Admin</string>
 
 </resources>

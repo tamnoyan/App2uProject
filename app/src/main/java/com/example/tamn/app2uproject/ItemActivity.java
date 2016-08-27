@@ -19,6 +19,8 @@ import com.example.tamn.app2uproject.Model.CommentItem;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -27,6 +29,7 @@ public class ItemActivity extends AppCompatActivity {
     RecyclerView rvComment;
     String userEmail;
     TextView tvEventTitle, tvEventContent;
+    TextView tvConnectMessage;
     ImageView ivEventImage;
     EditText etComment;
     Button btnAddComment;
@@ -35,6 +38,8 @@ public class ItemActivity extends AppCompatActivity {
     String eventTitle;
     String eventContent;
     String commentDate;
+
+    FirebaseUser currentUser;
 
     //TODO: add edit option for admin
     //TODO: add edit option for user on his comment
@@ -104,13 +109,11 @@ public class ItemActivity extends AppCompatActivity {
         String comment = etComment.getText().toString();
 
         commentDate = IOHelper.gettingDate();
-
         // create an object from the model
         CommentItem commentItem = new CommentItem(comment,userEmail,commentDate);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference ref = database.getReference(Constants.COMMENTS).child(key);
-
 
         ref.push().setValue(commentItem).addOnSuccessListener(this, new OnSuccessListener<Void>() {
             @Override
@@ -133,6 +136,7 @@ public class ItemActivity extends AppCompatActivity {
         tvEventContent = (TextView) findViewById(R.id.tvEventContent);
         etComment = (EditText) findViewById(R.id.etComment);
         btnAddComment = (Button) findViewById(R.id.btnAddComment);
+        tvConnectMessage = (TextView) findViewById(R.id.tvConnectMessage);
         rvComment = (RecyclerView) findViewById(R.id.rvComment);
         ivEventImage = (ImageView) findViewById(R.id.ivEventImage);
     }
@@ -148,9 +152,21 @@ public class ItemActivity extends AppCompatActivity {
         btnAddComment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                FirebaseAuth auth = FirebaseAuth.getInstance();
+                currentUser = auth.getCurrentUser();
+        /*
+        // can write the two line above in one line:
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        */
                 String str = etComment.getText().toString();
+                if (currentUser == null){
+                    etComment.setError(getResources().getString(R.string.log_in_to_comment));
+                    tvConnectMessage.setVisibility(View.VISIBLE);
+                    IOHelper.getAnimation(tvConnectMessage, Techniques.Flash);
+                }
+
                 // check if comment is empty
-                if (str.equalsIgnoreCase("")){
+                else if (str.equalsIgnoreCase("")){
                     etComment.setError(getResources().getString(R.string.required_field));
 
                     YoYo.with(Techniques.Shake)
@@ -159,6 +175,13 @@ public class ItemActivity extends AppCompatActivity {
                 }else{
                     sendDataToDB();
                 }
+            }
+        });
+
+        tvConnectMessage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(ItemActivity.this, LoginActivity.class));
             }
         });
     }

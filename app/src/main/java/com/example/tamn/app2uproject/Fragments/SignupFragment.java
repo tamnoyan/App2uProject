@@ -57,17 +57,13 @@ public class SignupFragment extends Fragment {
     Button btnSignup;
 
     View inflate;
-    String username;
     String imageUrl;
     GalleryPhoto galleryPhoto;
-    String none="wooow";
 
+    //Firebase
     DatabaseReference reference;
-
-
     FirebaseStorage storage = FirebaseStorage.getInstance();
     StorageReference storageRef = storage.getReferenceFromUrl(Constants.STORAGE_URL);
-
     FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
 
     public SignupFragment() {
@@ -114,7 +110,7 @@ public class SignupFragment extends Fragment {
         galleryPhoto = new GalleryPhoto(getContext()/*getActivity()*/); //getContext();
     }
 
-    public String uploadImageToServer() {
+    public void uploadImageToServer() {
         ivProfileImage.setDrawingCacheEnabled(true);
         ivProfileImage.buildDrawingCache();
         //Convert ImageView to Bytes
@@ -127,8 +123,8 @@ public class SignupFragment extends Fragment {
         Long tsLong = System.currentTimeMillis()/1000;
         String ts = tsLong.toString();
 
-        //File name in Storages + directory
-        StorageReference imageRef = storageRef.child("profile/" + ts);
+        //File name in Storage + directory
+        StorageReference imageRef = storageRef.child(Constants.PROFILE_IMAGES + ts);
         //Upload to storage
         UploadTask uploadTask = imageRef.putBytes(data);
         uploadTask.addOnFailureListener(new OnFailureListener() {
@@ -144,7 +140,6 @@ public class SignupFragment extends Fragment {
                 createNewUser();
             }
         });
-        return none;
     }
 
     private void initEvents() {
@@ -164,18 +159,16 @@ public class SignupFragment extends Fragment {
 
     private void createNewUser() {
         String username = etUsername.getText().toString();
-
         // Write new user
         writeNewUser(currentUser.getUid(), username);
     }
 
     private void writeNewUser(String userId, String name) {
-        Log.d("TammmmwriteNewUser1", none);
 
         UserDetails user = new UserDetails(name, imageUrl);
 
         reference= FirebaseDatabase.getInstance().getReference();
-        reference.child("users").child(userId).push().setValue(user)
+        reference.child(Constants.USERS).child(userId).setValue(user)
                 .addOnFailureListener(getActivity(), new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
@@ -205,7 +198,6 @@ public class SignupFragment extends Fragment {
                                     currentUser=task.getResult().getUser();
                                     //add image
                                     uploadImageToServer();
-
                                     // succeed in creating a user
                                     moveToMainActivity();
                                 }

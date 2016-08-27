@@ -28,7 +28,7 @@
     <string name="upload_successfully">האירוע הועלה בהצלחה </string>
     <string name="events">אירועים ופעילויות</string>
     <string name="upload_event">הוספת פעילות</string>
-    <string name="about_us">אודותינו</string>
+    <string name="about_us">אודות</string>
     <string name="title">כותרת: </string>
     <string name="content">תוכן: </string>
     <string name="send">שלח</string>
@@ -44,4 +44,7 @@
     <string name="post_comment">שלח תגובה</string>
     <string name="Connecting...">מתחבר...</string>
     <string name="add_admin">הוספת מנהל</string>
+    <string name="connect">התחברות</string>
+    <string name="log_in_to_comment">התחבר על מנת להגיב</string>
+    <string name="press_here_to_connect"><u> לחץ כאן להתחברות</u></string>
 </resources>
