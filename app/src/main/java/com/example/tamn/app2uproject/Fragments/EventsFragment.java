@@ -93,14 +93,14 @@ public class EventsFragment extends Fragment {
 
                         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                         //todo: fix this when no user signin
-                        String email = user.getEmail();
+                       // String email = user.getEmail();
 
                         Intent moveToItemActivity = new Intent(getContext(),ItemActivity.class);
                         moveToItemActivity.putExtra(Constants.ITEM_KEY, key);
-                        moveToItemActivity.putExtra(Constants.USER_EMAIL, email);
+                       // moveToItemActivity.putExtra(Constants.USER_EMAIL, email); //// TODO: 27/08/2016  
                         moveToItemActivity.putExtra(Constants.EVENT_TITLE,viewHolder.tvItemTitle.getText());
                         moveToItemActivity.putExtra(Constants.EVENT_CONTENT,viewHolder.tvItemContent.getText());
-                        //moveToItemActivity.putExtra(Constants.EVENT_DATE)
+                        //moveToItemActivity.putExtra(Constants.EVENT_DATE)//// TODO: 27/08/2016  
 
                         //Singleton
                         PictureHelper.getInstance().setDrawable(viewHolder.ivItemImage.getDrawable());

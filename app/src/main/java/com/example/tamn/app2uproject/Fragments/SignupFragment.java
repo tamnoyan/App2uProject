@@ -12,6 +12,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -59,12 +60,15 @@ public class SignupFragment extends Fragment {
     String username;
     String imageUrl;
     GalleryPhoto galleryPhoto;
+    String none="wooow";
 
     DatabaseReference reference;
 
 
     FirebaseStorage storage = FirebaseStorage.getInstance();
     StorageReference storageRef = storage.getReferenceFromUrl(Constants.STORAGE_URL);
+
+    FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
 
     public SignupFragment() {
         // Required empty public constructor
@@ -110,9 +114,7 @@ public class SignupFragment extends Fragment {
         galleryPhoto = new GalleryPhoto(getContext()/*getActivity()*/); //getContext();
     }
 
-    /*removeeeeeeeeeeeeeeeeeeeeeee*/
-
-    public void uploadImageToServer( ) {
+    public String uploadImageToServer() {
         ivProfileImage.setDrawingCacheEnabled(true);
         ivProfileImage.buildDrawingCache();
         //Convert ImageView to Bytes
@@ -139,13 +141,11 @@ public class SignupFragment extends Fragment {
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                 Uri downloadUrl = taskSnapshot.getDownloadUrl();
                 imageUrl = downloadUrl.toString();
-                //uploadEverythingToDataBase();
-                //uploadDataToFirebase(title,content, imageUrl);
+                createNewUser();
             }
         });
-
+        return none;
     }
-    /*removeeeeeeeeeeeeeeeeeeee*/
 
     private void initEvents() {
         ivProfileImage.setOnClickListener(new View.OnClickListener() {
@@ -157,66 +157,55 @@ public class SignupFragment extends Fragment {
         btnSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
- //               username = etUsername.getText().toString();
-                uploadImageToServer();
-               // Log.d("tam231", imageUrl);
-                //uploadToDataBase(imageUrl);
                 createUserEmailAndPass();
             }
         });
     }
 
-    /*private void uploadToDataBase(String imageUrl) {
-        //username = etUsername.getText().toString();
-        Log.d("tam",username );
-        FirebaseDatabase instance = FirebaseDatabase.getInstance();
-        DatabaseReference reference = instance.getReference("users")*//*.child(FirebaseAuth.getInstance().getCurrentUser().getUid())*//*;
-        UserDetails userDetails = new UserDetails(username,imageUrl);
-        //Tam
-        reference.push().setValue(userDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                if(task.isSuccessful())
-                {
-                    Toast.makeText(getActivity(), "Uploaded" , Toast.LENGTH_SHORT).show();
-                }
-                else
-                {
-                    Toast.makeText(getActivity(), "Error", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-    }*/
-
-    private void createNewUser(FirebaseUser user) {
+    private void createNewUser() {
         String username = etUsername.getText().toString();
 
         // Write new user
-        writeNewUser(user.getUid(), username);
+        writeNewUser(currentUser.getUid(), username);
     }
 
     private void writeNewUser(String userId, String name) {
+        Log.d("TammmmwriteNewUser1", none);
+
         UserDetails user = new UserDetails(name, imageUrl);
 
         reference= FirebaseDatabase.getInstance().getReference();
-        reference.child("users").child(userId).push().setValue(user);
+        reference.child("users").child(userId).push().setValue(user)
+                .addOnFailureListener(getActivity(), new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.d("ddebug","" + e.getMessage().toString());
+            }
+        }).addOnSuccessListener(getActivity(), new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                Log.d("ddebug","Succees");
+            }
+        });
     }
 
     //Sign Up with email and password
     private void createUserEmailAndPass() {
         String email = etSignupEmail.getText().toString();
         String pass = etSignupPassword.getText().toString();
-        //String username = etUsername.getText().toString(); //todo:remove
 
             try {
-                //todo: add support for username and image
                 FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, pass)
                         // add a listener in case of success
                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
-                                    createNewUser(task.getResult().getUser());
+                                    //update currentUser with new user
+                                    currentUser=task.getResult().getUser();
+                                    //add image
+                                    uploadImageToServer();
+
                                     // succeed in creating a user
                                     moveToMainActivity();
                                 }
@@ -242,7 +231,6 @@ public class SignupFragment extends Fragment {
 
                 Toast.makeText(getActivity(), getResources().getString(R.string.Email_Password_username_cannot_be_empty), Toast.LENGTH_SHORT).show();
             }
-
     }
 
     private void moveToMainActivity() {
@@ -271,10 +259,7 @@ public class SignupFragment extends Fragment {
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
                     }
-
-
             }
         }
-
     }
 }
