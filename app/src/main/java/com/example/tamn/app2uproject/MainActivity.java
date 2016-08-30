@@ -40,7 +40,11 @@ public class MainActivity extends AppCompatActivity
 
     FloatingActionButton fab;
     Toolbar toolbar;
+
     FirebaseUser currentUser;
+    FirebaseAuth auth = FirebaseAuth.getInstance();
+
+
 
     //navigation
     DrawerLayout drawer;
@@ -70,6 +74,10 @@ public class MainActivity extends AppCompatActivity
 
         //checkIsUserLogin();
         addNavigationDrawer();
+        initLayout();
+        initEvents();
+        gettingHeaderDetails();
+
     }
 
     private void addNavigationDrawer() {
@@ -95,31 +103,44 @@ public class MainActivity extends AppCompatActivity
      * Navigation header
      */
     private void gettingHeaderDetails() {
-        profileEmail.setText(currentUser.getEmail());
-        if(currentUser.getPhotoUrl() != null){
-            Picasso.with(getApplicationContext()).load(currentUser.getPhotoUrl()).into(ivUser);
-            profileName.setText(currentUser.getDisplayName());
+        if(currentUser != null) {
+            profileEmail.setText(currentUser.getEmail());
 
-        }else
-        {
-            FirebaseDatabase database = FirebaseDatabase.getInstance();
-            DatabaseReference ref = database.getReference("users").child(currentUser.getUid());
+            if (currentUser.getPhotoUrl() != null) {
+                Picasso.with(getApplicationContext()).load(currentUser.getPhotoUrl()).into(ivUser);
+                profileName.setText(currentUser.getDisplayName());
 
-            ref.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    UserDetails userDetails = dataSnapshot.getValue(UserDetails.class);
-                    Picasso.with(getApplicationContext()).load(userDetails.getImageUrl()).into(ivUser);
-                    profileName.setText(userDetails.getUsername());
+            } else {
+                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                DatabaseReference ref = database.getReference("users").child(currentUser.getUid());
 
-                }
+                ref.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        UserDetails userDetails = dataSnapshot.getValue(UserDetails.class);
 
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
+                        try {
+                            if (userDetails.getUsername() != null) {
+                                profileName.setText(userDetails.getUsername());
+                            }
+                            if (userDetails.getImageUrl() != null) {
+                                Picasso.with(getApplicationContext()).load(userDetails.getImageUrl()).into(ivUser);
+                            }
+                        } catch (Exception e) {
 
-                }
-            }); //todo: remove all listener  ref.removeEventListener();
+                            Log.d("TammmmHeaderDetails", e.getMessage());
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                }); //todo: remove all listener  ref.removeEventListener();
+            }
+            getAdminsGroup();
         }
+
     }
 
 
@@ -128,8 +149,8 @@ public class MainActivity extends AppCompatActivity
      * for signIn/signUp
      */
     private void checkIsUserLogin() {
-        FirebaseAuth auth = FirebaseAuth.getInstance();
-        currentUser = auth.getCurrentUser();
+        /*FirebaseAuth auth = FirebaseAuth.getInstance();
+        currentUser = auth.getCurrentUser();*/
         /*
         // can write the two line above in one line:
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -138,47 +159,49 @@ public class MainActivity extends AppCompatActivity
         if (currentUser == null){
             //Go to Login
             startActivity(new Intent(MainActivity.this,LoginActivity.class));
-
+            //gettingHeaderDetails();
         }else{
             //we have a user//user.getEmail()
-            //Initialize this screen
-            initLayout();
-            initEvents();
+
             gettingHeaderDetails();
             getAdminsGroup();
         }
     }
 
 
+    /***
+     * if user is admin, add admin subMenu
+     */
     public void getAdminsGroup(){
         //Get Current User Email
+        if (currentUser !=null) {
+            final String email = currentUser.getEmail();
 
-        final String email = currentUser.getEmail();
+            //Query the database
+            FirebaseDatabase database = FirebaseDatabase.getInstance();
+            DatabaseReference admins = database.getReference(Constants.ADMINDS);
 
-        //Query the database
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference admins = database.getReference(Constants.ADMINDS);
+            admins.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
 
-        admins.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+                    HashMap<String,String> adminsHashMap = (HashMap<String, String>) dataSnapshot.getValue();
 
-                HashMap<String,String> adminsHashMap = (HashMap<String, String>) dataSnapshot.getValue();
-
-                for (String admin : adminsHashMap.keySet()) {
-                    String value  = adminsHashMap.get(admin);
-                    //Key               //Value
-                    Log.d("DDebug",admin + ":" + value);
-                    if (email.equals(value)){
-                        //Change the Menu
-                        addSubMenu();
+                    for (String admin : adminsHashMap.keySet()) {
+                        String value  = adminsHashMap.get(admin);
+                        //Key               //Value
+                        Log.d("DDebug",admin + ":" + value);
+                        if (email.equals(value)){
+                            //Change the Menu
+                            addSubMenu();
+                        }
                     }
                 }
-            }
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-            }
-        });
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                }
+            });
+        }
     }
 
     private void addSubMenu(){
@@ -198,6 +221,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void initEvents() {
+        currentUser = auth.getCurrentUser();
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -274,7 +298,7 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_signout) {
             FirebaseAuth.getInstance().signOut();
-            startActivity(new Intent(MainActivity.this,LoginActivity.class));
+
 
 
         }  else if (item.getTitle().equals(uploadEvent)) {
