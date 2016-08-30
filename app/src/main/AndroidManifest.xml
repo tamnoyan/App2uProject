@@ -38,7 +38,6 @@
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
 
-        <activity android:name=".UploadActivity" />
         <activity android:name=".ItemActivity" />
         <activity android:name=".WelcomeActivity">
             <intent-filter>

@@ -222,19 +222,10 @@ public class MainActivity extends AppCompatActivity
 
     private void initEvents() {
         currentUser = auth.getCurrentUser();
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //showCustomDialog();
-            }
-        });
     }
 
 
-
     private void initLayout() {
-        fab = (FloatingActionButton) findViewById(R.id.fab);
-
     }
 
     @Override
@@ -266,11 +257,7 @@ public class MainActivity extends AppCompatActivity
             FirebaseAuth.getInstance().signOut();
             startActivity(new Intent(MainActivity.this,LoginActivity.class));
             return true;
-        }else if (id == R.id.action_upload){
-            //Move to UploadActivity
-            startActivity(new Intent(MainActivity.this,UploadActivity.class));
         }
-
         return super.onOptionsItemSelected(item);
     }
 
