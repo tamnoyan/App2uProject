@@ -11,16 +11,23 @@
     tools:context="com.example.tamn.app2uproject.ItemActivity">
 
 
-    <android.support.v7.widget.RecyclerView
+    <ScrollView
+        android:fillViewport="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/rvComment"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:paddingTop="10dp"
+        android:layout_alignParentRight="true"
         android:layout_below="@+id/tvConnectMessage">
 
-    </android.support.v7.widget.RecyclerView>
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/rvComment"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:paddingTop="10dp"
+            android:layout_below="@+id/tvConnectMessage"/>
+    </ScrollView>
 
     <RelativeLayout
         android:layout_width="match_parent"
