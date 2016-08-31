@@ -1,15 +1,12 @@
 package com.example.tamn.app2uproject.Fragments;
 
 
-import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
@@ -22,8 +19,9 @@ import android.widget.Toast;
 
 import com.example.tamn.app2uproject.Constants;
 import com.example.tamn.app2uproject.IOHelper;
-import com.example.tamn.app2uproject.Model.MessageItem;
+import com.example.tamn.app2uproject.Model.EventItem;
 import com.example.tamn.app2uproject.R;
+import com.example.tamn.app2uproject.Utils;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
@@ -71,7 +69,7 @@ public class UploadEventsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View inflateView = inflater.inflate(R.layout.fragment_upload__events_, container, false);
+        View inflateView = inflater.inflate(R.layout.fragment_upload__events, container, false);
 
         etEventTitle = (EditText) inflateView.findViewById(R.id.etEventTitle);
         etEventContent = (EditText) inflateView.findViewById(R.id.etEventContent);
@@ -81,7 +79,7 @@ public class UploadEventsFragment extends Fragment {
         ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(getResources().getString(R.string.upload_event));
 
         initLayout();
-        checkIfPermissionNeeded();
+        Utils.checkIfPermissionNeeded(getActivity());
         initEvents();
 
 
@@ -90,20 +88,6 @@ public class UploadEventsFragment extends Fragment {
 
     private void initLayout() {
         galleryPhoto = new GalleryPhoto(getContext());
-    }
-
-    private void checkIfPermissionNeeded() {
-        int result = ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.READ_EXTERNAL_STORAGE);
-        if (result != PackageManager.PERMISSION_GRANTED){
-
-            //ask for permission
-            showPermissionSystemDialog();
-        }
-    }
-
-    private void showPermissionSystemDialog() {
-        String[] permission = {Manifest.permission.READ_EXTERNAL_STORAGE};
-        ActivityCompat.requestPermissions(getActivity(),permission,REQUEST_STORAGE_CODE);
     }
 
     private void initEvents() {
@@ -115,7 +99,6 @@ public class UploadEventsFragment extends Fragment {
             }
         });
 
-
         btnUploadEvent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -124,10 +107,8 @@ public class UploadEventsFragment extends Fragment {
                 uploadImageToServer();
 
                 //TODO: fix
-
                 etEventTitle.setText("");
                 etEventContent.setText("");
-
             }
         });
     }
@@ -169,7 +150,7 @@ public class UploadEventsFragment extends Fragment {
 
     private void uploadDataToFirebase(String title, String content, String url ) {
         eventDate = IOHelper.gettingDate();
-        MessageItem item = new MessageItem(title,content,url,eventDate );
+        EventItem item = new EventItem(title,content,url,eventDate );
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference reference = database.getReference(Constants.EVENTS);
