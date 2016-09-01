@@ -37,7 +37,7 @@
     <string name="restore">Restore password</string>
     <string name="upload_successfully">Your event has been uploaded successfully! </string>
     <string name="events">Events</string>
-    <string name="upload_event">Uplaod Event</string>
+    <string name="upload_event">הוספת פעילות</string>
     <string name="title">כותרת:</string>
     <string name="content">תוכן:</string>
     <string name="about">about</string>
@@ -54,7 +54,7 @@
     <string name="log_in_to_comment">Log in to comment</string>
     <string name="connect">Connect</string>
     <string name="press_here_to_connect"><u>Press here to connect</u></string>
-    <string name="add_admin">Add Admin</string>
+    <string name="add_admin">הוספת מנהל</string>
     <string name="title_activity_give_and_take">GiveAndTakeActivity</string>
 
     <!--Give and take-->
@@ -70,7 +70,11 @@
     <!--Alert Dialog-->
     <string name="alert_title">התחבר/הירשם</string>
     <string name="sign_log_in"></string>
-    <string name="later"></string>
+    <string name="later">יותר מאוחר</string>
     <string name="alert_message">על מנת לפרסם מודעה תחילה יש להתחבר</string>
+    <string name="add">הוסף</string>
+    <string name="choose_one_option">בחר סוג מודעה </string>
+    <string name="Take">קח</string>
+    <string name="add_a_comment">שלח תגובה</string>
 
 </resources>

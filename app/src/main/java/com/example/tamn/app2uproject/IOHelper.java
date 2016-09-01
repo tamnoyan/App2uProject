@@ -63,25 +63,7 @@ public class IOHelper {
         return imageUrl;
     }
 
-  /*  private void uploadDataToFirebase(String title, String content, String url ) {
-        String eventDate = IOHelper.gettingDate();
-        MessageItem item = new MessageItem(title,content,url,eventDate );
 
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference reference = database.getReference(Constants.EVENTS);
-
-        reference.push().setValue(item).addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void aVoid) {
-                Toast.makeText(getActivity(),getResources().getString(R.string.upload_successfully) , Toast.LENGTH_LONG).show();
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(getActivity(), getResources().getString(R.string.error)+e.getMessage(), Toast.LENGTH_LONG).show();
-            }
-        });
-*/
     /***
      * Getting the current Time and date
      * @return dateStr, string in a format of (hh:mm ,dd/mm/yyyy)

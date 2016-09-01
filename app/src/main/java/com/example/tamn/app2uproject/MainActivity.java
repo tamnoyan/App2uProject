@@ -100,9 +100,9 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void clearHeader(){
-        profileEmail.setText("");
-        ivUser.setImageDrawable(null);
-        profileName.setText("");
+        profileEmail.setText("נקודת צמיחה");
+        ivUser.setImageDrawable(getResources().getDrawable(R.mipmap.ic_launcher));
+        profileName.setText("nkoda@gmail.com");
     }
 
     /****
@@ -155,7 +155,6 @@ public class MainActivity extends AppCompatActivity
      * for signIn/signUp
      */
     private void checkIsUserLogin() {
-
         if (currentUser == null){
             //Go to Login
             startActivity(new Intent(MainActivity.this,LoginActivity.class));
@@ -202,10 +201,10 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    /**
+     * Add Sub Menu
+     */
     private void addSubMenu(){
-        /**
-         * Add Sub Menu
-         */
         Menu menu = navigationView.getMenu();
         SubMenu subMenu = menu.addSubMenu("Admins Dashboard");
         subMenu.add("push notification");
@@ -283,7 +282,7 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_signout) {
             FirebaseAuth.getInstance().signOut();
-
+            clearHeader();
 
         }  else if (item.getTitle().equals(uploadEvent)) {
             getSupportFragmentManager().beginTransaction()

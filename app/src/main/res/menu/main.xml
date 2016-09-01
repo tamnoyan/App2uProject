@@ -6,10 +6,5 @@
         android:orderInCategory="100"
         android:title="Log Off"
         app:showAsAction="never" />
-    <item
-        android:id="@+id/action_upload"
-        android:orderInCategory="99"
-        android:title="upload activity"
-        app:showAsAction="never"
-        />
+
 </menu>

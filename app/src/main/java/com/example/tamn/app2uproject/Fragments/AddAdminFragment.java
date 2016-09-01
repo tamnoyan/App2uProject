@@ -57,7 +57,6 @@ public class AddAdminFragment extends Fragment {
 
     }
 
-
     /**
      * Save Admins to Firebase !!!
      */

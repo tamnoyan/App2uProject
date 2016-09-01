@@ -17,6 +17,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.daimajia.androidanimations.library.Techniques;
 import com.example.tamn.app2uproject.Constants;
 import com.example.tamn.app2uproject.IOHelper;
 import com.example.tamn.app2uproject.Model.EventItem;
@@ -104,11 +105,19 @@ public class UploadEventsFragment extends Fragment {
             public void onClick(View view) {
                 title = etEventTitle.getText().toString();
                 content = etEventContent.getText().toString();
-                uploadImageToServer();
+                if (title.equals("") && content.equals("")){
+
+                    etEventTitle.setError(getString(R.string.required_field));
+                    etEventContent.setError(getString(R.string.required_field));
+                    IOHelper.getAnimation(etEventTitle , Techniques.Shake );
+                    IOHelper.getAnimation(etEventContent , Techniques.Shake );
+                }else {
+                    uploadImageToServer();
 
                 //TODO: fix
                 etEventTitle.setText("");
                 etEventContent.setText("");
+                }
             }
         });
     }

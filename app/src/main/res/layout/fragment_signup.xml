@@ -85,7 +85,6 @@
                 android:layout_width="43dp"
                 android:layout_height="37dp"
                 android:id="@+id/ivPassword"
-
                 android:background="@drawable/ic_lock" />
 
             <EditText
@@ -136,15 +135,5 @@
         android:layout_alignBottom="@+id/ivProfileImage"
         android:layout_alignRight="@+id/ivProfileImage"
         android:layout_alignEnd="@+id/ivProfileImage" />
-
-    <!--<ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:id="@+id/ivProfileImage"
-        android:background="@drawable/ic_add_a_photo"
-        android:layout_marginBottom="38dp"
-        android:layout_above="@+id/linearLayout"
-        android:layout_centerHorizontal="true" />-->
-
 
 </RelativeLayout>

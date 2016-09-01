@@ -153,8 +153,8 @@ public class GiveAndTakeActivity extends AppCompatActivity  {
 
                 //check if radio group is uncheck
                 if(rgGiveTake.getCheckedRadioButtonId() == -1){
-                   rbTake.setError("must choose one option" );
-                   rbGive.setError("must choose one option");
+                   rbTake.setError(getString(R.string.choose_one_option));
+                   rbGive.setError(getString(R.string.choose_one_option));
                    IOHelper.getAnimation(rbTake , Techniques.Shake );
                    IOHelper.getAnimation(rbGive , Techniques.Shake );
 
