@@ -22,7 +22,7 @@
     <string name="Facebook">Facebook</string>
     <string name="create_account">צור חשבון </string>
     <string name="send_restore_mail">נשלח מייל לשחזור סיסמה</string>
-    <string name="restore">שחזר סיסמא</string>
+    <string name="restore">שחזר סיסמה</string>
     <string name="error">שגיאה: </string>
     <string name="Email_and_Password_cannot_be_empty">יש להזין דואר אלקטרוני וסיסמה</string>
     <string name="upload_successfully">האירוע הועלה בהצלחה </string>
@@ -53,4 +53,8 @@
     <string name="post_offer">פרסם</string>
     <string name="Take">קח</string>
     <string name="add">הוסף</string>
+    <string name="cancel">בטל</string>
+    <string name="choose_one_option">בחר סוג מודעה</string>
+    <string name="later">יותר מאוחר</string>
+    <string name="invalid_password">סיסמה לא תקינה, מינימום 6 תווים</string>
 </resources>

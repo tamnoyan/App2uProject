@@ -2,6 +2,7 @@ package com.example.tamn.app2uproject.Fragments;
 
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -54,6 +55,8 @@ public class SignupFragment extends Fragment {
     ImageView ivProfileImage;
     Button btnSignup;
 
+    ProgressDialog progressDialog;
+
     View inflate;
     String imageUrl;
     GalleryPhoto galleryPhoto;
@@ -92,6 +95,7 @@ public class SignupFragment extends Fragment {
         ivProfileImage = (ImageView) inflate.findViewById(R.id.ivProfileImage);
         btnSignup = (Button) inflate.findViewById(R.id.btnSignup);
         galleryPhoto = new GalleryPhoto(getContext()/*getActivity()*/); //getContext();
+        progressDialog = new ProgressDialog(getActivity());
     }
 
     public void uploadImageToServer() {
@@ -137,6 +141,9 @@ public class SignupFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 createUserEmailAndPass();
+                progressDialog.setMessage(getResources().getString(R.string.connecting));
+                progressDialog.show();
+
             }
         });
     }
@@ -191,7 +198,11 @@ public class SignupFragment extends Fragment {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         if (e != null) {
-                            Toast.makeText(getActivity(), getResources().getString(R.string.error) + e.getMessage(), Toast.LENGTH_SHORT).show();
+                            progressDialog.dismiss();
+                            Toast.makeText(getActivity(),getResources().getString(R.string.error)+""+ getString(R.string.invalid_password), Toast.LENGTH_SHORT).show();
+                            etSignupPassword.setError(getResources().getString(R.string.invalid_password));
+                            IOHelper.getAnimation(etSignupPassword ,Techniques.Shake );
+                            //Toast.makeText(getActivity(), getResources().getString(R.string.error) + e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
