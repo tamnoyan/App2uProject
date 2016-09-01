@@ -11,11 +11,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.tamn.app2uproject.Constants;
 import com.example.tamn.app2uproject.ItemActivity;
-import com.example.tamn.app2uproject.Model.MessageItem;
+import com.example.tamn.app2uproject.Model.EventItem;
 import com.example.tamn.app2uproject.PictureHelper;
 import com.example.tamn.app2uproject.R;
 import com.example.tamn.app2uproject.SimpleDividerItemDecoration;
@@ -68,15 +69,15 @@ public class EventsFragment extends Fragment {
 
         //Adapter
                                 // model     //ViewHolder
-        FirebaseRecyclerAdapter<MessageItem, ItemsViewHolder> adapter = new FirebaseRecyclerAdapter<MessageItem, ItemsViewHolder>(
-                MessageItem.class, //our model
+        FirebaseRecyclerAdapter<EventItem, ItemsViewHolder> adapter = new FirebaseRecyclerAdapter<EventItem, ItemsViewHolder>(
+                EventItem.class, //our model
                 R.layout.recycle_event_item, //layout
                 ItemsViewHolder.class, //ViewHolder
                 ref //query , reference
 
         ) {
             @Override
-            protected void populateViewHolder(final ItemsViewHolder viewHolder, MessageItem model, final int position) {
+            protected void populateViewHolder(final ItemsViewHolder viewHolder, EventItem model, final int position) {
 
                 viewHolder.tvItemTitle.setText(model.getTitle());
                 viewHolder.tvItemContent.setText(model.getContent());
@@ -84,7 +85,7 @@ public class EventsFragment extends Fragment {
 
                 Picasso.with(getActivity()).load(model.getUrl()).into(viewHolder.ivItemImage);
 
-                viewHolder.tvItemTitle.setOnClickListener(new View.OnClickListener() {
+                viewHolder.rlItem.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         // get the push id of the user
@@ -108,7 +109,7 @@ public class EventsFragment extends Fragment {
 
                     }
                 });
-                // delete item on long click
+                // delete item on long click //todo: remove or set it to admin only
                 viewHolder.tvItemContent.setOnLongClickListener(new View.OnLongClickListener() {
                     @Override
                     public boolean onLongClick(View view) {
@@ -134,6 +135,7 @@ public class EventsFragment extends Fragment {
         TextView tvItemTitle;
         TextView tvEventDate;
         ImageView ivItemImage;
+        RelativeLayout rlItem;
 
         public ItemsViewHolder(View itemView) {
             super(itemView);
@@ -142,6 +144,7 @@ public class EventsFragment extends Fragment {
             tvItemTitle = (TextView) itemView.findViewById(R.id.tvItemTitle);
             ivItemImage = (ImageView) itemView.findViewById(R.id.ivItemImage);
             tvEventDate = (TextView) itemView.findViewById(R.id.tvEventDate);
+            rlItem = (RelativeLayout) itemView.findViewById(R.id.rlItem);
         }
     }
 

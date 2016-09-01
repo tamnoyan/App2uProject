@@ -1,15 +1,12 @@
 package com.example.tamn.app2uproject.Fragments;
 
 
-import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -27,6 +24,7 @@ import com.example.tamn.app2uproject.IOHelper;
 import com.example.tamn.app2uproject.MainActivity;
 import com.example.tamn.app2uproject.Model.UserDetails;
 import com.example.tamn.app2uproject.R;
+import com.example.tamn.app2uproject.Utils;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -81,24 +79,10 @@ public class SignupFragment extends Fragment {
         ((AppCompatActivity) getActivity()).getSupportActionBar().show();
 
         initLayout();
-        checkIfPermissionNeeded();
+        Utils.checkIfPermissionNeeded(getActivity());
         initEvents();
 
         return inflate;
-    }
-
-    private void checkIfPermissionNeeded() {
-        int result = ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.READ_EXTERNAL_STORAGE);
-        if (result != PackageManager.PERMISSION_GRANTED){
-
-            //ask for permission
-            showPermissionSystemDialog();
-        }
-    }
-
-    private void showPermissionSystemDialog() {
-        String[] permission = {Manifest.permission.READ_EXTERNAL_STORAGE};
-        ActivityCompat.requestPermissions(getActivity(),permission,REQUEST_STORAGE_CODE);
     }
 
     private void initLayout() {
@@ -172,7 +156,7 @@ public class SignupFragment extends Fragment {
                 .addOnFailureListener(getActivity(), new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Log.d("ddebug","" + e.getMessage().toString());
+                Log.d("ddebug","" + e.getMessage().toString()); //todo:delete
             }
         }).addOnSuccessListener(getActivity(), new OnSuccessListener<Void>() {
             @Override
