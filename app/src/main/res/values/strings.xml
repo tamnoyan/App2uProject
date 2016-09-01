@@ -38,8 +38,8 @@
     <string name="upload_successfully">Your event has been uploaded successfully! </string>
     <string name="events">Events</string>
     <string name="upload_event">Uplaod Event</string>
-    <string name="title">Title: </string>
-    <string name="content">Content: </string>
+    <string name="title">כותרת:</string>
+    <string name="content">תוכן:</string>
     <string name="about">about</string>
     <string name="send">Send</string>
     <string name="comment">Comment</string>
@@ -55,5 +55,22 @@
     <string name="connect">Connect</string>
     <string name="press_here_to_connect"><u>Press here to connect</u></string>
     <string name="add_admin">Add Admin</string>
+    <string name="title_activity_give_and_take">GiveAndTakeActivity</string>
+
+    <!--Give and take-->
+    <string name="give_take">קח תן</string>
+    <string name="give">תן (פרסם מוצר למסירה)</string>
+    <string name="take">קח(פרסם דרישה למוצר)</string>
+    <string name="post_your_offer">סמן את סוג המודעה</string>
+    <string name="post_offer">פרסם</string>
+    <string name="cancel">בטל</string>
+    <string name="add_image">לחץ כאן להוספת תמונה </string>
+    <string name="give_away_stuff">אומרים שלתת זה יותר מלקבל, אז למה שלא תיתן...</string>
+
+    <!--Alert Dialog-->
+    <string name="alert_title">התחבר/הירשם</string>
+    <string name="sign_log_in"></string>
+    <string name="later"></string>
+    <string name="alert_message">על מנת לפרסם מודעה תחילה יש להתחבר</string>
 
 </resources>

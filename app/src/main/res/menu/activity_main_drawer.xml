@@ -22,18 +22,20 @@
             android:id="@+id/nav_upload_event"
             android:icon="@drawable/ic_menu_camera"
             android:title="@string/upload_event" />
+
+        <item
+            android:id="@+id/nav_give_take"
+            android:icon="@drawable/ic_menu_share"
+            android:title="@string/give_take" />
+        <item
+            android:id="@+id/nav_signout"
+            android:icon="@drawable/ic_menu_send"
+            android:title="@string/Sign_out" />
     </group>
 
     <item android:title="Communicate">
         <menu>
-            <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
-            <item
-                android:id="@+id/nav_signout"
-                android:icon="@drawable/ic_menu_send"
-                android:title="@string/Sign_out" />
+
         </menu>
     </item>
 

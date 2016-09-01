@@ -19,5 +19,4 @@ public class Utils {
             ActivityCompat.requestPermissions(activity,permission,REQUEST_STORAGE_CODE);
         }
     }
-
 }

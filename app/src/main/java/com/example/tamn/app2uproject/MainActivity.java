@@ -99,6 +99,12 @@ public class MainActivity extends AppCompatActivity
 
     }
 
+    private void clearHeader(){
+        profileEmail.setText("");
+        ivUser.setImageDrawable(null);
+        profileName.setText("");
+    }
+
     /****
      * Navigation header
      */
@@ -128,7 +134,7 @@ public class MainActivity extends AppCompatActivity
                             }
                         } catch (Exception e) {
 
-                            Log.d("TammmmHeaderDetails", e.getMessage());
+                            Log.d("TammmmHeaderDetails", e.getMessage()); //todo:delete
                         }
                     }
 
@@ -149,20 +155,12 @@ public class MainActivity extends AppCompatActivity
      * for signIn/signUp
      */
     private void checkIsUserLogin() {
-        /*FirebaseAuth auth = FirebaseAuth.getInstance();
-        currentUser = auth.getCurrentUser();*/
-        /*
-        // can write the two line above in one line:
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        */
 
         if (currentUser == null){
             //Go to Login
             startActivity(new Intent(MainActivity.this,LoginActivity.class));
-            //gettingHeaderDetails();
         }else{
-            //we have a user//user.getEmail()
-
+            //we have a user
             gettingHeaderDetails();
             getAdminsGroup();
         }
@@ -280,12 +278,11 @@ public class MainActivity extends AppCompatActivity
                     .replace(R.id.fragmentContainer, new EventsFragment())
                     .commit();
 
-        } else if (id == R.id.nav_share) {
-
+        } else if (id == R.id.nav_give_take) {
+            startActivity(new Intent(MainActivity.this,GiveAndTakeActivity.class));
 
         } else if (id == R.id.nav_signout) {
             FirebaseAuth.getInstance().signOut();
-
 
 
         }  else if (item.getTitle().equals(uploadEvent)) {

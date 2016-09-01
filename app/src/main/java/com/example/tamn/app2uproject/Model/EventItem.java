@@ -3,19 +3,19 @@ package com.example.tamn.app2uproject.Model;
 /**
  * Created by Tamn on 07/08/2016.
  */
-public class MessageItem {
+public class EventItem {
     private String title;
     private String content;
     private String url;
     private String eventUploadTime;
 
-    public MessageItem() {
+    public EventItem() {
         /**
          * Empty Constructor for query
          */
     }
 
-    public MessageItem(String title, String content, String url, String eventUploadTime) {
+    public EventItem(String title, String content, String url, String eventUploadTime) {
         this.title = title;
         this.content = content;
         this.url = url;

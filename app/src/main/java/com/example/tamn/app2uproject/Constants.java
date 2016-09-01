@@ -18,7 +18,10 @@ public class Constants {
     public static final String PROFILE_IMAGES = "profile_images";
     public static final String ADMINDS ="admins/"; //todo: remove "/"
     public static final String USERS ="users";
-
+    public static final String GIVE_TAKE_IMAGES ="giveTakeImages/";
+    public static final String TAKE_ITEM ="take_item";
+    public static final String GIVE_ITEM = "give_item";
 
     public static final String EVENT_DATE = "event date";
+
 }
