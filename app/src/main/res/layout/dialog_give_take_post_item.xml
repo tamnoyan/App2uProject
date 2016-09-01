@@ -47,7 +47,7 @@
         android:minLines="4"
         android:maxLines="7"
         android:gravity="top|right"
-        android:id="@+id/etItemContent"
+        android:id="@+id/etDialogContent"
         android:layout_gravity="center_horizontal" />
 
     <LinearLayout
@@ -61,16 +61,22 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/add_image"
-            android:id="@+id/tvAddImage" />
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="הוסף תמונה"
+            android:id="@+id/tvAddImage"
+
+            android:layout_above="@+id/ivUserChoice"
+            android:textAlignment="center"
+             />
 
         <ImageView
             android:layout_width="100dp"
             android:layout_height="100dp"
+            android:src="@mipmap/ic_add_pic"
+            android:id="@+id/ivUserChoice"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
 
-            android:src="@mipmap/ic_launcher"
-            android:id="@+id/ivUserChoice" />
 
     </LinearLayout>
 

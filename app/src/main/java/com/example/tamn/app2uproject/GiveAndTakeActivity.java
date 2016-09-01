@@ -20,6 +20,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.daimajia.androidanimations.library.Techniques;
 import com.example.tamn.app2uproject.Adapter.MyViewPagerAdapter;
 import com.example.tamn.app2uproject.Model.EventItem;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -57,7 +58,7 @@ public class GiveAndTakeActivity extends AppCompatActivity  {
     ImageView ivUserChoice;
     //EditTexts
     EditText etDialogTitle;
-    EditText etItemContent;
+    EditText etDialogContent;
 
     FirebaseUser currentUser;
     /**
@@ -114,7 +115,7 @@ public class GiveAndTakeActivity extends AppCompatActivity  {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         View dialogView = getLayoutInflater().inflate(R.layout.dialog_give_take_post_item,null,false);
         etDialogTitle = (EditText) dialogView.findViewById(R.id.etDialogTitle);
-        etItemContent = (EditText) dialogView.findViewById(R.id.etItemContent);
+        etDialogContent = (EditText) dialogView.findViewById(R.id.etDialogContent);
         Button btnItemSend = (Button) dialogView.findViewById(R.id.btnItemSend);
         Button btnCancel = (Button) dialogView.findViewById(R.id.btnCancel);
 
@@ -124,11 +125,9 @@ public class GiveAndTakeActivity extends AppCompatActivity  {
 
         ivUserChoice = (ImageView) dialogView.findViewById(R.id.ivUserChoice);
 
-            //checkIsUserLogin();
         rgGiveTake.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-
                 switch (checkedId) {
                     case R.id.rbGive:
                         category = Constants.GIVE_ITEM ;
@@ -151,7 +150,20 @@ public class GiveAndTakeActivity extends AppCompatActivity  {
         btnItemSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                uploadImageToServer();
+
+                //check if radio group is uncheck
+                if(rgGiveTake.getCheckedRadioButtonId() == -1){
+                   rbTake.setError("must choose one option" );
+                   rbGive.setError("must choose one option");
+                   IOHelper.getAnimation(rbTake , Techniques.Shake );
+                   IOHelper.getAnimation(rbGive , Techniques.Shake );
+
+                }else if(etDialogTitle.getText().toString().equals("") && etDialogContent.getText().toString().equals("")) {
+                    etDialogTitle.setError(getString(R.string.required_field));
+                    IOHelper.getAnimation(etDialogTitle, Techniques.Shake);
+
+                }else
+                    uploadImageToServer();
             }
         });
 
@@ -232,7 +244,7 @@ public class GiveAndTakeActivity extends AppCompatActivity  {
         DatabaseReference reference = instance.getReference(category);
 
         EventItem item = new EventItem(etDialogTitle.getText().toString(),
-                etItemContent.getText().toString(),
+                etDialogContent.getText().toString(),
                 imageUrl,
                 IOHelper.gettingDate()
         );
