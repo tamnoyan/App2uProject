@@ -10,7 +10,9 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <!--Google-->
-    <string name="web_application">75665281941-ppr4lllt40ui8ia3ul95rhhmi0eprt5u.apps.googleusercontent.com</string>
+
+    <string name="web_application">139877713692-r8h2fk6hmuvvgalcd8ak95d09a874tt8.apps.googleusercontent.com</string>
+    <!--<string name="web_application">75665281941-ppr4lllt40ui8ia3ul95rhhmi0eprt5u.apps.googleusercontent.com</string>-->
     <!--Facebook-->
     <string name="facebook_app_id" translatable="false">1731866163735085</string>
 

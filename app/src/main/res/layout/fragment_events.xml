@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.tamn.app2uproject.Fragments.EventsFragment">
+    tools:context="com.tamn.app2uproject.Fragments.EventsFragment">
 
     <ImageView
         android:layout_width="match_parent"
@@ -16,7 +16,7 @@
     <ScrollView
         android:fillViewport="true"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_alignParentRight="true">
 
         <android.support.v7.widget.RecyclerView
