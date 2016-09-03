@@ -21,6 +21,7 @@ public class CommentFragment extends Fragment {
         // Required empty public constructor
     }
 
+    //todo: DELETE this fragment and it's xml
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

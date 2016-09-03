@@ -25,7 +25,7 @@
     <string name="signup">הירשם</string>
     <string name="Signin">התחבר</string>
     <string name="or">------------ או התחבר/י באמצעות ------------</string>
-    <string name="reset_message"><u>Please enter your email to reset</u></string>
+    <string name="reset_message"><u>לשחזור סיסמה , נא להזין דואר אלקטרוני</u></string>
     <string name="Sign_out">התנתק</string>
     <string name="Facebook">Facebook</string>
     <string name="LoginActivity">LoginActivity</string>
@@ -36,31 +36,46 @@
     <string name="restore">שחזר סיסמה</string>
 
     <!--Navigation Drawer-->
-
     <string name="about_us">אודות</string>
     <string name="events">אירועים ופעילויות</string>
     <string name="upload_event">הוספת פעילות</string>
-    <string name="title">כותרת:</string>
-    <string name="content">תוכן:</string>
-    <string name="send">שלח</string>
-    <string name="comment">תגובה</string>
-    <string name="write_comment_here">הגב...</string>
-    <string name="post_comment">שלח תגובה</string>
-    <string name="error">שגיאה:</string>
+    <string name="push_notification">התראות ועדכונים</string>
+    <string name="admin">אדמיניסטרטור</string>
+
+    <!--process-->
+    <string name="Connecting...">מתחבר...</string>
+    <string name="connecting">מתחבר</string>
+
     <string name="upload_successfully">האירוע הועלה בהצלחה</string>
 
+    <!--messages-->
     <string name="required_field">שדה חובה</string>
     <string name="empty_field">אין להשאיר שדה ריק</string>
     <string name="user_not_exist">משתמש אינו קיים</string>
     <string name="invalid_email">דואר אלקטרוני אינו תקין</string>
-    <string name="connecting">Connecting...</string>
-
     <string name="log_in_to_comment">התחבר על מנת להגיב</string>
+    <string name="invalid_password">סיסמה לא תקינה, מינימום 6 תווים</string>
+    <string name="error">שגיאה:</string>
+
+    <!--fields and buttons-->
+    <string name="title">כותרת:</string>
+    <string name="content">תוכן:</string>
     <string name="connect">התחברות</string>
-    <string name="press_here_to_connect"><u>Press here to connect</u></string>
+    <string name="press_here_to_connect"><u> לחץ כאן להתחברות</u></string>
     <string name="add_admin">הוספת מנהל</string>
+    <string name="add_a_comment">שלח תגובה</string>
+
+    <string name="send">שלח</string>
+    <string name="comment">תגובה</string>
+    <string name="write_comment_here">הגב...</string>
+    <string name="post_comment">שלח תגובה</string>
+
+
+    `   <!--manifest-->
     <string name="title_activity_give_and_take">GiveAndTakeActivity</string>
 
+    <!--Pages content-->
+    <string name="about">"נקודת צמיחה" הינו פרויקט ייחודי וארצי, הפועל במסגרת "קרן חן וחסד" ומטרתו לסייע למשפחות בתחומי החיים השונים, באמצעות הנחייה משפחתית. הפרויקט נועד להקנות כלים ולהנחות משפחות המתמודדות עם משברים רגשיים מגוונים הנובעים מבעיות כלכליות, זוגיות, תעסוקה וכ"ו; ומטרתו לעזור למשפחות  לעשות שינוי בדרך התנהלותן ולהגיע לצמיחה כלכלית ואיזון במישורים המשפחתיים השונים. הפרויקט מבוסס על מודל ייחודי המלמד את המשפחות איך לעשות שינוי פנימי עמוק, וע"י כך לשנות את עולמן החיצוני. כל מנחה משפחה מלווה משפחה אחת, שעה אחת בשבוע, למשך שנה.</string>
 
     <!--Give and take-->
     <string name="give_take">קח תן</string>
@@ -74,13 +89,12 @@
 
     <!--Alert Dialog-->
     <string name="alert_title">התחבר/הירשם</string>
-    <string name="sign_log_in"></string>
     <string name="later">יותר מאוחר</string>
     <string name="alert_message">על מנת לפרסם מודעה תחילה יש להתחבר</string>
     <string name="add">הוסף</string>
     <string name="choose_one_option">בחר סוג מודעה </string>
     <string name="Take">קח</string>
-    <string name="add_a_comment">שלח תגובה</string>
-    <string name="invalid_password">סיסמה לא תקינה, מינימום 6 תווים</string>
+    <string name="notification">התראות ועדכונים</string>
+
 
 </resources>

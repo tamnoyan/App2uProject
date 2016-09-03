@@ -56,6 +56,7 @@ public class MainActivity extends AppCompatActivity
     //subMenu
     String uploadEvent;
     String addAdmin;
+    String pushNotication;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -210,8 +211,9 @@ public class MainActivity extends AppCompatActivity
      */
     private void addSubMenu(){
         Menu menu = navigationView.getMenu();
-        SubMenu subMenu = menu.addSubMenu("Admins Dashboard"); //todo: add constant
-        subMenu.add(Constants.PUSH_NOTIFICATION);
+        SubMenu subMenu = menu.addSubMenu(getResources().getString(R.string.admin));
+        pushNotication = getResources().getString(R.string.push_notification);
+        subMenu.add(pushNotication);
         uploadEvent = getResources().getString(R.string.upload_event);
         subMenu.add(uploadEvent);
         addAdmin = getResources().getString(R.string.add_admin);
@@ -233,14 +235,10 @@ public class MainActivity extends AppCompatActivity
                 drawer.closeDrawer(GravityCompat.START);
             }
         });
-
-
     }
 
 
     private void initLayout() {
-
-
     }
 
     @Override
@@ -307,7 +305,7 @@ public class MainActivity extends AppCompatActivity
                     .replace(R.id.fragmentContainer, new UploadEventsFragment())
                     .commit();
 
-        } else if (item.getTitle().equals(Constants.PUSH_NOTIFICATION)){
+        } else if (item.getTitle().equals(pushNotication)){
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.fragmentContainer, new PushNotificationFragment())
                     .commit();

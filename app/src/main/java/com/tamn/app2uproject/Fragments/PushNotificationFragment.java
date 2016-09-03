@@ -3,6 +3,7 @@ package com.tamn.app2uproject.Fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,7 +33,7 @@ public class PushNotificationFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View pushView = inflater.inflate(R.layout.fragment_push_notification, container, false);
-
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(getResources().getString(R.string.push_notification));
         etPushTitle = (EditText) pushView.findViewById(R.id.etPushTitle);
         etPushContent = (EditText) pushView.findViewById(R.id.etPushContent);
         btnPushSend = (Button) pushView.findViewById(R.id.btnPushSend);
@@ -40,7 +41,6 @@ public class PushNotificationFragment extends Fragment {
         btnPushSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 startAsyncTaskNotification(etPushTitle.getText().toString(),etPushContent.getText().toString());
 
             }

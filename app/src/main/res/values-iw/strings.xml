@@ -57,4 +57,13 @@
     <string name="choose_one_option">בחר סוג מודעה</string>
     <string name="later">יותר מאוחר</string>
     <string name="invalid_password">סיסמה לא תקינה, מינימום 6 תווים</string>
+    <string name="add_image">לחץ כאן להוספת תמונה</string>
+    <string name="alert_message">על מנת לפרסם מודעה תחילה יש להתחבר</string>
+    <string name="alert_title">התחבר/הירשם</string>
+    <string name="connecting">מתחבר</string>
+    <string name="admin">אדמיניסטרטור</string>
+    <string name="give_away_stuff">אומרים שלתת זה יותר מלקבל, אז למה שלא תיתן...</string>
+    <string name="give_take">קח תן</string>
+    <string name="push_notification">התראות ועדכונים</string>
+    <string name="notification">התראות ועדכונים</string>
 </resources>
