@@ -14,18 +14,18 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.tamn.app2uproject.Constants;
-import com.tamn.app2uproject.ItemActivity;
-import com.tamn.app2uproject.Model.EventItem;
-import com.tamn.app2uproject.PictureHelper;
-import com.tamn.app2uproject.R;
-import com.tamn.app2uproject.SimpleDividerItemDecoration;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
+import com.tamn.app2uproject.Constants;
+import com.tamn.app2uproject.ItemActivity;
+import com.tamn.app2uproject.Model.EventItem;
+import com.tamn.app2uproject.PictureHelper;
+import com.tamn.app2uproject.R;
+import com.tamn.app2uproject.SimpleDividerItemDecoration;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -49,6 +49,7 @@ public class EventsFragment extends Fragment {
         inflateView = inflater.inflate(R.layout.fragment_events, container, false);
         rvEvents = (RecyclerView) inflateView.findViewById(R.id.rvEvents);
         ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(getResources().getString(R.string.events));
+
         initRecycle();
         return inflateView;
     }
@@ -121,7 +122,7 @@ public class EventsFragment extends Fragment {
                 });
             }
         };
-        //diveder
+        //divider
         rvEvents.addItemDecoration(new SimpleDividerItemDecoration(
                 getActivity().getApplicationContext()
         ));

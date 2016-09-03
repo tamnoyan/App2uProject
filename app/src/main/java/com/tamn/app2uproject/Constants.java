@@ -29,6 +29,11 @@ public class Constants {
      */
     public static final String GOOGLE_NOTIFICATION_END_POINT = "https://fcm.googleapis.com/fcm/send";
 
+    public static final String APPLICATION_PREF = "applicationpref";
+    public static final String NOTIFICATION_SWITCH = "notificationSwitch";
+    public static final String NEWS_NOTIFICATION = "news";
+    public static final String PUSH_NOTIFICATION = "push notification";
+
     public static final String EVENT_DATE = "event date";
 
 }

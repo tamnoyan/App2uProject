@@ -2,7 +2,6 @@ package com.tamn.app2uproject;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -29,6 +28,7 @@ import com.tamn.app2uproject.Fragments.AboutFragment;
 import com.tamn.app2uproject.Fragments.AddAdminFragment;
 import com.tamn.app2uproject.Fragments.EventsFragment;
 import com.tamn.app2uproject.Fragments.PushNotificationFragment;
+import com.tamn.app2uproject.Fragments.SettingsFragment;
 import com.tamn.app2uproject.Fragments.UploadEventsFragment;
 import com.tamn.app2uproject.Model.UserDetails;
 
@@ -38,13 +38,10 @@ import java.util.HashMap;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    FloatingActionButton fab;
     Toolbar toolbar;
 
     FirebaseUser currentUser;
     FirebaseAuth auth = FirebaseAuth.getInstance();
-
-
 
     //navigation
     DrawerLayout drawer;
@@ -52,7 +49,7 @@ public class MainActivity extends AppCompatActivity
     NavigationView navigationView;
 
     //header
-    ImageView ivUser;
+    ImageView ivUser, ivSetting;
     TextView profileName;
     TextView profileEmail;
 
@@ -72,7 +69,6 @@ public class MainActivity extends AppCompatActivity
                 .add(R.id.fragmentContainer, new EventsFragment())
                 .commit();
 
-        //checkIsUserLogin();
         addNavigationDrawer();
         initLayout();
         initEvents();
@@ -92,17 +88,16 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         View headerView = navigationView.getHeaderView(0);
-         ivUser = (ImageView) headerView.findViewById(R.id.ivUser);
-         profileName = (TextView) headerView.findViewById(R.id.profileName);
-         profileEmail = (TextView) headerView.findViewById(R.id.profileEmail);
-
-
+        ivUser = (ImageView) headerView.findViewById(R.id.ivUser);
+        profileName = (TextView) headerView.findViewById(R.id.profileName);
+        profileEmail = (TextView) headerView.findViewById(R.id.profileEmail);
+        ivSetting= (ImageView) headerView.findViewById(R.id.ivSetting);
     }
 
     private void clearHeader(){
         profileEmail.setText("נקודת צמיחה");
         ivUser.setImageDrawable(getResources().getDrawable(R.mipmap.ic_launcher));
-        profileName.setText("nkoda@gmail.com");
+        profileName.setText("nekoda@gmail.com");
     }
 
     /****
@@ -118,7 +113,7 @@ public class MainActivity extends AppCompatActivity
 
             } else {
                 FirebaseDatabase database = FirebaseDatabase.getInstance();
-                DatabaseReference ref = database.getReference("users").child(currentUser.getUid());
+                DatabaseReference ref = database.getReference(Constants.USERS).child(currentUser.getUid());
 
                 ref.addValueEventListener(new ValueEventListener() {
                     @Override
@@ -136,6 +131,8 @@ public class MainActivity extends AppCompatActivity
 
                             Log.d("TammmmHeaderDetails", e.getMessage()); //todo:delete
                         }
+
+
                     }
 
                     @Override
@@ -160,10 +157,11 @@ public class MainActivity extends AppCompatActivity
             //Go to Login
             Log.d("DDebug","user null");
             startActivity(new Intent(MainActivity.this,LoginActivity.class));
+            gettingHeaderDetails();
         }else{
             //we have a user
             Log.d("DDebug","user not null");
-            gettingHeaderDetails();
+
             getAdminsGroup();
         }
     }
@@ -212,8 +210,8 @@ public class MainActivity extends AppCompatActivity
      */
     private void addSubMenu(){
         Menu menu = navigationView.getMenu();
-        SubMenu subMenu = menu.addSubMenu("Admins Dashboard");
-        subMenu.add("push notification");
+        SubMenu subMenu = menu.addSubMenu("Admins Dashboard"); //todo: add constant
+        subMenu.add(Constants.PUSH_NOTIFICATION);
         uploadEvent = getResources().getString(R.string.upload_event);
         subMenu.add(uploadEvent);
         addAdmin = getResources().getString(R.string.add_admin);
@@ -225,15 +223,29 @@ public class MainActivity extends AppCompatActivity
 
     private void initEvents() {
         currentUser = auth.getCurrentUser();
+        ivSetting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragmentContainer, new SettingsFragment())
+                        .commit();
+                drawer.closeDrawer(GravityCompat.START);
+            }
+        });
+
+
     }
 
 
     private void initLayout() {
+
+
     }
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        //DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -277,9 +289,7 @@ public class MainActivity extends AppCompatActivity
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.fragmentContainer, new AboutFragment())
                     .commit();
-            /*getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fragmentContainer, new AddAdminFragment())
-                    .commit();*/
+
         } else if (id == R.id.nav_events) {
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.fragmentContainer, new EventsFragment())
@@ -297,13 +307,10 @@ public class MainActivity extends AppCompatActivity
                     .replace(R.id.fragmentContainer, new UploadEventsFragment())
                     .commit();
 
-        } else if (item.getTitle().equals("push notification")){
-            //Toast.makeText(MainActivity.this, "WORKING NOTIFIACTION", Toast.LENGTH_SHORT).show();
-            //getSupportFragmentManager().beginTransaction().replace()
+        } else if (item.getTitle().equals(Constants.PUSH_NOTIFICATION)){
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.fragmentContainer, new PushNotificationFragment())
                     .commit();
-
 
         } else if (item.getTitle().equals(addAdmin)) {
             getSupportFragmentManager().beginTransaction()
@@ -311,7 +318,7 @@ public class MainActivity extends AppCompatActivity
                     .commit();
 
         }
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+    //    DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
