@@ -143,7 +143,6 @@ public class SignupFragment extends Fragment {
                 createUserEmailAndPass();
                 progressDialog.setMessage(getResources().getString(R.string.connecting));
                 progressDialog.show();
-
             }
         });
     }
@@ -163,7 +162,9 @@ public class SignupFragment extends Fragment {
                 .addOnFailureListener(getActivity(), new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
+                progressDialog.dismiss();
                 Log.d("ddebug","" + e.getMessage().toString()); //todo:delete
+
             }
         }).addOnSuccessListener(getActivity(), new OnSuccessListener<Void>() {
             @Override

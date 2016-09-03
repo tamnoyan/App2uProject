@@ -132,13 +132,10 @@ public class MainActivity extends AppCompatActivity
 
                             Log.d("TammmmHeaderDetails", e.getMessage()); //todo:delete
                         }
-
-
                     }
 
                     @Override
                     public void onCancelled(DatabaseError databaseError) {
-
                     }
                 }); //todo: remove all listener  ref.removeEventListener();
             }

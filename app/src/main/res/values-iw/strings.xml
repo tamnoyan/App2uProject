@@ -66,4 +66,5 @@
     <string name="give_take">קח תן</string>
     <string name="push_notification">התראות ועדכונים</string>
     <string name="notification">התראות ועדכונים</string>
+    <string name="disconnect">מתנתק...</string>
 </resources>

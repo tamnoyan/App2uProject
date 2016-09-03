@@ -95,6 +95,7 @@
     <string name="choose_one_option">בחר סוג מודעה </string>
     <string name="Take">קח</string>
     <string name="notification">התראות ועדכונים</string>
+    <string name="disconnect">מתנתק...</string>
 
 
 </resources>

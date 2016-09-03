@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -109,6 +110,7 @@ public class ItemActivity extends AppCompatActivity {
         String comment = etComment.getText().toString();
 
         commentDate = IOHelper.gettingDate();
+        userEmail = currentUser.getEmail();
         // create an object from the model
         CommentItem commentItem = new CommentItem(comment,userEmail,commentDate);
 
@@ -160,6 +162,7 @@ public class ItemActivity extends AppCompatActivity {
         */
                 String str = etComment.getText().toString();
                 if (currentUser == null){
+                    Log.d("Tammmm", "User null");
                     etComment.setError(getResources().getString(R.string.log_in_to_comment));
                     tvConnectMessage.setVisibility(View.VISIBLE);
                     IOHelper.getAnimation(tvConnectMessage, Techniques.Flash);

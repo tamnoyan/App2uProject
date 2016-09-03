@@ -1,30 +1,48 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
+    android:padding="15dp"
     tools:context="com.tamn.app2uproject.Fragments.SettingsFragment">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/ivDetailsImage"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/ic_person"
+        app:civ_border_width="2dp"
+        app:civ_border_color="#d9cfcf"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="42dp" />
+
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardCornerRadius="8dp"
         android:elevation="10dp"
-        >
+        android:id="@+id/view"
+        android:layout_below="@+id/llUserDetails"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="19dp">
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="16dp"
-            >
+            android:id="@+id/rlNotification">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/notification"
-                android:id="@+id/textView5"
+                android:id="@+id/tvNotification"
                 android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"
-
                 android:layout_marginRight="74dp"
                 android:layout_marginEnd="74dp" />
 
@@ -34,11 +52,143 @@
                 android:layout_height="wrap_content"
                 android:textOn="on"
                 android:textOff="off"
-                android:layout_alignTop="@+id/textView5"
+                android:layout_alignTop="@+id/tvNotification"
                 android:layout_alignParentLeft="true"
-
                 android:layout_marginLeft="56dp"
                 android:layout_marginStart="56dp" />
         </RelativeLayout>
     </android.support.v7.widget.CardView>
-</LinearLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/Sign_out"
+        android:id="@+id/btnSignout"
+        android:layout_marginBottom="66dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/llUserDetails"
+        android:layout_below="@+id/ivDetailsImage"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ivDetailsImage"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:id="@+id/llDetailsName">
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:hint="@string/username"
+                android:ems="10"
+                android:id="@+id/etDetailsName"
+                android:gravity="right|bottom"
+                android:paddingRight="10dp"
+                android:layout_below="@+id/ivDetailsImage"
+                android:layout_toLeftOf="@+id/tvName"
+                android:layout_toStartOf="@+id/tvName"
+                android:layout_weight="1" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/username"
+                android:id="@+id/tvDetailsName"
+                android:layout_alignBottom="@+id/etName"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:id="@+id/llDetailsEmail" >
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:hint="@string/email"
+                android:ems="10"
+                android:id="@+id/etDetailsEmail"
+                android:gravity="right|bottom"
+                android:paddingRight="10dp"
+                android:layout_below="@+id/ivDetailsImage"
+                android:layout_toLeftOf="@+id/tvDetailsEmail"
+                android:layout_toStartOf="@+id/tvDetailsEmail"
+                android:layout_weight="1" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/email"
+                android:id="@+id/tvDetailsEmail"
+                android:layout_alignBottom="@+id/editText"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ivDetailsImage"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:id="@+id/llDetailsPassword" >
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:hint="@string/password"
+                android:ems="10"
+                android:id="@+id/etDetailsPassword"
+                android:gravity="right|bottom"
+                android:paddingRight="10dp"
+                android:layout_below="@+id/ivDetailsImage"
+                android:layout_toLeftOf="@+id/tvDetailsPassword"
+                android:layout_toStartOf="@+id/tvDetailsPassword"
+                android:layout_weight="1" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/password"
+                android:id="@+id/tvDetailsPassword"
+                android:layout_alignBottom="@+id/editText2"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/Signin"
+        android:id="@+id/btnConnect"
+        android:background="@color/lightGreen"
+        android:textColor="#ffff"
+        android:visibility="gone"
+        android:layout_marginBottom="66dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>

@@ -66,9 +66,9 @@ public class AddAdminFragment extends Fragment {
 
         HashMap<String,String> adminsList = new HashMap<>();
         adminsList.put("admin1",etAdmin1.getText().toString());
-        adminsList.put("admin2","tam1@gmail.com");
-        /*adminsList.put("admin3","aba@yahoo.com");
-        adminsList.put("admin4","aba@yahoo.com");*/
+        adminsList.put("admin2","tam@gmail.com");
+        adminsList.put("admin3","avigail@gmail.com");
+        //adminsList.put("admin4","aba@yahoo.com");
 
         reference.setValue(adminsList).addOnSuccessListener(getActivity(), new OnSuccessListener<Void>() {
             @Override
