@@ -2,6 +2,7 @@ package com.tamn.app2uproject.Fragments;
 
 
 import android.os.Bundle;
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.daimajia.androidanimations.library.Techniques;
@@ -25,8 +27,10 @@ public class PushNotificationFragment extends Fragment {
 
     EditText etPushTitle;
     EditText etPushContent;
+    TextView tvNotificationSent;
     Button btnPushSend;
 
+    TextInputLayout login_layout;
     public PushNotificationFragment() {
         // Required empty public constructor
     }
@@ -40,6 +44,8 @@ public class PushNotificationFragment extends Fragment {
         etPushTitle = (EditText) pushView.findViewById(R.id.etPushTitle);
         etPushContent = (EditText) pushView.findViewById(R.id.etPushContent);
         btnPushSend = (Button) pushView.findViewById(R.id.btnPushSend);
+        tvNotificationSent = (TextView) pushView.findViewById(R.id.tvNotificationSent);
+        login_layout = (TextInputLayout) pushView.findViewById(R.id.login_layout);
 
         initEvents();
         return pushView;
@@ -50,14 +56,18 @@ public class PushNotificationFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 if (etPushTitle.getText().toString().equals("") && etPushContent.getText().toString().equals("")){
+                    login_layout.setErrorEnabled(true);
+                    login_layout.setError(getString(R.string.required_field));
                     IOHelper.getAnimation(etPushTitle, Techniques.Shake);
                     IOHelper.getAnimation(etPushContent, Techniques.Shake);
 
                 }else {
                     startAsyncTaskNotification(etPushTitle.getText().toString(), etPushContent.getText().toString());
-                    Toast.makeText(getActivity(), getString(R.string.sent_successfully), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), getString(R.string.sent_successfully), Toast.LENGTH_LONG).show();
                     etPushTitle.getText().clear();
                     etPushContent.getText().clear();
+                    //tvNotificationSent.setVisibility(View.VISIBLE);
+
                 }
             }
         });

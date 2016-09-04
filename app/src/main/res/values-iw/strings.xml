@@ -67,4 +67,6 @@
     <string name="push_notification">התראות ועדכונים</string>
     <string name="notification">התראות ועדכונים</string>
     <string name="disconnect">מתנתק...</string>
+    <string name="add_update_admins">הוסף/עדכן מנהל (אדמין):</string>
+    <string name="update">עדכן</string>
 </resources>

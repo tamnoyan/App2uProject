@@ -1,31 +1,97 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:padding="10dp"
     tools:context="com.tamn.app2uproject.Fragments.PushNotificationFragment">
 
-    <EditText
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/login_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/etPushTitle"
-        android:hint="@string/title"
-        android:gravity="center"
-        android:layout_gravity="center_horizontal" />
+        android:layout_above="@+id/password_layout"
+        android:layout_centerHorizontal="true"
+        android:layoutDirection="rtl"
+        android:textAlignment="textStart"
+        android:layout_gravity="start">
 
-    <EditText
+        <android.support.design.widget.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/etPushTitle"
+            android:hint="@string/title"
+            android:textColor="@color/lightBrown"
+            android:gravity="right"
+            android:layout_gravity="center_horizontal"
+            android:layout_above="@+id/etPushContent"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/password_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/content"
-        android:gravity="center"
-        android:id="@+id/etPushContent"
-        android:layout_gravity="center_horizontal" />
+        android:layout_centerVertical="true"
+        android:layout_alignLeft="@+id/login_layout"
+        android:layout_alignStart="@+id/login_layout"
+        android:layoutDirection="rtl"
+        android:textAlignment="textStart"
+        android:layout_gravity="start"
+        >
+
+        <android.support.design.widget.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/content"
+            android:textColor="@color/lightBrown"
+            android:gravity="right"
+            android:id="@+id/etPushContent"
+            android:layout_gravity="center_horizontal"
+            android:layout_above="@+id/btnPushSend"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            />
+    </android.support.design.widget.TextInputLayout>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/send"
         android:id="@+id/btnPushSend"
-        android:layout_gravity="center_horizontal" />
+        android:textColor="#FFF"
+        android:background="@color/lightGreen"
+        android:layout_gravity="center_horizontal"
+        android:layout_below="@+id/password_layout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="45dp" />
 
-</LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textStyle="bold"
+        android:text="שלח עדכון לכל המשתמשים"
+        android:textColor="@color/lightBrown"
+        android:id="@+id/tvPushMessage"
+        android:gravity="center"
+        android:layout_marginBottom="31dp"
+        android:layout_above="@+id/login_layout"
+        android:layout_alignLeft="@+id/login_layout"
+        android:layout_alignStart="@+id/login_layout" />
+
+    <TextView
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:visibility="gone"
+        android:text="@string/sent_successfully"
+        android:id="@+id/tvNotificationSent"
+        android:layout_below="@+id/btnPushSend"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="28dp" />
+
+</RelativeLayout>

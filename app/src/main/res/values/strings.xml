@@ -41,12 +41,14 @@
     <string name="upload_event">הוספת פעילות</string>
     <string name="push_notification">התראות ועדכונים</string>
     <string name="admin">אדמיניסטרטור</string>
+    <string name="notification">התראות ועדכונים</string>
 
     <!--process-->
     <string name="Connecting...">מתחבר...</string>
     <string name="connecting">מתחבר</string>
-
     <string name="upload_successfully">האירוע הועלה בהצלחה</string>
+    <string name="disconnect">מתנתק...</string>
+    <string name="sent_successfully">נשלח בהצלחה</string>
 
     <!--messages-->
     <string name="required_field">שדה חובה</string>
@@ -69,6 +71,8 @@
     <string name="comment">תגובה</string>
     <string name="write_comment_here">הגב...</string>
     <string name="post_comment">שלח תגובה</string>
+
+
 
 
     `   <!--manifest-->
@@ -94,9 +98,8 @@
     <string name="add">הוסף</string>
     <string name="choose_one_option">בחר סוג מודעה </string>
     <string name="Take">קח</string>
-    <string name="notification">התראות ועדכונים</string>
-    <string name="disconnect">מתנתק...</string>
-    <string name="sent_successfully">נשלח בהצלחה</string>
+    <string name="add_update_admins">הוסף/עדכן מנהל (אדמין):</string>
+    <string name="update">עדכן</string>
 
 
 </resources>

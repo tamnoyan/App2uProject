@@ -10,15 +10,21 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import com.tamn.app2uproject.Constants;
-import com.tamn.app2uproject.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.tamn.app2uproject.Constants;
+import com.tamn.app2uproject.R;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -27,8 +33,13 @@ import java.util.HashMap;
  */
 public class AddAdminFragment extends Fragment {
 
-    EditText etAdmin1;
+    TextView tvAdmin1;
+    EditText  etAdmin2, etAdmin3, etAdmin4;
     Button btnUpdateAdmin;
+    ImageView ivEdit2, ivEdit3 ,ivEdit4;
+
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference reference = database.getReference(Constants.ADMINDS);
 
     public AddAdminFragment() {
         // Required empty public constructor
@@ -40,40 +51,69 @@ public class AddAdminFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View inflate = inflater.inflate(R.layout.fragment_add_admin, container, false);
-        etAdmin1 = (EditText) inflate.findViewById(R.id.etAdmin1);
+        tvAdmin1 = (TextView) inflate.findViewById(R.id.tvAdmin1);
+        etAdmin2 = (EditText) inflate.findViewById(R.id.etAdmin2);
+        etAdmin3 = (EditText) inflate.findViewById(R.id.etAdmin3);
+        etAdmin4 = (EditText) inflate.findViewById(R.id.etAdmin4);
+
+        ivEdit2 = (ImageView) inflate.findViewById(R.id.ivEdit2);
+        ivEdit3 = (ImageView) inflate.findViewById(R.id.ivEdit3);
+        ivEdit4 = (ImageView) inflate.findViewById(R.id.ivEdit4);
+
         btnUpdateAdmin = (Button) inflate.findViewById(R.id.btnUpdateAdmin);
+
         initEvents();
 
         return inflate;
     }
 
     private void initEvents() {
+        // get admin list from db
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                ArrayList<String> admins = new ArrayList<String>();
+                for (DataSnapshot child : dataSnapshot.getChildren()) {
+                    admins.add(child.getValue().toString());
+                }
+
+                tvAdmin1.setText(admins.get(0));
+                etAdmin2.setText(admins.get(1));
+                etAdmin3.setText(admins.get(2));
+                etAdmin4.setText(admins.get(3));
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+
+        });
+
         btnUpdateAdmin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 addAdmins();
             }
         });
-
     }
 
     /**
      * Save Admins to Firebase !!!
      */
     public void addAdmins(){
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference reference = database.getReference(Constants.ADMINDS);
-
         HashMap<String,String> adminsList = new HashMap<>();
-        adminsList.put("admin1",etAdmin1.getText().toString());
-        adminsList.put("admin2","tam@gmail.com");
-        adminsList.put("admin3","avigail@gmail.com");
-        //adminsList.put("admin4","aba@yahoo.com");
+
+        adminsList.put("admin1","tam@gmail.com");
+        adminsList.put("admin2","avigail@gmail.com");
+        adminsList.put("admin3",etAdmin3.getText().toString());
+        adminsList.put("admin4",etAdmin4.getText().toString());
+
 
         reference.setValue(adminsList).addOnSuccessListener(getActivity(), new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
-
+                Toast.makeText(getActivity(), ""+getString(R.string.sent_successfully), Toast.LENGTH_LONG).show();
             }
         }).addOnFailureListener(getActivity(), new OnFailureListener() {
             @Override
