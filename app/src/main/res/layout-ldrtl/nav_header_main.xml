@@ -18,7 +18,7 @@
         android:layout_height="60dp"
         android:src="@android:drawable/sym_def_app_icon"
         app:civ_border_width="2dp"
-        android:layout_gravity="left"
+        android:layout_gravity="right"
         app:civ_border_color="#FFf"/>
 
     <TextView
@@ -27,7 +27,7 @@
         android:paddingTop="@dimen/nav_header_vertical_spacing"
         android:id="@+id/profileName"
         android:text="Android Studio"
-        android:gravity="left"
+        android:gravity="right"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
     <LinearLayout
@@ -40,8 +40,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="android.studio@android.com"
-            android:gravity="left"
-            android:layout_gravity="left"
+            android:gravity="end"
+            android:layout_gravity="start"
             android:layout_weight="1"/>
 
         <ImageView

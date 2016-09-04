@@ -96,6 +96,7 @@
     <string name="Take">קח</string>
     <string name="notification">התראות ועדכונים</string>
     <string name="disconnect">מתנתק...</string>
+    <string name="sent_successfully">נשלח בהצלחה</string>
 
 
 </resources>

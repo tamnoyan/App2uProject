@@ -27,16 +27,17 @@ public class CommentFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         //todo: delete this line
-        strtext = getArguments().getString("tam");
+//        strtext = getArguments().getString("tam");
         // Inflate the layout for this fragment*/
         View inflate = inflater.inflate(R.layout.fragment_comment, container, false);
-        initEvents();
+        Toast.makeText(getActivity(), "commenttttt", Toast.LENGTH_SHORT).show();
+        //initEvents();
         return inflate;
     }
 
-    private void initEvents() {
+    /*private void initEvents() {
         Toast.makeText(getActivity(), strtext, Toast.LENGTH_SHORT).show();
         //strtext
-    }
+    }*/
 
 }

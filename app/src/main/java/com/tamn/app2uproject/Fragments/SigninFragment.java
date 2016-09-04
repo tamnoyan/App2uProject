@@ -73,8 +73,8 @@ public class SigninFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 SigninWithEmailAndPass();
-                progressDialog.setMessage(getResources().getString(R.string.connecting));
-                progressDialog.show();
+                //progressDialog.setMessage(getResources().getString(R.string.connecting));
+                //progressDialog.show();
             }
         });
         tvResetPassword.setOnClickListener(new View.OnClickListener() {
@@ -110,7 +110,7 @@ public class SigninFragment extends Fragment {
             IOHelper.getAnimation(etSigninEmail, Techniques.Shake);
         }
     }catch (Exception e){
-
+            progressDialog.dismiss();
             etSigninEmail.setError(getResources().getString(R.string.required_field));
 
             IOHelper.getAnimation(etSigninEmail, Techniques.Shake);
@@ -138,14 +138,15 @@ public class SigninFragment extends Fragment {
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            progressDialog.dismiss();
+
                             Toast.makeText(getActivity(), getResources().getString(R.string.error) + e.getMessage(),
                                     Toast.LENGTH_SHORT).show();
+                            //progressDialog.dismiss();
 
                         }
                     });
         }catch (Exception e) {
-
+            //progressDialog.dismiss();
             IOHelper.getAnimation(etSigninEmail, Techniques.Shake);
             IOHelper.getAnimation(etSigninPassword, Techniques.Shake);
 

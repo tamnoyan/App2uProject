@@ -78,6 +78,18 @@
         android:background="#FFE7E2E2"
       >
 
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:id="@+id/etComment"
+            android:hint="@string/write_comment_here"
+            android:background="#FFF"
+            android:gravity="fill_vertical"
+            android:paddingLeft="7dp"
+            android:paddingRight="7dp"
+            android:layout_margin="7dp"
+            android:layout_weight="0.27" />
+
         <Button
             android:layout_width="wrap_content"
             android:layout_height="35dp"
@@ -91,21 +103,6 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
             android:layout_weight="0.11" />
-
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="35dp"
-            android:id="@+id/etComment"
-            android:hint="@string/write_comment_here"
-            android:background="#FFF"
-            android:layoutDirection="rtl"
-            android:textAlignment="textStart"
-            android:layout_gravity="start"
-
-            android:paddingLeft="7dp"
-            android:paddingRight="7dp"
-            android:layout_margin="7dp"
-            android:layout_weight="0.27" />
 
     </LinearLayout>
 

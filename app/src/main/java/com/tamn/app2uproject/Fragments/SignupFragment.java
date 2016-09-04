@@ -141,8 +141,8 @@ public class SignupFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 createUserEmailAndPass();
-                progressDialog.setMessage(getResources().getString(R.string.connecting));
-                progressDialog.show();
+               // progressDialog.setMessage(getResources().getString(R.string.connecting));
+              //  progressDialog.show();
             }
         });
     }

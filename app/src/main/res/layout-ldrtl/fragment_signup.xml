@@ -22,21 +22,6 @@
             android:id="@+id/username"
             android:gravity="center">
 
-            <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/etUsername"
-                android:layoutDirection="rtl"
-                android:textAlignment="textStart"
-                android:layout_gravity="start"
-                android:paddingStart="10dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="30dp"
-                android:hint="@string/username"
-                android:textSize="15dp"
-                android:layout_weight="1"
-                />
-
             <ImageView
                 android:layout_width="38dp"
                 android:layout_height="35dp"
@@ -44,6 +29,18 @@
                 android:background="@drawable/ic_person"
                 android:layout_marginLeft="2dp"
                 android:layout_marginRight="2dp"
+                />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/etUsername"
+                android:layout_weight="1"
+                android:paddingStart="10dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="30dp"
+                android:hint="@string/username"
+                android:textSize="15dp"
                 />
         </LinearLayout>
         <LinearLayout
@@ -55,20 +52,6 @@
 
             android:gravity="center">
 
-            <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/etSignupEmail"
-                android:layout_weight="1"
-                android:layoutDirection="rtl"
-                android:textAlignment="textStart"
-                android:layout_gravity="start"
-                android:paddingStart="10dp"
-                android:paddingLeft="10dp"
-                android:hint="@string/email"
-                android:textSize="15dp"
-                />
-
             <ImageView
                 android:layout_width="34dp"
                 android:layout_height="35dp"
@@ -77,6 +60,17 @@
 
                 android:layout_marginLeft="4dp"
                 android:layout_marginRight="4dp"
+                />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/etSignupEmail"
+                android:layout_weight="1"
+                android:paddingStart="10dp"
+                android:paddingLeft="10dp"
+                android:hint="@string/email"
+                android:textSize="15dp"
                 />
         </LinearLayout>
 
@@ -87,27 +81,23 @@
             android:gravity="center"
             >
 
+            <ImageView
+                android:layout_width="43dp"
+                android:layout_height="37dp"
+                android:id="@+id/ivPassword"
+                android:background="@drawable/ic_lock" />
+
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/etSignupPassword"
                 android:inputType="textPassword"
                 android:ems="10"
-                android:layoutDirection="rtl"
-                android:textAlignment="textEnd"
-                android:layout_gravity="end"
-                android:gravity="end"
                 android:layout_weight="1"
                 android:hint="@string/password"
                 android:textSize="15dp"
-
+                android:gravity="right"
                 />
-
-            <ImageView
-                android:layout_width="43dp"
-                android:layout_height="37dp"
-                android:id="@+id/ivPassword"
-                android:background="@drawable/ic_lock" />
         </LinearLayout>
 
     </LinearLayout>

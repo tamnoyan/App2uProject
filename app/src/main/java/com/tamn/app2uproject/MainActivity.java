@@ -26,6 +26,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 import com.tamn.app2uproject.Fragments.AboutFragment;
 import com.tamn.app2uproject.Fragments.AddAdminFragment;
+import com.tamn.app2uproject.Fragments.CommentFragment;
 import com.tamn.app2uproject.Fragments.EventsFragment;
 import com.tamn.app2uproject.Fragments.PushNotificationFragment;
 import com.tamn.app2uproject.Fragments.SettingsFragment;
@@ -289,6 +290,12 @@ public class MainActivity extends AppCompatActivity
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.fragmentContainer, new EventsFragment())
                     .commit();
+
+        }else if (id == R.id.nav_upload_event){
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragmentContainer, new CommentFragment())
+                    .commit();
+
 
         } else if (id == R.id.nav_give_take) {
             startActivity(new Intent(MainActivity.this,GiveAndTakeActivity.class));

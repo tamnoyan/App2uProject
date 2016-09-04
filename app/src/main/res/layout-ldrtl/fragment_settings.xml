@@ -86,6 +86,17 @@
             android:layout_alignParentStart="true"
             android:id="@+id/llDetailsName">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="@string/username"
+                android:textSize="18sp"
+                android:id="@+id/tvDetailsName"
+                android:layout_alignBottom="@+id/etName"
+                android:layout_toRightOf="@+id/etDetailsName"
+                android:layout_alignParentRight="true" />
+
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -98,20 +109,8 @@
                 android:paddingRight="10dp"
                 android:layout_below="@+id/ivDetailsImage"
                 android:layout_toLeftOf="@+id/tvDetailsName"
-                android:layout_gravity="left"
                 android:layout_weight="1" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="@string/username"
-                android:textSize="18sp"
-                android:id="@+id/tvDetailsName"
-                android:layout_alignBottom="@+id/etName"
-                android:layout_toRightOf="@+id/etDetailsName"
-                android:layout_alignParentRight="true"
-                android:layout_gravity="right|center_vertical" />
         </LinearLayout>
 
         <LinearLayout
@@ -122,6 +121,17 @@
             android:layout_alignParentStart="true"
             android:id="@+id/llDetailsEmail" >
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="@string/email"
+                android:id="@+id/textView5"
+                android:layout_alignBottom="@+id/editText"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                 />
+
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -131,21 +141,10 @@
                 android:id="@+id/etDetailsEmail"
                 android:textSize="15sp"
                 android:gravity="right|bottom"
-                android:paddingRight="10dp"
+                android:paddingRight="5dp"
                 android:layout_below="@+id/ivDetailsImage"
-                android:layout_toLeftOf="@+id/tvDetailsEmail"
-                android:layout_toStartOf="@+id/tvDetailsEmail"
                 android:layout_weight="1" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="@string/email"
-                android:id="@+id/tvDetailsEmail"
-                android:layout_alignBottom="@+id/editText"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true" />
         </LinearLayout>
 
         <LinearLayout
@@ -156,6 +155,16 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:id="@+id/llDetailsPassword" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="@string/password"
+                android:id="@+id/tvDetailsPassword"
+                android:layout_alignBottom="@+id/editText2"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
 
             <EditText
                 android:layout_width="wrap_content"
@@ -172,15 +181,6 @@
                 android:layout_toStartOf="@+id/tvDetailsPassword"
                 android:layout_weight="1" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="@string/password"
-                android:id="@+id/tvDetailsPassword"
-                android:layout_alignBottom="@+id/editText2"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true" />
         </LinearLayout>
     </LinearLayout>
 

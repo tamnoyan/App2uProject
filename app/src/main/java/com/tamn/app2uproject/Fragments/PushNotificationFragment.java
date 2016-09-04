@@ -9,9 +9,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import com.daimajia.androidanimations.library.Techniques;
 import com.tamn.app2uproject.Adapter.SendNotificationAsyncAdapter;
 import com.tamn.app2uproject.Constants;
+import com.tamn.app2uproject.IOHelper;
 import com.tamn.app2uproject.R;
 
 /**
@@ -38,16 +41,26 @@ public class PushNotificationFragment extends Fragment {
         etPushContent = (EditText) pushView.findViewById(R.id.etPushContent);
         btnPushSend = (Button) pushView.findViewById(R.id.btnPushSend);
 
+        initEvents();
+        return pushView;
+    }
+
+    private void initEvents() {
         btnPushSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startAsyncTaskNotification(etPushTitle.getText().toString(),etPushContent.getText().toString());
+                if (etPushTitle.getText().toString().equals("") && etPushContent.getText().toString().equals("")){
+                    IOHelper.getAnimation(etPushTitle, Techniques.Shake);
+                    IOHelper.getAnimation(etPushContent, Techniques.Shake);
 
+                }else {
+                    startAsyncTaskNotification(etPushTitle.getText().toString(), etPushContent.getText().toString());
+                    Toast.makeText(getActivity(), getString(R.string.sent_successfully), Toast.LENGTH_SHORT).show();
+                    etPushTitle.getText().clear();
+                    etPushContent.getText().clear();
+                }
             }
         });
-
-
-        return pushView;
     }
 
     private void startAsyncTaskNotification(String title,String content) {

@@ -12,6 +12,7 @@
         android:id="@+id/editText3"
         android:layout_gravity="right|top"
         android:text="texttttt"
+        android:gravity="right"
         android:layout_alignParentTop="true"
         android:layoutDirection = "rtl"
         android:layout_marginTop="188dp" />

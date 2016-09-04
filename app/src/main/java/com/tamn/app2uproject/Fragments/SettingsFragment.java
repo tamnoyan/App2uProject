@@ -16,7 +16,6 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -48,11 +47,9 @@ public class SettingsFragment extends Fragment {
         // Required empty public constructor
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_settings, container, false);
@@ -85,7 +82,6 @@ public class SettingsFragment extends Fragment {
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user == null) {
-            //btnSignout.setEnabled(false);
             btnSignout.setVisibility(View.GONE);
             btnConnect.setVisibility(View.VISIBLE);
         }else {
@@ -102,7 +98,6 @@ public class SettingsFragment extends Fragment {
             }
         });
 
-
         btnConnect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -112,21 +107,13 @@ public class SettingsFragment extends Fragment {
             }
         });
 
-
         btnSignout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getActivity(), "press", Toast.LENGTH_SHORT).show();
                 FirebaseAuth.getInstance().signOut();
 
-               /* FirebaseUser user  = FirebaseAuth.getInstance().getCurrentUser();
-                if (user == null){*/
-                    //btnSignout.setEnabled(false);
                     btnSignout.setVisibility(View.GONE);
                     btnConnect.setVisibility(View.VISIBLE);
-
-                //}
-
             }
         });
     }
