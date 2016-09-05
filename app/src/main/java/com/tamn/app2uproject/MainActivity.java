@@ -26,7 +26,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 import com.tamn.app2uproject.Fragments.AboutFragment;
 import com.tamn.app2uproject.Fragments.AddAdminFragment;
-import com.tamn.app2uproject.Fragments.CommentFragment;
+import com.tamn.app2uproject.Fragments.ContactUsFragment;
 import com.tamn.app2uproject.Fragments.EventsFragment;
 import com.tamn.app2uproject.Fragments.PushNotificationFragment;
 import com.tamn.app2uproject.Fragments.SettingsFragment;
@@ -211,6 +211,7 @@ public class MainActivity extends AppCompatActivity
         Menu menu = navigationView.getMenu();
         SubMenu subMenu = menu.addSubMenu(getResources().getString(R.string.admin));
         pushNotication = getResources().getString(R.string.push_notification);
+        subMenu.setIcon(getResources().getDrawable(R.drawable.ic_add_a_photo));
         subMenu.add(pushNotication);
         uploadEvent = getResources().getString(R.string.upload_event);
         subMenu.add(uploadEvent);
@@ -291,20 +292,24 @@ public class MainActivity extends AppCompatActivity
                     .replace(R.id.fragmentContainer, new EventsFragment())
                     .commit();
 
-        }else if (id == R.id.nav_upload_event){
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fragmentContainer, new CommentFragment())
-                    .commit();
-
-
         } else if (id == R.id.nav_give_take) {
             startActivity(new Intent(MainActivity.this,GiveAndTakeActivity.class));
 
-        } else if (id == R.id.nav_signout) {
+      /*  } else if (id == R.id.nav_signout) {
             FirebaseAuth.getInstance().signOut();
-            clearHeader();
+            //clearHeader();*/
 
-        }  else if (item.getTitle().equals(uploadEvent)) {
+
+        }  else if (id == R.id.nav_questions) {
+                startActivity(new Intent(MainActivity.this,GeneralQuestionsActivity.class));
+
+        }  else if (id == R.id.nav_contactUs) {
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragmentContainer, new ContactUsFragment())
+                        .commit();
+        }
+        //admin
+        else if (item.getTitle().equals(uploadEvent)) {
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.fragmentContainer, new UploadEventsFragment())
                     .commit();

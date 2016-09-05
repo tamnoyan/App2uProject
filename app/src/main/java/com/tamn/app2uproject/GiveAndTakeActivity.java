@@ -75,8 +75,7 @@ public class GiveAndTakeActivity extends AppCompatActivity  {
         setContentView(R.layout.activity_give_and_take);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("קח תן"); //todo:put in string
-        //((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(getResources().getString(R.string.events));
+        getSupportActionBar().setTitle(getString(R.string.give_take));
 
         initLayout();
         Utils.checkIfPermissionNeeded(this);
