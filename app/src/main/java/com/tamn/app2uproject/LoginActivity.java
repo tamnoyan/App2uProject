@@ -37,6 +37,7 @@ import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.GoogleAuthProvider;
 
+@SuppressWarnings("ALL")
 public class LoginActivity extends AppCompatActivity {
 
     private static final int GOOGLE_SIGN_CODE = 15;
@@ -148,7 +149,6 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            //TODO: save to database USER TABLE
                             moveToMainActivity();
                         } else {
                             Toast.makeText(LoginActivity.this, getString(R.string.error) + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
@@ -224,7 +224,7 @@ public class LoginActivity extends AppCompatActivity {
                         if (task.isSuccessful()){
                             moveToMainActivity();
                         }else {
-                            Toast.makeText(LoginActivity.this, "Error:" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, getString(R.string.error) + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

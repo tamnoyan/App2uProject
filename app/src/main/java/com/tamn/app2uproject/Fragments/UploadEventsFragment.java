@@ -172,7 +172,7 @@ public class UploadEventsFragment extends Fragment {
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(getActivity(), getResources().getString(R.string.error)+e.getMessage(), Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), getResources().getString(R.string.error)+ e.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
     }

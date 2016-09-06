@@ -152,7 +152,7 @@ public class MainActivity extends AppCompatActivity
                         } catch (Exception e) {
                             Toast.makeText(MainActivity.this, getString(R.string.error) + e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
-                        ref.removeEventListener(this);  //todo: remove all listener  ref.removeEventListener();
+                        ref.removeEventListener(this);
                     }
 
                     @Override
