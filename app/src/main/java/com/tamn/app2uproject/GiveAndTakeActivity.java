@@ -24,8 +24,6 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.daimajia.androidanimations.library.Techniques;
-import com.tamn.app2uproject.Adapter.MyViewPagerAdapter;
-import com.tamn.app2uproject.Model.EventItem;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -39,6 +37,8 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.kosalgeek.android.photoutil.GalleryPhoto;
 import com.kosalgeek.android.photoutil.ImageLoader;
+import com.tamn.app2uproject.Adapter.MyViewPagerAdapter;
+import com.tamn.app2uproject.Model.EventItem;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
@@ -89,6 +89,20 @@ public class GiveAndTakeActivity extends AppCompatActivity  {
         tabs.setupWithViewPager(viewPager);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        View view = getCurrentFocus();
+        if (view != null && (ev.getAction() == MotionEvent.ACTION_UP || ev.getAction() == MotionEvent.ACTION_MOVE) && view instanceof EditText && !view.getClass().getName().startsWith("android.webkit.")) {
+            int scrcoords[] = new int[2];
+            view.getLocationOnScreen(scrcoords);
+            float x = ev.getRawX() + view.getLeft() - scrcoords[0];
+            float y = ev.getRawY() + view.getTop() - scrcoords[1];
+            if (x < view.getLeft() || x > view.getRight() || y < view.getTop() || y > view.getBottom())
+                ((InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow((this.getWindow().getDecorView().getApplicationWindowToken()), 0);
+        }
+        return super.dispatchTouchEvent(ev);
     }
 
     private void initEvents() {
@@ -289,17 +303,5 @@ public class GiveAndTakeActivity extends AppCompatActivity  {
         super.onActivityResult(requestCode, resultCode, data);
     }
 
-    @Override
-    public boolean dispatchTouchEvent(MotionEvent ev) {
-        View view = getCurrentFocus();
-        if (view != null && (ev.getAction() == MotionEvent.ACTION_UP || ev.getAction() == MotionEvent.ACTION_MOVE) && view instanceof EditText && !view.getClass().getName().startsWith("android.webkit.")) {
-            int scrcoords[] = new int[2];
-            view.getLocationOnScreen(scrcoords);
-            float x = ev.getRawX() + view.getLeft() - scrcoords[0];
-            float y = ev.getRawY() + view.getTop() - scrcoords[1];
-            if (x < view.getLeft() || x > view.getRight() || y < view.getTop() || y > view.getBottom())
-                ((InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow((this.getWindow().getDecorView().getApplicationWindowToken()), 0);
-        }
-        return super.dispatchTouchEvent(ev);
-    }
+
 }
