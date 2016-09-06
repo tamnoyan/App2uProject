@@ -2,7 +2,6 @@ package com.tamn.app2uproject;
 
 import android.support.v4.app.NotificationManagerCompat;
 import android.support.v7.app.NotificationCompat;
-import android.util.Log;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
@@ -19,9 +18,6 @@ public class MessagingService extends FirebaseMessagingService {
         super.onMessageReceived(remoteMessage);
 
         Map<String, String> data = remoteMessage.getData();
-        for (String key : data.keySet()) {
-            Log.d("DDebugging",key + ":" + data.get(key));
-        }
 
         String title = data.get("title");
         String message = data.get("message");

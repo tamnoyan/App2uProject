@@ -4,7 +4,6 @@ package com.tamn.app2uproject.Fragments;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -118,8 +117,7 @@ public class AddAdminFragment extends Fragment {
         }).addOnFailureListener(getActivity(), new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(getActivity(), "Error:" + e.getMessage(), Toast.LENGTH_SHORT).show();
-                Log.d("DDebug",e.getMessage());
+                Toast.makeText(getActivity(), getString(R.string.error) + e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }

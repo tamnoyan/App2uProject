@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,12 +19,6 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.daimajia.androidanimations.library.Techniques;
-import com.tamn.app2uproject.Constants;
-import com.tamn.app2uproject.IOHelper;
-import com.tamn.app2uproject.MainActivity;
-import com.tamn.app2uproject.Model.UserDetails;
-import com.tamn.app2uproject.R;
-import com.tamn.app2uproject.Utils;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -40,6 +33,12 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.kosalgeek.android.photoutil.GalleryPhoto;
 import com.kosalgeek.android.photoutil.ImageLoader;
+import com.tamn.app2uproject.Constants;
+import com.tamn.app2uproject.IOHelper;
+import com.tamn.app2uproject.MainActivity;
+import com.tamn.app2uproject.Model.UserDetails;
+import com.tamn.app2uproject.R;
+import com.tamn.app2uproject.Utils;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
@@ -163,13 +162,13 @@ public class SignupFragment extends Fragment {
             @Override
             public void onFailure(@NonNull Exception e) {
                 progressDialog.dismiss();
-                Log.d("ddebug","" + e.getMessage().toString()); //todo:delete
+
 
             }
         }).addOnSuccessListener(getActivity(), new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
-                Log.d("ddebug","Succees");
+
             }
         });
     }
@@ -204,7 +203,6 @@ public class SignupFragment extends Fragment {
                             etSignupPassword.setError(getResources().getString(R.string.invalid_password));
                             IOHelper.getAnimation(etSignupPassword ,Techniques.Shake );
                             Toast.makeText(getActivity(), getResources().getString(R.string.error) + e.getMessage(), Toast.LENGTH_LONG).show();
-                            Log.d("Tammmm", e.getMessage());
                         }
                     }
                 });

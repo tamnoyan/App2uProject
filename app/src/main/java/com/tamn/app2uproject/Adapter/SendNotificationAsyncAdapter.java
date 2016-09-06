@@ -1,7 +1,6 @@
 package com.tamn.app2uproject.Adapter;
 
 import android.os.AsyncTask;
-import android.util.Log;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
@@ -72,7 +71,6 @@ public class SendNotificationAsyncAdapter extends AsyncTask<String,Integer,Strin
             while ((line = reader.readLine()) != null){
                 output += line;
             }
-            Log.d("MyDebugging", "Server Response:" + output);
 
             return output;
 
@@ -91,8 +89,6 @@ public class SendNotificationAsyncAdapter extends AsyncTask<String,Integer,Strin
     @Override
     protected void onPostExecute(String result) {
         super.onPostExecute(result);
-
-        Log.d("MyDebugging", "OnPostExecute:" + result);
         /**
          * Stop Progress Indicator
          */

@@ -165,7 +165,6 @@ public class ItemActivity extends AppCompatActivity {
         */
                 String str = etComment.getText().toString();
                 if (currentUser == null){
-                    Log.d("Tammmm", "User null");
                     etComment.setError(getResources().getString(R.string.log_in_to_comment));
                     tvConnectMessage.setVisibility(View.VISIBLE);
                     IOHelper.getAnimation(tvConnectMessage, Techniques.Flash);

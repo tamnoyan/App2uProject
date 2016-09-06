@@ -26,6 +26,7 @@
         <activity
             android:name=".LoginActivity"
             android:label="@string/LoginActivity"
+            android:windowSoftInputMode="adjustPan"
             android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -49,6 +50,7 @@
         <activity
             android:name=".GiveAndTakeActivity"
             android:label="@string/title_activity_give_and_take"
+            android:windowSoftInputMode="adjustPan"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
@@ -59,6 +61,7 @@
         <activity
             android:name=".GeneralQuestionsActivity"
             android:label="@string/title_activity_general_questions_active"
+            android:windowSoftInputMode="adjustPan"
             android:theme="@style/AppTheme.NoActionBar" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
