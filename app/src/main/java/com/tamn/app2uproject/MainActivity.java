@@ -18,6 +18,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -149,7 +150,7 @@ public class MainActivity extends AppCompatActivity
                                 Picasso.with(getApplicationContext()).load(userDetails.getImageUrl()).into(ivUser);
                             }
                         } catch (Exception e) {
-
+                            Toast.makeText(MainActivity.this, getString(R.string.error) + e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     }
 
@@ -160,7 +161,6 @@ public class MainActivity extends AppCompatActivity
             }
             getAdminsGroup();
         }
-
     }
 
 
@@ -256,7 +256,6 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        //DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -279,11 +278,6 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_log_off) {
-            FirebaseAuth.getInstance().signOut();
-            startActivity(new Intent(MainActivity.this,LoginActivity.class));
-            return true;
-        }
         return super.onOptionsItemSelected(item);
     }
 
@@ -308,11 +302,6 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_give_take) {
             startActivity(new Intent(MainActivity.this,GiveAndTakeActivity.class));
-
-      /*  } else if (id == R.id.nav_signout) {
-            FirebaseAuth.getInstance().signOut();
-            //clearHeader();*/
-
 
         }  else if (id == R.id.nav_questions) {
                 startActivity(new Intent(MainActivity.this,GeneralQuestionsActivity.class));
@@ -339,7 +328,6 @@ public class MainActivity extends AppCompatActivity
                     .commit();
 
         }
-    //    DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
