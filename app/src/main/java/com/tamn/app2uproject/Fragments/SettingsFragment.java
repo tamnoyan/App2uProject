@@ -146,7 +146,7 @@ public class SettingsFragment extends Fragment {
                         } catch (Exception e) {
                             Toast.makeText(getActivity(), getString(R.string.error)+e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
-                        ref.removeEventListener(this);  //todo: remove all listener  ref.removeEventListener();
+                        ref.removeEventListener(this);
                     }
 
                     @Override
@@ -171,7 +171,7 @@ public class SettingsFragment extends Fragment {
 
         SharedPreferences.Editor editor = pref.edit();
         editor.putBoolean(Constants.NOTIFICATION_SWITCH,b);
-        editor.commit();
+        editor.apply();
 
         if (b){
             FirebaseMessaging.getInstance().subscribeToTopic(Constants.NEWS_NOTIFICATION);
