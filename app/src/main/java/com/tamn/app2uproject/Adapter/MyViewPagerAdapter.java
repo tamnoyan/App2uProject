@@ -36,9 +36,9 @@ public class MyViewPagerAdapter extends FragmentStatePagerAdapter {
     public CharSequence getPageTitle(int position) {
         switch (position){
             case 0:
-                return "קח - דרוש מוצר";
+                return "תן - זקוקים ל...";
             case 1:
-                return "תן - מוצרים למסירה";
+                return "קח -מוצרים למסירה";
         }
         return null;
     }

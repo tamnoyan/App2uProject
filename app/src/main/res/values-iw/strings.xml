@@ -47,8 +47,8 @@
     <string name="connect">התחברות</string>
     <string name="log_in_to_comment">התחבר על מנת להגיב</string>
     <string name="press_here_to_connect"><u> לחץ כאן להתחברות</u></string>
-    <string name="give">תן (פרסם מוצר למסירה)</string>
-    <string name="take">קח(פרסם דרישה למוצר)</string>
+    <string name="give">פרסם מוצר למסירה</string>
+    <string name="take">פרסם דרישה למוצר</string>
     <string name="post_your_offer">סמן את סוג המודעה</string>
     <string name="post_offer">פרסם</string>
     <string name="Take">קח</string>

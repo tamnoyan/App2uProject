@@ -15,8 +15,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
@@ -93,16 +91,10 @@ public class EventsFragment extends Fragment {
                         DatabaseReference item = getRef(position);
                         String key = item.getKey();
 
-                        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                        //todo: fix this when no user signin
-                       // String email = user.getEmail();
-
                         Intent moveToItemActivity = new Intent(getContext(),ItemActivity.class);
                         moveToItemActivity.putExtra(Constants.ITEM_KEY, key);
-                       // moveToItemActivity.putExtra(Constants.USER_EMAIL, email); //// TODO: 27/08/2016  
                         moveToItemActivity.putExtra(Constants.EVENT_TITLE,viewHolder.tvItemTitle.getText());
                         moveToItemActivity.putExtra(Constants.EVENT_CONTENT,viewHolder.tvItemContent.getText());
-                        //moveToItemActivity.putExtra(Constants.EVENT_DATE)//// TODO: 27/08/2016  
 
                         //Singleton
                         PictureHelper.getInstance().setDrawable(viewHolder.ivItemImage.getDrawable());

@@ -114,9 +114,9 @@ public class UploadEventsFragment extends Fragment {
                 }else {
                     uploadImageToServer();
 
-                //TODO: fix
-                etEventTitle.setText("");
-                etEventContent.setText("");
+
+                etEventTitle.getText().clear();
+                etEventContent.getText().clear();
                 }
             }
         });

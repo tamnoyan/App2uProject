@@ -4,7 +4,6 @@
     android:layout_height="match_parent"
     tools:context="com.tamn.app2uproject.Fragments.SigninFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"

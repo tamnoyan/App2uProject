@@ -12,21 +12,22 @@
         android:textSize="18sp"
         android:text="@string/upload_event"
         android:id="@+id/textView4"
-        android:layout_marginTop="29dp"
+        android:layout_marginTop="48dp"
         android:textStyle="bold"
         android:textColor="@color/lightBrown"
         android:layout_below="@+id/linearLayout4"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignRight="@+id/tvAddImage"
+        android:layout_alignStart="@+id/tvAddImage" />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/etEventTitle"
         android:hint="@string/title"
-        android:layout_marginTop="59dp"
         android:layout_below="@+id/textView4"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="31dp" />
 
     <EditText
         android:layout_width="match_parent"
@@ -67,8 +68,7 @@
         android:textColor="#fff"
         android:background="#8cc540"
         android:layout_below="@+id/ivUploadImage"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp" />
+        android:layout_centerHorizontal="true" />
 
     <ImageView
         android:layout_width="100dp"
@@ -86,7 +86,6 @@
         android:text="@string/click_add_image"
         android:id="@+id/tvAddImage"
         android:textAlignment="center"
-        android:layout_marginTop="35dp"
         android:layout_below="@+id/etEventContent"
         android:layout_centerHorizontal="true" />
 

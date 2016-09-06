@@ -7,30 +7,20 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="180dp"
-        android:id="@+id/ivEventImage"
-        android:src="@mipmap/ic_launcher"
+        android:id="@+id/ivGiveImage"
+        android:src="@drawable/takegb"
         android:scaleType="centerCrop"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/give_away_stuff"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:layout_below="@+id/ivEventImage"
-        android:id="@+id/tvGiveHeader"
-        android:gravity="center"
-        android:padding="5dp"/>
-
 
     <ScrollView
         android:fillViewport="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/tvGiveHeader">
+        android:paddingTop="5dp"
+        android:layout_below="@+id/ivGiveImage">
 
         <android.support.v7.widget.RecyclerView
             android:layout_width="match_parent"
