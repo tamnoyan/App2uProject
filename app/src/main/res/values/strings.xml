@@ -24,7 +24,7 @@
     <string name="forgot_password">שכחתי סיסמה</string>
     <string name="signup">הירשם</string>
     <string name="Signin">התחבר</string>
-    <string name="or">------------ או התחבר/י באמצעות ------------</string>
+    <string name="or" translatable="false">----- או התחבר/י באמצעות -----</string>
     <string name="reset_message"><u>לשחזור סיסמה , נא להזין דואר אלקטרוני</u></string>
     <string name="Sign_out">התנתק</string>
     <string name="Facebook">Facebook</string>
@@ -64,6 +64,7 @@
     <string name="content">תוכן:</string>
     <string name="connect">התחברות</string>
     <string name="press_here_to_connect"><u> לחץ כאן להתחברות</u></string>
+
     <string name="add_admin">הוספת מנהל</string>
     <string name="add_a_comment">שלח תגובה</string>
 
@@ -120,4 +121,5 @@
     <string name="about_text"><b>\'\'נקודת צמיחה\'\'</b> הנו פרויקט ייחודי וארצי, הפועל במסגרת <b>\'\'קרן חן וחסד\'\'</b>  ומטרתו לסייע למשפחות בתחומי החיים השונים, באמצעות הנחייה משפחתית. \n \nהפרויקט נועד להקנות כלים ולהנחות משפחות המתמודדות עם משברים רגשיים מגוונים הנובעים מבעיות כלכליות, זוגיות, תעסוקה וכ\'\'ו, ומטרתו לעזור למשפחות לעשות שינוי בדרך התנהלותן ולהגיע לצמיחה כלכלית ואיזון במישורים המשפחתיים השונים. לכל משפחה יש מנחה אשר מלווה אותה שעה אחת בשבוע, למשך שנה. \n \nהמתנדבים למדו את תורתו של בעל הסולם – הרב אשלג, המדבר על שינוי פני החברה באמצעות הכלל \'\'ואהבת לרעך כמוך\'\'. הם בעלי מקצוע בתחומי הטיפול או בתחומי הכספים, אנשים עם הרבה נתינה ואכפתיות, שיודעים על בשרם מה זה לעלות מלמטה באמצעות התפתחות אישית.</string>
     <string name="click_add_image">לחץ להוספת תמונה</string>
     <string name="take">פרסם דרישה למוצר</string>
+    <string name="exist_user">משתמש רשום? התחבר:</string>
 </resources>

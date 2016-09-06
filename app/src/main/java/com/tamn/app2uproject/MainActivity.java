@@ -135,7 +135,7 @@ public class MainActivity extends AppCompatActivity
 
             } else {
                 FirebaseDatabase database = FirebaseDatabase.getInstance();
-                DatabaseReference ref = database.getReference(Constants.USERS).child(currentUser.getUid());
+                final DatabaseReference ref = database.getReference(Constants.USERS).child(currentUser.getUid());
 
                 ref.addValueEventListener(new ValueEventListener() {
                     @Override
@@ -152,12 +152,14 @@ public class MainActivity extends AppCompatActivity
                         } catch (Exception e) {
                             Toast.makeText(MainActivity.this, getString(R.string.error) + e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
+                        ref.removeEventListener(this);  //todo: remove all listener  ref.removeEventListener();
                     }
 
                     @Override
                     public void onCancelled(DatabaseError databaseError) {
                     }
-                }); //todo: remove all listener  ref.removeEventListener();
+                });
+
             }
             getAdminsGroup();
         }
