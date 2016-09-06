@@ -1,5 +1,6 @@
 package com.tamn.app2uproject;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -8,11 +9,13 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.SubMenu;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -78,6 +81,22 @@ public class MainActivity extends AppCompatActivity
 
     }
 
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        View view = getCurrentFocus();
+        if (view != null && (ev.getAction() == MotionEvent.ACTION_UP || ev.getAction() == MotionEvent.ACTION_MOVE) && view instanceof EditText && !view.getClass().getName().startsWith("android.webkit.")) {
+            int scrcoords[] = new int[2];
+            view.getLocationOnScreen(scrcoords);
+            float x = ev.getRawX() + view.getLeft() - scrcoords[0];
+            float y = ev.getRawY() + view.getTop() - scrcoords[1];
+            if (x < view.getLeft() || x > view.getRight() || y < view.getTop() || y > view.getBottom())
+                ((InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow((this.getWindow().getDecorView().getApplicationWindowToken()), 0);
+        }
+        return super.dispatchTouchEvent(ev);
+    }
+
+
+
     private void addNavigationDrawer() {
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         toggle = new ActionBarDrawerToggle(
@@ -131,7 +150,6 @@ public class MainActivity extends AppCompatActivity
                             }
                         } catch (Exception e) {
 
-                            Log.d("TammmmHeaderDetails", e.getMessage()); //todo:delete
                         }
                     }
 
@@ -154,13 +172,10 @@ public class MainActivity extends AppCompatActivity
         FirebaseUser user  = FirebaseAuth.getInstance().getCurrentUser();
         if (user == null){
             //Go to Login
-            Log.d("DDebug","user null");
             startActivity(new Intent(MainActivity.this,LoginActivity.class));
             gettingHeaderDetails();
         }else{
             //we have a user
-            Log.d("DDebug","user not null");
-
             getAdminsGroup();
         }
     }
@@ -188,7 +203,6 @@ public class MainActivity extends AppCompatActivity
                         for (String admin : adminsHashMap.keySet()) {
                             String value = adminsHashMap.get(admin);
                             //Key               //Value
-                            Log.d("DDebug", admin + ":" + value);
                             if (email.equals(value)) {
                                 //Change the Menu
                                 addSubMenu();

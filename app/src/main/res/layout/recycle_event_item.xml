@@ -69,7 +69,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="(22/08/16)"
                 android:id="@+id/tvEventDate"
-                android:textSize="15sp"
+                android:textSize="12sp"
                 android:paddingLeft="7dp"
                 android:layout_below="@+id/tvItemContent"
                 android:layout_alignParentRight="true"

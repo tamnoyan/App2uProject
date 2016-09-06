@@ -34,6 +34,7 @@
                 android:inputType="textEmailAddress"
                 android:ems="10"
                 android:id="@+id/etAdmin2"
+                android:textSize="15sp"
                 android:hint="admin2@mail.com"
                 android:gravity="center|bottom" />
 
@@ -57,6 +58,7 @@
                 android:inputType="textEmailAddress"
                 android:ems="10"
                 android:id="@+id/etAdmin3"
+                android:textSize="15sp"
                 android:hint="admin3@mail.com"
                 android:textColorHighlight="@color/lightBrown"
                 android:gravity="center|bottom" />
@@ -81,6 +83,7 @@
                 android:inputType="textEmailAddress"
                 android:ems="10"
                 android:id="@+id/etAdmin4"
+                android:textSize="15sp"
                 android:hint="admin4@mail.com"
                 android:textColorHighlight="@color/lightBrown"
                 android:gravity="center|bottom" />
@@ -92,15 +95,12 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="@string/add_update_admins"
-
         android:id="@+id/textView2"
         android:layout_gravity="center_horizontal"
         android:layout_above="@+id/linearLayout3"
-        android:layout_alignRight="@+id/tvAdminTitle"
-        android:layout_alignLeft="@+id/btnUpdateAdmin"
-        android:layout_alignEnd="@+id/btnUpdateAdmin" />
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:layout_width="wrap_content"
@@ -120,7 +120,7 @@
         android:ems="10"
         android:id="@+id/tvAdmin1"
         android:hint="admin1@mail.com"
-        android:textSize="18sp"
+        android:textSize="15sp"
         android:textColor="@color/lightBrown"
 
         android:gravity="center"
@@ -135,9 +135,8 @@
         android:textColor="@color/lightBrown"
         android:textStyle="bold"
         android:id="@+id/tvAdminTitle"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="39dp"
         android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/btnUpdateAdmin"
-        android:layout_toStartOf="@+id/btnUpdateAdmin" />
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

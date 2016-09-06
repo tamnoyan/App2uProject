@@ -91,7 +91,6 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="@string/username"
-                android:textSize="18sp"
                 android:id="@+id/tvDetailsName"
                 android:layout_alignBottom="@+id/etName"
                 android:layout_toRightOf="@+id/etDetailsName"
@@ -154,7 +153,8 @@
             android:layout_below="@+id/ivDetailsImage"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:id="@+id/llDetailsPassword" >
+            android:id="@+id/llDetailsPassword"
+            android:visibility="gone">
 
             <TextView
                 android:layout_width="wrap_content"

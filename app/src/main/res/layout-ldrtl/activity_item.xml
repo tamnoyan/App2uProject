@@ -15,7 +15,8 @@
         android:fillViewport="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/rvComment"
         android:layout_below="@+id/tvConnectMessage">
 
         <android.support.v7.widget.RecyclerView
@@ -49,7 +50,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/title"
-            android:textAppearance="?android:attr/textAppearanceLarge"
+
+            android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_below="@+id/ivEventImage"
             android:id="@+id/tvEventTitle"
             android:layout_alignParentLeft="true"
@@ -58,7 +60,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textAppearance="?android:attr/textAppearanceSmall"
             android:text="@string/content"
             android:id="@+id/tvEventContent"
             android:layout_below="@+id/tvEventTitle"
@@ -74,13 +76,14 @@
         android:layout_below="@+id/rlEvent"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
+        android:paddingBottom="5dp"
         android:id="@+id/writeComment"
         android:background="#FFE7E2E2"
       >
 
         <EditText
             android:layout_width="wrap_content"
-            android:layout_height="35dp"
+            android:layout_height="wrap_content"
             android:id="@+id/etComment"
             android:hint="@string/write_comment_here"
             android:background="#FFF"
