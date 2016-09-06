@@ -10,17 +10,16 @@
         android:id="@+id/ivGiveImage"
         android:src="@drawable/takegb"
         android:scaleType="centerCrop"
+        android:paddingTop="5dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
 
     <ScrollView
-        android:fillViewport="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
+        android:verticalScrollbarPosition="right"
         android:paddingTop="5dp"
         android:layout_below="@+id/ivGiveImage">
 

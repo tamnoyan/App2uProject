@@ -120,17 +120,17 @@ public class ItemActivity extends AppCompatActivity {
         ref.push().setValue(commentItem).addOnSuccessListener(this, new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
-                Toast.makeText(ItemActivity.this, "Added in success", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ItemActivity.this, getString(R.string.sent_successfully), Toast.LENGTH_SHORT).show();
             }
         }).addOnFailureListener(this, new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(ItemActivity.this, "failed:" + e.getMessage().toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(ItemActivity.this, getString(R.string.error) + e.getMessage().toString(), Toast.LENGTH_SHORT).show();
             }
         });
 
         // clear text
-        etComment.setText("");
+        etComment.getText().clear();
     }
 
     private void initLayout() {

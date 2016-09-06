@@ -8,7 +8,8 @@
         android:fillViewport="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true">
+        android:verticalScrollbarPosition="right"
+        >
 
         <android.support.v7.widget.RecyclerView
             android:layout_width="match_parent"

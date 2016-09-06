@@ -15,6 +15,7 @@
         android:fillViewport="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:verticalScrollbarPosition="right"
         android:layout_alignParentStart="true"
         android:layout_alignRight="@+id/rvComment"
         android:layout_below="@+id/tvConnectMessage">

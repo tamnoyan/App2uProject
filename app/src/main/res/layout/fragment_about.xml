@@ -11,7 +11,8 @@
     <ScrollView
         android:id="@+id/ScrollView01"
         android:layout_height="wrap_content"
-        android:layout_width="fill_parent">
+        android:layout_width="fill_parent"
+        android:verticalScrollbarPosition="right">
 
     <TextView
         android:padding="5dp"
