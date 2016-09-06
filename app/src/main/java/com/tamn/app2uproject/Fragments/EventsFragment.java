@@ -102,16 +102,7 @@ public class EventsFragment extends Fragment {
 
                     }
                 });
-                // delete item on long click //todo: remove or set it to admin only
-                viewHolder.tvItemContent.setOnLongClickListener(new View.OnLongClickListener() {
-                    @Override
-                    public boolean onLongClick(View view) {
-                        DatabaseReference item =  getRef(position);
-                        item.setValue(null);
 
-                        return true;
-                    }
-                });
             }
         };
         //divider

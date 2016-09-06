@@ -96,16 +96,7 @@ public class GiveFragment extends Fragment {
 
                     }
                 });
-                // delete item on long click
-                viewHolder.tvItemContent.setOnLongClickListener(new View.OnLongClickListener() {
-                    @Override
-                    public boolean onLongClick(View view) {
-                        DatabaseReference item =  getRef(position);
-                        item.setValue(null);
 
-                        return true;
-                    }
-                });
             }
         };
         //diveder

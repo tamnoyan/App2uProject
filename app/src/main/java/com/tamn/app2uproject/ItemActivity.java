@@ -44,9 +44,6 @@ public class ItemActivity extends AppCompatActivity {
 
     FirebaseUser currentUser;
 
-    //TODO: add edit option for admin
-    //TODO: add edit option for user on his comment
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
